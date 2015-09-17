@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>租户更新</title>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+
+    <script src="js/jQuery.js"></script>
+    <!--core javascript-->
+    <script src="js/knockout-3.1.0.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/UpdateTenant.js"></script>
+</head>
+<body>
+<div class="container" id="container">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    租户更新</h4>
+            </div>
+            <div class="panel-body">
+                    <fieldset>
+                        <legend>租户资料更新</legend>
+                        <div class="control-group">
+                            <label class="control-label">公司名称:</label>
+                            <div class="controls">
+                                <input type="text" data-bind="value:name" name="tenantName" id="tenantName">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">公司简称:</label>
+                            <div class="controls">
+                                <input type="text" data-bind="value:alias" name="alias" id="alias">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">默认域:</label>
+                            <div class="controls">
+                                <input type="text" data-bind="value:mappeddomain" name="mappedDomain" id="mappedDomain">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">联系人电话：</label>
+                            <div class="controls">
+                                <input type="text" data-bind="value:phone" name="phone" id="phone">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">电子邮件：</label>
+                            <div class="controls">
+                                <input type="text" data-bind="value:email" name="email" id="email">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="controls">
+                                <button id="btn_update" class="btn btn-success" >确认更新</button>
+                            </div>
+                        </div>
+                    </fieldset>
+            </div>
+            <div class="panel-footer">
+                <div id="registerResult"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

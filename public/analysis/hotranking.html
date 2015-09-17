@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>舆情热点排名</title>
+    <link href="/css/bootstrap.css" rel="stylesheet" />
+    <link href="/css/base.css" rel="stylesheet" />
+    <link id="skinLink" href="/css/skin/default.css" rel="stylesheet" />
+    <script src="/js/jQuery.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/knockout.js"></script>
+
+    <script src="/js/tempjson/analysis.js"></script>
+    <script type="text/javascript">
+        var options = {
+            search: [],
+            headers: [{ displayText: "序号", value: "SN", width: "80px" }, { displayText: "热词名称", value: "HotWord", width: "auto" }, { displayText: "热度", value: "HotValue", width: "auto" }],
+            dataQuery: function (vModel) {
+                //调用ajax 传入分页参数
+                vModel.Data = GetHotRanking();
+               // return GetHotRanking();
+            },
+            AddData: function () { },
+            DeleteData: function (data) { },
+            UpdataData: function (data) { }
+
+            //replaceData: function (data, viewModel) {
+            //    for (var i = 0; i < viewModel.recordSet().length; i++) {
+            //        var existing = viewModel.recordSet()[i];
+            //        if (existing.Id == data.Id) {
+            //            viewModel.recordSet.replace(existing, data);
+            //            break;
+            //        }
+            //    }
+            //},
+
+            //removeData: function (data, viewModel) {
+            //    viewModel.recordSet.remove(function (c) {
+            //        return c.Id == data.Id;
+            //    });
+            //}
+
+        };
+
+    </script>
+
+
+    <script type="text/javascript">
+
+
+        function ViewModel(options) {
+            var self = this;
+
+            self.Data = GetHotRanking();
+            self.headers = ko.observableArray(options.headers);
+
+            self.QueryData = options.dataQuery;
+            //self.sort = function () {
+            //    self.Data(GetHotRanking());
+            //};
+            //self.totalPage = ko.observable();
+            //self.pageNumber = ko.observableArray();
+            //self.pageIndex = ko.observable();
+        };
+        $().ready(function () {
+            var viewModel = new ViewModel(options);
+            ko.applyBindings(viewModel);
+        });
+    </script>
+
+</head>
+<body mid="3-1">
+    <div id="main_container">
+        <div class="media media-container">
+            <div class="pull-left">
+                <div id="head_menu"></div>
+            </div>
+            <div class="media-body">
+                <div id="head_top"></div>
+                <div id="content">
+                    <div class="content_title">
+                        <i class="icon icon_direction"></i>
+                        <span>舆情分析报告 > 舆情热点排名</span>
+                    </div>
+                    
+                        <div class="sel_condition">
+                            <form class="navbar-form navbar-left" role="search">
+                                <div class="form-group">
+                                    <span>数据源：</span>
+                                    <select id="PosAndNegRating" class="form-control">
+                                        <option>全部</option>
+                                        <option>新闻</option>
+                                        <option>微博</option>
+                                    </select>
+                                    
+                                </div>
+                                <div class="form-group">
+                                    <span>时间区间：</span>
+                                    <input type="date" id="qDateStart" class="form-control">
+                                    <span>-</span>
+                                    <input type="date" id="qDateEnd" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <span>正负极性：</span>
+                                    <select id="qState" class="form-control">
+                                        <option>全部</option>
+                                        <option>正</option>
+                                        <option>负</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-default ml10">生成报告</button>
+                            </form>
+                        </div>
+                    <div class="table-responsive hotranking">
+                        <table id="tb_hotWord" class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="serialNum">序号</th>
+                                    <th class="left">热词名称</th>
+                                    <th class="handle">热度</th>
+                                </tr>
+                            </thead>
+                            <tbody data-bind="foreach:Data">
+                                <tr>
+                                    <td data-bind="text:SN" class="serialNum"></td>
+                                    <td data-bind="text:HotWord" class="left"></td>
+                                    <td data-bind="text:HotValue" class="handle"></td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="3" style=" text-align:right;">
+                                        <ul class="pagination pagination-sm">
+                                            <li><a href="#" title="首页">&laquo;</a></li>
+                                            <li><a href="#" title="前一页">&lt;</a></li>
+                                            <li><a href="#">1</a></li>
+                                            <li><a href="#">2</a></li>
+                                            <li><a href="#">3</a></li>
+                                            <li><a href="#">4</a></li>
+                                            <li><a href="#">5</a></li>
+                                            <li><a href="#" title="后一页">&gt;</a></li>
+                                            <li><a href="#" title="尾页">&raquo;</a></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+                <div id="foot"></div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

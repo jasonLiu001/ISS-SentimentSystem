@@ -1,0 +1,212 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>应急预案列表</title>
+    <script src="js/jQuery.js"></script>
+    <style>
+        div {
+            margin: 80px auto;
+            width: 950px;
+        }
+
+        table, table td, table th {
+            border: 1px solid grey;
+            border-collapse: collapse;
+        }
+    </style>
+    <script>
+        var index = 0;
+        var postData;
+        $(function () {
+            getEmergencyPlanList();
+            //添加或修改
+            $("#btnSave").click(function () {
+                var id = $("#hidId").val();
+
+                var title = $("#txtTitle").val();
+                var phone = $("#txtPhone").val();
+                var content = $("#txtContent").val();
+                var contacts = $("#txtContacts").val();
+                var classify = $("#txtClassify").val();
+                var polarity = $("#txtPolarity").val();
+                var url = $("txtUrl").val();
+                //alert("name:"+name+",title:"+title+",phone:"+phone+",content:"+content+",contacts:"+contacts+",classify:"+classify+",polarity:"+polarity+",url:"+url);
+
+                if (id == "" || id == null || id == undefined) {
+                    //添加
+                    $.post('./api/middleware/AddEmergencyPlan', { title: title, phone: phone, content: content, contacts: contacts, classify: classify, polarity: polarity, url: url }, function (data) {
+                        var jsonArr = eval(data);
+                        alert(jsonArr.success);
+                        getEmergencyPlanList();
+                        return;
+                    });
+                }
+                else {
+                    $.post('./api/middleware/UpdateEmergencyPlan', { id: id, title: title, phone: phone, content: content, contacts: contacts, classify: classify, polarity: polarity, url: url }, function (data) {
+                        var jsonArr = eval(data);
+                        alert(jsonArr.success);
+                        getEmergencyPlanList();
+                        return;
+                    });
+                }
+            });
+
+            $("#btnSearch").click(function () {
+                index = 0;
+                postData = {
+                    orderby: {
+                        id: "asc"
+                    },
+                    query: {
+                    },
+                    pagination: {
+                        pagesize: "5",
+                        pageindex: index
+                    }
+                }
+                if ($("#txtSTitle").val() != "") {
+                    postData.query.title = $("#txtSTitle").val();
+                }
+                if ($("#txtSPolarity").val() != "") {
+                    postData.query.polarity = $("#txtSPolarity").val();
+                }
+                if ($("#txtSClassify").val() != "") {
+                    postData.query.classify = $("#txtSClassify").val();
+                }
+
+                getDataFromDB();
+            });
+
+            //前一页
+            $("#btnPre").click(function () {
+                if (index == 0) {
+                    alert("already the first page");
+                    return;
+                }
+                index--;
+                getEmergencyPlanList();
+            });
+            //下一页
+            $("#btnBack").click(function () {
+
+                index++;
+                getEmergencyPlanList();
+            });
+        });
+        function getEmergencyPlanList() {
+            postData = {
+                orderby: {
+                    id: "asc"
+                },
+                query: {
+                },
+                pagination: {
+                    pagesize: "5",
+                    pageindex: index
+                }
+            }
+            getDataFromDB();
+        }
+        function getDataFromDB() {
+            $.post('./api/middleware/GetEmergencyPlanByCondition', { params: JSON.stringify(postData) }, function (data) {
+                var jsonArr = eval(data);
+                if (!jsonArr.success) {
+                    alert(jsonArr.success);
+                    return;
+                }
+                var tb = $("#tbTenantList");
+                var length = tb.find("tr").length;
+                for (var i = length - 1; i > 0; i--) {
+                    tb.find("tr:eq(" + i + ")").remove();
+                }
+                //alert(jsonArr.totalcount);
+                if (jsonArr.rows.length > 0) {
+                    for (var i = 0; i < jsonArr.rows.length; i++) {
+                        var tr = $("<tr></tr>");
+                        var json = jsonArr.rows[i];
+                        tr.append("<td>" + json.id + "</td>");
+                        tr.append("<td>" + json.title + "</td>");
+                        tr.append("<td>" + json.work_phone + "</td>");
+                        tr.append("<td>" + json.content + "</td>");
+                        tr.append("<td>" + json.contacts + "</td>");
+                        tr.append("<td>" + json.classify + "</td>");
+                        tr.append("<td>" + json.polarity + "</td>");
+                        tr.append("<td><a href='./api/middleware/DeleteEmergencyPlanByID?id=" + json.id + "'>删除</a><input type='button' value='修改' eid='" + json.id + "' onclick='edit(this)'/></td>");
+                        tb.append(tr);
+                    }
+                }
+            }
+            );
+        }
+
+        //加载要编辑的数据
+        function edit(e) {
+            var id = $(e).attr('eid');
+            $("#hidId").val(id);
+            $("#lblName").html("修改紧急预案:");
+        }
+    </script>
+</head>
+<body>
+    <div>
+        条件查询：<br />
+        title:<input type="text" id="txtSTitle" /> polarity:<input type="text" id="txtSPolarity" /> classify:<input type="text" id="txtSClassify" />
+        <input type="button" id="btnSearch" value="查询" />
+    </div>
+    <div id="divTenantList">
+        应急预案列表：<br>
+        <table id="tbTenantList" cellpadding="10px" cellspacing="10px">
+            <tr>
+                <td>id</td>
+                <td>title</td>
+                <td>phone</td>
+                <td>content</td>
+                <td>contacts</td>
+                <td>classify</td>
+                <td>polarity</td>
+                <td>operate</td>
+            </tr>
+        </table>
+        <input type="button" value="前一页" id="btnPre" /><input type="button" value="下一页" id="btnBack" />
+    </div>
+    <div>
+        <label id="lblName">添加紧急预案：</label>
+        <input type="hidden" id="hidId" />
+        <table>
+            <tr>
+                <td>title</td>
+                <td><input type="text" id="txtTitle" /></td>
+            </tr>
+            <tr>
+                <td>phone</td>
+                <td><input type="text" id="txtPhone" /></td>
+            </tr>
+            <tr>
+                <td>content</td>
+                <td><input type="text" id="txtContent" /></td>
+            </tr>
+            <tr>
+                <td>contacts</td>
+                <td><input type="text" id="txtContacts" /></td>
+            </tr>
+            <tr>
+                <td>classify</td>
+                <td><input type="text" id="txtClassify" /></td>
+            </tr>
+            <tr>
+                <td>polarity</td>
+                <td><input type="text" id="txtPolarity" /></td>
+            </tr>
+            <tr>
+                <td>url</td>
+                <td><input type="text" id="txtUrl" /></td>
+            </tr>
+            <tr>
+                <td><input type="button" value="保存" id="btnSave" /> </td>
+                <td><input type="button" value="取消" id="btnCancel" /></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

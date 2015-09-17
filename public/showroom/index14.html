@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>智慧洪泽舆情政府版</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="/css/sep14.css" rel="stylesheet" type="text/css" />
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/knockout.js"></script>
+    <script src="/js/highcharts.js"></script>
+    <script src="/js/exporting.js"></script>
+    <script src="/js/rotater/tools/util.js"></script>
+    <script src="/js/rotater/tools/observer.js"></script>
+    <script src="/js/rotater/tools/log.js"></script>
+    <script src="/js/rotater/tools/requestAnimationFrame.js"></script>
+    <script src="/js/rotater/tools/timer.js"></script>
+    <script src="/js/rotater/tools/easing.js"></script>
+    <script src="/js/rotater/lib/core.js"></script>
+    <script src="/js/rotater/lib/animate.js"></script>
+    <script src="/js/rotater/marquee.js"></script>
+    <script src="/js/rotater/animationMgr.js"></script>
+    <script src="/js/rotater/blockRotater.js"></script>
+    <script src="/js/rotater/lineSwitcher.js"></script>
+    <script src="/js/sea.js" type="text/javascript"></script>
+</head>
+<body>
+    <div class="firstlevel">
+        <div class="oneModel" id="safe"></div>
+        <div class="oneModel" id="traffic"></div>
+        <div class="oneModel" id="environment"></div>
+        <div class="oneModel" id="cityBuild"></div>
+        <div class="oneModel" id="cityManage"></div>
+    </div>
+    <div class="twolevel">
+        <div class="fourModel" id="yq"></div>
+        <div class="oneModel" id="newsMonitor"></div>
+        <div class="oneModel" id="people"></div>
+        <div class="oneModel" id="weiboMonitor"></div>
+    </div>
+    <div class="threelevel">
+        <div class="oneModel" id="industry"></div>
+        <div class="oneModel" id="agriculture"></div>
+        <div class="oneModel" id="business"></div>
+        <div class="oneModel" id="travel"></div>
+        <div class="oneModel" id="economy"></div>
+    </div>
+   
+    <!--<div id="zz" style="position:absolute;margin:0px;z-index:999;left:0;top:0;background:#eee;width:100%;height:200%;text-align:center;">
+        <h1>正在加载，请稍候（<span id="loadingPlan">0</span>%）……</h1>
+    </div>-->
+
+    <script type="text/javascript">
+        $(function () {
+            var $wH = $(window).height();
+            $(".oneModel").height($wH / 5);
+            $(".fourModel").height($wH * 3 / 5);
+            $(".forum-hot").height($wH / 5 - 45);
+            var yqchartH = $wH * 3 / 5 - 100;
+            var basejs = "/showroom/Componets/base";
+            var charH = $wH / 5 - $wH / 25-10;
+        seajs.config({
+            base: './'
+        });
+
+        seajs.use(['Componets/CityInformation', basejs], function (c, cc) {
+            cc.chartHeight = charH;
+            c.load('safe', "12");
+        });
+        seajs.use(['Componets/CityInformation',basejs], function (c,cc) {
+            cc.chartHeight = charH;
+            c.load('traffic', "34");
+        });
+        seajs.use(['Componets/CityInformation',basejs], function (c, cc) {
+            cc.chartHeight = charH;
+            c.load('environment', "56");
+        });
+        seajs.use(['Componets/CityInformation',basejs], function (c, cc) {
+            cc.chartHeight = charH;
+            c.load('cityBuild', "78");
+        });
+        seajs.use(['Componets/CityInformation',basejs], function (c, cc) {
+            cc.chartHeight = charH;
+            c.load('cityManage', "0");
+        });
+
+        seajs.use('Componets/yq', function (c) {
+            c.load('yq', null, null, yqchartH);
+        });
+        seajs.use('Componets/NewsMonitor', function (c) {
+            c.load('newsMonitor', "0");
+        });
+        seajs.use('Componets/PeopleInformation', function (c) {
+            c.load('people',"0");
+        });
+        seajs.use('Componets/WeiBoMonitor', function (c) {
+            c.load('weiboMonitor', "0");
+        });
+        seajs.use(['Componets/EconomicInformation',basejs], function (c, cc) {
+            cc.chartHeight = charH;
+            c.load('industry',"12");
+        });
+        seajs.use(['Componets/EconomicInformation',basejs], function (c, cc) {
+            cc.chartHeight = charH;
+            c.load('agriculture',"34");
+        });
+        seajs.use(['Componets/EconomicInformation',basejs], function (c, cc) {
+            cc.chartHeight = charH;
+            c.load('business',"56");
+        });
+        seajs.use(['Componets/EconomicInformation',basejs], function (c,cc) {
+            cc.chartHeight = charH;
+            c.load('travel',"89");
+        });
+        seajs.use(['Componets/EconomicInformation',basejs], function (c,cc) {
+            cc.chartHeight = charH;
+            c.load('economy',"0");
+        });
+      })
+    </script>
+</body>
+</html>

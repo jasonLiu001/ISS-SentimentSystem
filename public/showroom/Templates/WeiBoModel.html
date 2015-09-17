@@ -1,0 +1,30 @@
+﻿<div class="bottom-green">
+    <div class="col-xs-12 col-sm-2 col-md-2">
+        <div class="relative">
+            <div class="top-title1"><i class="nt_icon ntilist"></i>洪泽发布</div>
+
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-10 col-md-10 bo-media">
+        <div class="media weibo-media">
+            <div class="pull-left"><img src="../img/kbh-toparr.png" class="no_alpha" /><img src="../img/transparent.gif" class="alpha_img" /></div>
+            <div class="media-body list-body">
+                <ul data-bind="foreach:weiBoMonitor" id="ulweiBoMonitor">
+                    <li>
+                        <div class="media list-item">
+                            <div class="pull-left"><img src="../img/kbh-laba.png" /></div>
+                            <div class="media-body">
+                                <a data-bind="attr:{href:status_url}" target="_blank">
+                                    <div class="listone" data-bind="text:status_text">
+                                    </div>
+                                </a>
+                                <div class="listtwo"><div class="fleft"><span data-bind="text:created_at.toString().split('T')[0]"></span><span data-bind="text:created_at.toString().split('T')[1].replace('.000Z','')"></span><span data-bind="text:user_name">微博达人</span> </div>                                                                                                                 <div class="fright"><span data-bind="text:'评论('+comments_count+')'"></span><span data-bind="text:'转发('+reposts_count+')'"></span> </div> </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>

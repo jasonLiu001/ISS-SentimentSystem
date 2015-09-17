@@ -1,0 +1,103 @@
+﻿<!--<div class="row">
+    <div class="col-md-5">
+        <div class="left_admin">
+            <ul>
+                <li class="im_admin"><i class="icon icon_admin"></i><span>您好：<a href="#" data-toggle="modal" data-target="#tModalUser">admin</a></span></li>
+                <li class="im_out"><a href="#" id="loginout">【退出】</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-7">
+        <div class="row hotdiv">
+            <div class="col-xs-4 col-md-4">
+                <div class="one_track">
+                    <a href="#"><i class="icon icon_track"></i><span>负面一键追踪</span></a>
+                </div>
+            </div>
+            <div class="col-xs-4 col-md-4">
+                <div class="one_emergency">
+                    <a href="#"><i class="icon icon_emergency"></i><span>应急处理</span></a>
+                </div>
+            </div>
+            <div class="col-xs-4 col-md-4">
+                <div class="one_opinion">
+                    <a href="#"><i class="icon icon_opinion"></i><span>舆情分析</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+<div class="fleft_yq top_admin_yq_left">
+    <div class="top_admin_yq_lefthui"><img src="../img/login_hui.png" /></div>
+    <div class="top_admin_yq_leftlogo">
+        <div class="login_logo"><span class="cityName" id="cityName"></span><!--<img id="logoImg" src="img/default/logo.png" class="img-responsive" alt="logo" width="149">--><span>政府舆情管理系统</span></div>
+        <!--<div class="login_eng">The government public opinion management system</div>-->
+    </div>
+</div>
+<div class="fright_yq top_admin_yq_right">
+    <div class="left_admin">
+        <ul>
+            <li class="im_admin"><i class="icon icon_admin"></i><span>欢迎您：<a href="#" data-toggle="modal" data-target="#tModalUser" id="currentUserName"></a></span></li>
+            <li class="im_out">
+                <div class="about"><i class="icon icon_about" title="关于"></i></div>
+                <div class="help"><i class="icon icon_help" title="帮助"></i></div>
+                <div class="out"><i class="icon icon_out" id="loginout" title="退出"></i></div>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="tModalUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="tModalLabel">修改用户信息</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label for="teUserName" class="col-md-2 control-label">姓名：</label>
+                        <div class="col-md-10">
+                            <input type="text" id="teUserName" class="form-control" value="admin" readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tePhoneNum" class="col-md-2 control-label">联系电话：</label>
+                        <div class="col-md-10">
+                            <input type="text" id="tePhoneNum" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="teEmail" class="col-md-2 control-label">邮箱：</label>
+                        <div class="col-md-10">
+                            <input type="text" id="teEmail" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tePwdOld" class="col-md-2 control-label">原密码：</label>
+                        <div class="col-md-10">
+                            <input type="text" id="tePwdOld" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tePwdnew" class="col-md-2 control-label">新密码：</label>
+                        <div class="col-md-10">
+                            <input type="text" id="tePwdnew" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tePwdNew2" class="col-md-2 control-label">再次输入新密码：</label>
+                        <div class="col-md-10">
+                            <input type="text" id="tePwdNew2" class="form-control">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <!--<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>-->
+                <button type="button" class="btn btn-success">保存</button>
+            </div>
+        </div>
+    </div>
+</div>

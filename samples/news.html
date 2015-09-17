@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+	<meta charset="UTF-8">
+    <script src="./js/jQuery.js"></script>
+    <script type="text/javascript">
+        function updateNews(id) {
+            var postData = {
+                query:{
+                    b_id:id,
+                    is_sensitive: 0,
+                    status: 1,
+                    updated_by: "zhangsan",
+                    handle_id:1,
+                    handle_type:1,
+                    handle_remark:"需要进一步调查",
+                    handle_user:"summer"
+                }
+            }
+            $.post("http://localhost:1337/api/middleware/EditNewsByID", { params: JSON.stringify(postData) }, function (data) {
+              alert(data.msg);
+            });
+        }
+        function getdata(pageNum) {
+            var postData = {
+                orderby: {
+                    b_id: "desc",
+                    updated_date: "asc",
+                    news_title: "desc"
+                },
+                query: {
+                    start_date: "2013/06/01",
+                    end_date: "2015/09/21"
+                    //level: "1"
+                },
+                pagination: {
+                    topn: "12",
+                    pagesize: "10",
+                    pageindex: pageNum
+                }
+            }
+
+            $.post("http://localhost:1337/api/middleware/GetNewsList", { params: JSON.stringify(postData) }, function (data) {
+                var htmlStr = "";
+                for (var i = 0; i < data.rows.length; i++) {
+                    htmlStr += "<li>新闻编号：" + data.rows[i].b_id + ' 评分：' + data.rows[i].score + '   新闻标题：' + data.rows[i].news_title + '    应急处理类型：' + data.rows[i].handle_type +'    应急处理描述：' + data.rows[i].handle_remark +'    应急处理人：' + data.rows[i].handle_user+ '    状态：' + data.rows[i].status + '    修改人：' + data.rows[i].updated_by + "<a href='javascript:void(0)' onclick='updateNews(" + data.rows[i].b_id + ")'>处理" + data.rows[i].b_id + "</a></li>";
+                }
+                $("#showdata").empty().html(htmlStr);
+               $("#totalCount").html("<span>总行数："+data.totalcount+"</span>");
+            });
+        }
+    </script>
+</head>
+<body>
+
+<ul id="showdata"></ul>
+<div id="totalCount"></div>
+<button onclick="getdata(0)">获取第1页</button>
+<button onclick="getdata(1)">获取第2页</button>
+</body>
+</html>

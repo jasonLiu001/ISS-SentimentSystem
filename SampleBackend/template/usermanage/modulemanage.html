@@ -1,0 +1,105 @@
+
+<div class="content_title">
+    <i class="icon icon_direction"></i>
+    <span>系统用户设置 > 模块管理</span>
+</div>
+<div class="sel_condition">
+    <div class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+            <span>模块名：</span>
+            <input type="text" id="mName" class="form-control">
+        </div>
+        <div class="form-group">
+            <button class="btn btn-default ml10" id="search">查找</button>
+            <a class="btn btn-primary ml10" data-toggle="modal" id="addModule">添加</a>
+        </div>
+    </div>
+</div>
+<div class="table-responsive">
+    <table id="list1" class="table table-hover">
+        <thead>
+        <tr>
+            <th class="serialNum">序号</th>
+            <th class="left">名称</th>
+            <th class="left">Uri</th>
+            <th class="left">值</th>
+            <th class="left">备注</th>
+            <th class="left">创建时间</th>
+            <th class="handle">操作</th>
+        </tr>
+        </thead>
+        <tbody data-bind="foreach:module">
+        <tr>
+            <td data-bind="text:$root.index($index()+1)"></td>
+            <td data-bind="text: name" class="left"></td>
+            <td data-bind="text: uri" class="left"></td>
+            <td data-bind="text: value" class="left"></td>
+            <td data-bind="text: notes" class="left"></td>
+            <td data-bind="text: formDate(last_modified)" class="left"></td>
+            <td><i data-toggle="modal" data-bind="click: $root.showEditModuleModal" class="icon icon_edit" title="编辑"></i><i class="icon icon_delete" data-bind="click: $root.removeModule" title="删除"></i></td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="7" style=" text-align:right;">
+                <ul class="pagination pagination-sm" id="pagination"></ul>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModalModule" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class=" modal-dialog">
+        <div class="modal-content form-horizontal">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">编辑用户组信息</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="parentid" class="col-sm-2 control-label">分组：</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" id="parentid">
+                            <option value="0">顶级分组</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="eName" class="col-sm-2 control-label">模块名：</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="eName" class="form-control">
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label for="eUri" class="col-sm-2 control-label">模块Uri：</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="eUri" class="form-control">
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label for="eValue" class="col-sm-2 control-label">值：</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="eValue" class="form-control">
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label for="eNotes" class="col-sm-2 control-label">备注：</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="eNotes" class="form-control">
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal" id="saveModule">保存</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/business/modulemanage.js"></script>

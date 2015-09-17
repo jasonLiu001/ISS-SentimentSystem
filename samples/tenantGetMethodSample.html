@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>api示例</title>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+
+    <script src="js/jQuery.js"></script>
+    <!--core javascript-->
+    <script src="js/knockout-3.1.0.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script type="text/javascript">
+        <!--ViewModel-->
+        var ViewModel=function(){
+            var self=this;
+            self.tenantIdList = ko.observableArray([]);
+            self.selectedValue=ko.observable();
+            self.result = ko.observable();
+
+            self.GetTenantDetailsById = function(){
+                var tenantId=self.selectedValue;
+                $.getJSON('/api/tenant/GetTenantDetailsById?tenantId='+tenantId,function(data){
+                    self.result(data);
+                });
+            };
+        };
+
+        $(function(){
+            var vm=new ViewModel();
+            $.getJSON('/api/tenant/GetTenantList',function(data){
+                var idArray=[];
+                if(data.data.length>0)
+                {
+                    for(var i=0;i<data.data.length;i++)
+                    {
+                        var obj=data.data[i];
+                        idArray.push(obj.id);
+                    }
+                }
+
+                vm.tenantIdList(idArray);
+
+            });
+            ko.applyBindings(vm);
+        });
+
+    </script>
+</head>
+<body>
+<select data-bind="options:tenantIdList,value:selectedValue,change:GetTenantDetailsById"></select>
+<div data-bind="with:result">
+    <span data-bind="value:name"></span>
+</div>
+
+</body>
+</html>

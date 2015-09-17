@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   
+
+    <link href="/css/temp/baseline.css" rel="stylesheet" />
+    <link href="/css/temp/timeline.css" rel="stylesheet" />
+    <script src="/js/jQuery.js"></script>
+    <script src="/js/knockout.js"></script>
+    <script src="/js/tempjson/timedata.js"></script>
+    <script>
+        $(function () {
+            var defaultNum = 1;
+            var allDates = GetData();
+            var len = allDates.length;
+            var datas = allDates.slice(0, defaultNum);
+            var viewModel = {
+                levelOne: ko.observableArray(datas),
+                lenOne: ko.observable(len),
+                addNews: function () {
+                    if (defaultNum < len) {
+                        defaultNum++;
+                        var datas1 = allDates.slice(0, defaultNum);
+                        this.levelOne(datas1);
+                    }
+                }
+            }
+            ko.applyBindings(viewModel);
+            canculate();
+            function canculate() {
+                var $timeL = $(".timeline");
+                winW = $(window).width();
+                if (winW < 600) {
+                    $timeL.removeClass("timeline_dual").addClass("timeline_center");
+                } else {
+                    $timeL.removeClass("timeline_center").addClass("timeline_dual");
+                }
+            }
+            window.onresize = canculate;
+        })
+    </script>
+</head>
+<body>
+    <div id="main">
+        <div id="timeline" class="dynamic">
+            <div class="timeline timeline_dual">
+                <div class="spine animated"></div>
+                <div class="list_content" data-bind="foreach:levelOne">
+                    <div class="data_list_level">
+                        <div class="date_separator animated" id="timeline_date_separator_2013"><span data-bind="text:Year"></span></div>
+                        <div class="data_list" data-bind="foreach:content">
+                            <div class="timeline_element blog_post animated" data-bind="css:{timeline_element_left: $index()%2==0,timeline_element_right: $index()%2==1}">
+                                <div class="timeline_element_box">
+                                    <div class="timeline_title">
+                                        <span class="timeline_title_label" data-bind="text:title"></span><span class="timeline_title_date" data-bind="text:time"></span>
+                                    </div>
+                                    <div class="content" data-bind="text:text"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="loadmore" data-bind="click:addNews,visible: levelOne().length < lenOne()">Load More</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,167 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <!--<link href="/css/base.css" rel="stylesheet" type="text/css" />-->
+    <link href="/css/styleGov.css" rel="stylesheet" type="text/css" />
+    <!--<link id="skinLink" href="/css/skin/default.css" rel="stylesheet" />-->
+    <script src="/js/jQuery.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/rotater/tools/util.js"></script>
+    <script src="/js/rotater/tools/observer.js"></script>
+    <script src="/js/rotater/tools/timer.js"></script>
+    <script src="/js/rotater/tools/easing.js"></script>
+    <script src="/js/rotater/lib/core.js"></script>
+    <script src="/js/rotater/lib/animate.js"></script>
+    <script src="/js/rotater/animationMgr.js"></script>
+    <script src="/js/rotater/blockRotater.js"></script>
+    <script src="/js/rotater/marquee.js"></script>
+
+    <script src="/js/highstock.js"></script>
+    <script src="/js/exporting.js"></script>
+    <script src="/js/tempjson/newsdata.js"></script>
+    <script src="/js/iChart.js"></script>
+    <script src="/js/business/base.js"></script>
+    <script src="/js/business/room9.js"></script>
+    <!--<script src="/js/tempjson/data9.js"></script>
+
+    <script>
+        $(function () {
+            //$("#yq").lineChart({ height: 290, data: GetSentimentLinear() });
+            setInterval(function () {
+                $("#news").turnChart({ height: 135, data: GetNewData() });
+            },2000);
+           
+            //$("#hotwords").wordChart({ height: 135, data: GetwordChart() });
+            //$("#weiboMonitor").turnChart({ height: 135, data: GetweiboData() });
+            //$("#CityInformation").turnChart({ height: 290, data: GetCityInformationData() });
+            //$("#PeopleInformation").turnChart({ height: 290, data: GetPeopleInformationData() });
+            //$("#EconomicInformation").turnChart({ height: 290, data: GetEconomicInformationData() });
+            //$("#WeiboModel").rollChart({ height: 90, data: GetWeiboModelData() });
+        });
+    </script>-->
+</head>
+<body style=" overflow-x:hidden;">
+    <div class="outer yqzl">
+        <div class="row margin-bo20">
+            <div class="col-md-6 margin-sm-bo20">
+                <div class="fourModel loading" id="yq"></div>    
+            </div>
+            <div class="col-md-6">
+                <div class="row top-right-level margin-bo20">
+                    <div class="col-sm-6 col-md-6 mar-sx-bo20">
+                        <div id="eyelid1" class="eyelid1">
+                            <div class="top-right-two">
+                                <div class="media">
+                                    <div class="pull-left title-weibo">
+                                        预<br>
+                                        警<br>
+                                        应<br>
+                                        急
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="hot-word" id="warning">
+                                            <div class="col-xs-7 col-sm-7 col-md-7">
+                                                <div class="warn_content warn_img">
+                                                    <a href="templates/WarningModel2.html" target="_blank"><img src="../img/warning.png" class="img-responsive" data-toggle="modal" data-target="#myModal"></a>
+                                                    <img src="../img/transparent.gif" class="alpha_img">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-5 col-sm-5 col-md-5">
+                                                <div class="warn_content warn_text"><a href="templates/WarningModel2.html" target="_blank">各级应急预案</a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6 loading" id="news"></div>
+                </div>
+                <div class="row top-right-level">
+                    <div class="col-sm-6 col-md-6 mar-sx-bo20">
+                        <div class="top-right-three loading" id="hotwords" style="height:135px;"></div>
+                    </div>
+                    <div class="col-sm-6 col-md-6 loading" id="weiboMonitor"></div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="row margin-bo20">
+            <div class="col-md-4 margin-sm-bo20 loading" id="CityInformation"></div>
+            <div class="col-md-4 margin-sm-bo20 loading" id="PeopleInformation"></div>
+            <div class="col-md-4 margin-sm-bo20 loading" id="EconomicInformation"></div>
+        </div>
+        <div class="row margin-bo20">
+            <div class="col-md-12">
+                <div class="bottom-green">
+                    <div class="col-xs-12 col-sm-2 col-md-2">
+                        <div class="relative">
+                            <div class="top-title1"><i class="nt_icon ntilist"></i>洪泽发布</div>
+
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-10 col-md-10 bo-media">
+                        <div class="media weibo-media">
+                            <div class="pull-left"><img src="../img/kbh-toparr.png" class="no_alpha"><img src="../img/transparent.gif" class="alpha_img"></div>
+                            <div id="WeiboModel"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    
+    <div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">新闻微博列表</h4>
+                </div>
+                <div class="modal-body">
+                   
+                    <div class="navbar-form" style="margin-bottom:10px;">
+                        <div class="form-group">
+                            <span>新闻类别：</span>
+                            <select id="qPolarity" class="form-control">
+                                <option value="-2">全部</option>
+                                <option value="0">新闻</option>
+                                <option value="1">微博</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <span>极性：</span>
+                            <select id="qPolarity" class="form-control">
+                                <option value="-2">全部</option>
+                                <option value="0">正</option>
+                                <option value="1">负</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <span>关键字：</span>
+                            <input id="qTitle" type="text" class="form-control">
+                        </div>
+                        <button id="search" class="btn btn-default ml10">搜索</button>
+                    </div>
+                    <ul data-bind="foreach:downNews">
+                        <li>
+                            <a data-bind="attr:{href:news_url}" target="_blank"> <span class="poup_title" data-bind="text:news_title"></span></a>
+                            <span data-bind="text:report_date.replace('T',' ').replace('.000Z','')" style="float:right;margin-right:5px"></span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <a type="button" href="#" target="_blank" class="btn btn-success">确定</a>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</body>
+</html>

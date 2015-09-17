@@ -1,0 +1,373 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>二三级舆情管理</title>
+    <link href="/css/bootstrap.css" rel="stylesheet" />
+    <link href="/css/base.css" rel="stylesheet" />
+    <link id="skinLink" href="/css/skin/default.css" rel="stylesheet" />
+    <script src="/js/jQuery.js"></script>
+    <script src="/js/jquery.easyui.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/knockout.js"></script>
+    <script>
+        $(function () {
+            
+
+            var level2 = $("#level-three-div");
+            level2.hide();
+            $("#indexLevel").change(function () {
+                if ($(this).val() == "三级") {
+                    level2.show();
+                } else {
+                    level2.hide();
+                }
+            })
+            var arrTwo = ["城市管理综合指数", "民生综合信息指数", "经济运行综合信息指数"]; //存二级下拉框
+            var obj = { "city": "城市管理综合指数", "people": "民生综合信息指数", "economy": "经济运行综合信息指数" };//对应二级id 便于取到二级对应的三级
+            var value = 0;
+
+
+            $("#add").click(function () {
+                var selectedOption = $("#indexLevel option:selected").text();//选的指数等级的值
+                value++;
+                if (selectedOption == "二级") { //如果是添加二级
+                    var valueTwo = $("#inputvalue").val().trim(); //取添加的二级的值
+                    for (var i = 0; i < arrTwo.length; i++) { //添加的值已经存在或为空返回
+                        if (valueTwo == arrTwo[i] || valueTwo == "") {
+                            $("#errortext").text("不能重复或为空！");
+                            return;
+                        }
+                    }
+                    $("#indexLevelTwo").append("<option value='value" + value + "'>" + valueTwo + "</option>");//所属二级下拉框加入添加的值
+                    arrTwo.push(valueTwo);
+                    var str = "<tr><td id='value" + value + "'>" + valueTwo + "</td><td class='drop'></td></tr>";
+                    $("#table>tbody").append(str);
+                    obj["value" + value] = valueTwo;//更新obj
+                } else { //如果添加三级 已经存在或为空就不添加
+                    var selectToption = $("#indexLevelTwo option:selected").text();
+                    var selectId = $("#indexLevelTwo option:selected").attr("value");
+
+                    $("#table span.titlezi").append(" ");//默认给每个三级标签后加空格 便于split变成数组
+                    var valueTwo = $("#inputvalue").val().trim();
+                    var str = "<div class='label'><div class='relative'><div class='titlebg'><span class='titlezi'>" + valueTwo + " " + "</span><i class='icon icon_addsmall' title='添加关键词' data-toggle='modal' data-target='#myModalKey'></i><i class='icon icon_deletesmall'></i></div>";
+                    var parentText = $("#" + selectId).next();
+                    text = parentText.find(".label>.relative>.titlebg>.titlezi").text();
+                    arrtext = text.split(" ");
+                    for (var i = 0; i < arrtext.length; i++) {
+                        if (valueTwo == arrtext[i] || valueTwo == "") {
+                            $("#errortext").text("不能重复或为空！");
+                            return;
+                        }
+                    }
+                    parentText.append(str);
+                    deleteCon();
+                }
+                drag();//添加拖拽函数
+
+            });
+
+
+            $(".label .icon_menudown").click(function () {
+                var title = $(this).prev().text(),
+                    strtitle = "添加" + title + "关键词";
+                $("#myModalLabel").text(strtitle);
+
+            })
+            
+            //删除三级 删除关键词
+            function deleteCon() {
+                $(".label .icon_deletesmall").unbind("click").click(function () {
+                    $(this).parents(".label").remove(); //删除单个三级指数
+                });     
+            }
+
+            
+
+            function drag() {
+                $("#table div.label").draggable({
+                    revert: true,
+                    handle: ".titlezi"
+                });
+                $("#table td.drop").droppable({
+                    onDragEnter: function () {
+                        $(this).addClass('over');
+                        $(".hidekey").hide();
+                    },
+                    onDragLeave: function () {
+                        $(this).removeClass('over');
+                    },
+                    onDrop: function (e, source) {
+                        $(this).removeClass('over');
+                        $(this).append(source);
+
+                    }
+                })
+            }
+            drag();//默认可拖拽
+            deleteCon();
+        })
+    </script>
+</head>
+<body mid="5-2">
+    <div id="main_container" class="exponent">
+        <div class="media media-container">
+            <div class="pull-left">
+                <div id="head_menu"></div>
+            </div>
+            <div class="media-body">
+                <div id="head_top"></div>
+                <div id="content">
+                    <div class="content_title">
+                        <i class="icon icon_direction"></i>
+                        <span>舆情后台管理 > 二三级舆情管理</span>
+                    </div>
+                    <div class="sel_condition">
+                        <form class="navbar-form navbar-left" role="search" style="width:100%">
+                            <div class="form-group">
+                                <span>指数等级：</span>
+                                <select id="indexLevel" class="form-control">
+                                    <option>二级</option>
+                                    <option>三级</option>
+                                </select>
+                            </div>
+                            <div id="level-three-div" class="form-group">
+                                <span>所属二级：</span>
+                                <select id="indexLevelTwo" class="form-control">
+                                    <option value="city">城市管理综合指数</option>
+                                    <option value="people">民生综合信息指数</option>
+                                    <option value="economy">经济运行综合信息指数</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <span>指数名称：</span>
+                                <input class="form-control" id="inputvalue">
+                            </div>
+
+                            <a class="btn btn-default ml10" id="add">添加</a>
+                            <span class="ml10 has-error" id="errortext"></span>
+                        </form>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <td style="width:30%">城市管理综合指数</td>
+                                    <td style="width:75%" class="hastable">
+                                        <table class="table table-hover table-bordered" id="table">
+                                            <tbody>
+                                                <tr>
+                                                    <td id="city" style="width:40%">城市管理综合指数</td>
+                                                    <td style="width:60%" class="drop">
+                                                        <div class="label">
+                                                            <div class="relative">
+                                                                <div class="titlebg">
+                                                                    <span class="titlezi">交通</span>
+                                                                    <i class="icon icon_addsmall" title="添加关键词" data-toggle="modal" data-target="#myModalKey"></i>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                        <div class="label">
+                                                            <div class="relative">
+                                                                <div class="titlebg">
+                                                                    <span class="titlezi">环保</span>
+                                                                    <i class="icon icon_addsmall" title="添加关键词" data-toggle="modal" data-target="#myModalKey"></i>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                        <div class="label">
+                                                            <div class="relative">
+                                                                <div class="titlebg">
+                                                                    <span class="titlezi">城建</span>
+                                                                    <i class="icon icon_addsmall" title="添加关键词" data-toggle="modal" data-target="#myModalKey"></i>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                        <div class="label">
+                                                            <div class="relative">
+                                                                <div class="titlebg">
+                                                                    <span class="titlezi">电力</span>
+                                                                    <i class="icon icon_addsmall" title="添加关键词" data-toggle="modal" data-target="#myModalKey"></i>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                        <div class="label">
+                                                            <div class="relative">
+                                                                <div class="titlebg">
+                                                                    <span class="titlezi">水利</span>
+                                                                    <i class="icon icon_addsmall" title="添加关键词" data-toggle="modal" data-target="#myModalKey"></i>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                        <div class="label">
+                                                            <div class="relative">
+                                                                <div class="titlebg">
+                                                                    <span class="titlezi">安全</span>
+                                                                    <i class="icon icon_addsmall" title="添加关键词" data-toggle="modal" data-target="#myModalKey"></i>
+                                                                    <i class="icon icon_deletesmall"></i>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                        <div class="label">
+                                                            <div class="relative">
+                                                                <div class="titlebg">
+                                                                    <span class="titlezi">铁路</span>
+                                                                    <i class="icon icon_addsmall" title="添加关键词" data-toggle="modal" data-target="#myModalKey"></i>
+                                                                    <i class="icon icon_deletesmall"></i>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                </tr>
+                                                <tr>
+                                                    <td id="people">民生综合信息指数</td>
+                                                    <td class="drop">
+                                                        <div class="label">
+                                                            <div class="relative">
+                                                                <div class="titlebg">
+                                                                    <span class="titlezi">教育</span>
+                                                                    <i class="icon icon_addsmall" title="添加关键词" data-toggle="modal" data-target="#myModalKey"></i>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                        <div class="label">
+                                                            <div class="relative">
+                                                                <div class="titlebg">
+                                                                    <span class="titlezi">健康</span>
+                                                                    <i class="icon icon_addsmall" title="添加关键词" data-toggle="modal" data-target="#myModalKey"></i>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                        <div class="label">
+                                                            <div class="relative">
+                                                                <div class="titlebg">
+                                                                    <span class="titlezi">养老</span>
+                                                                    <i class="icon icon_addsmall" title="添加关键词" data-toggle="modal" data-target="#myModalKey"></i>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                        <div class="label">
+                                                            <div class="relative">
+                                                                <div class="titlebg">
+                                                                    <span class="titlezi">文体</span>
+                                                                    <i class="icon icon_addsmall" title="添加关键词" data-toggle="modal" data-target="#myModalKey"></i>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                        <div class="label">
+                                                            <div class="relative">
+                                                                <div class="titlebg">
+                                                                    <span class="titlezi">社区</span>
+                                                                    <i class="icon icon_addsmall" title="添加关键词" data-toggle="modal" data-target="#myModalKey"></i>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                        <div class="label">
+                                                            <div class="relative">
+                                                                <div class="titlebg">
+                                                                    <span class="titlezi">信息安全</span>
+                                                                    <i class="icon icon_addsmall" title="添加关键词" data-toggle="modal" data-target="#myModalKey"></i>
+                                                                    <i class="icon icon_deletesmall"></i>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td id="economy">经济运行综合信息指数</td>
+                                                    <td class="drop">
+                                                        <div class="label">
+                                                            <div class="relative">
+                                                                <div class="titlebg">
+                                                                    <span class="titlezi">工业</span>
+                                                                    <i class="icon icon_addsmall" title="添加关键词" data-toggle="modal" data-target="#myModalKey"></i>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                        <div class="label">
+                                                            <div class="relative">
+                                                                <div class="titlebg">
+                                                                    <span class="titlezi">农业</span>
+                                                                    <i class="icon icon_addsmall" title="添加关键词" data-toggle="modal" data-target="#myModalKey"></i>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                        <div class="label">
+                                                            <div class="relative">
+                                                                <div class="titlebg">
+                                                                    <span class="titlezi">商业</span>
+                                                                    <i class="icon icon_addsmall" title="添加关键词" data-toggle="modal" data-target="#myModalKey"></i>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                        <div class="label">
+                                                            <div class="relative">
+                                                                <div class="titlebg">
+                                                                    <span class="titlezi">金融</span>
+                                                                    <i class="icon icon_addsmall" title="添加关键词" data-toggle="modal" data-target="#myModalKey"></i>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                        <div class="label">
+                                                            <div class="relative">
+                                                                <div class="titlebg">
+                                                                    <span class="titlezi">旅游</span>
+                                                                    <i class="icon icon_addsmall" title="添加关键词" data-toggle="modal" data-target="#myModalKey"></i>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+                <div id="foot"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModalKey" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <textarea rows="5" class="areaModalKey"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

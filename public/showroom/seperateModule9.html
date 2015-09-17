@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>洪泽大数据监控</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="/css/sepstyle.css" rel="stylesheet" type="text/css" />
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/jquery.flot.js"></script>
+    <script src="/js/jquery.flot.resize.js"></script>
+    <script src="/js/knockout.js"></script>
+    <script src="/js/highcharts.js"></script>
+    <script src="/js/exporting.js"></script>
+    <script src="/js/rotater/tools/util.js"></script>
+    <script src="/js/rotater/tools/observer.js"></script>
+    <script src="/js/rotater/tools/log.js"></script>
+    <script src="/js/rotater/tools/requestAnimationFrame.js"></script>
+    <script src="/js/rotater/tools/timer.js"></script>
+    <script src="/js/rotater/tools/easing.js"></script>
+    <script src="/js/rotater/lib/core.js"></script>
+    <script src="/js/rotater/lib/animate.js"></script>
+    <script src="/js/rotater/marquee.js"></script>
+    <script src="/js/rotater/animationMgr.js"></script>
+    <script src="/js/rotater/blockRotater.js"></script>
+    <script src="/js/rotater/lineSwitcher.js"></script>
+    <script src="/js/sea.js" type="text/javascript"></script>
+</head>
+<body>
+    <div id="mainContainer"></div>
+</body>
+<script type="text/javascript">
+
+    seajs.config({
+        base: './'
+    });
+
+    //url可能是 http://xxx/?module#0-1-2
+    function getQueryString() {
+        var arr = window.location.href.split("?");
+        if (arr.length > 1)
+            return arr[1].split('#')[0];
+        return "";
+    }
+
+    var parameter = getQueryString();
+
+    if (parameter == "") {
+        $('#mainContainer').append("<h2>【9块】缺少参数，请点击以下链接进入版块</h2>");
+        $('#mainContainer').append("<p><a href='seperateModule9.html?yq'>yq</a></p>");
+        $('#mainContainer').append("<p><a href='seperateModule9.html?CityInformation'>CityInformation</a></p>");
+        $('#mainContainer').append("<p><a href='seperateModule9.html?EconomicInformation'>EconomicInformation</a></p>");
+        $('#mainContainer').append("<p><a href='seperateModule9.html?HotWords'>HotWords</a></p>");
+        $('#mainContainer').append("<p><a href='seperateModule9.html?NewsMonitor'>NewsMonitor</a></p>");
+        $('#mainContainer').append("<p><a href='seperateModule9.html?PeopleInformation'>PeopleInformation</a></p>");
+        $('#mainContainer').append("<p><a href='seperateModule9.html?WarningModel'>WarningModel</a></p>");
+        $('#mainContainer').append("<p><a href='seperateModule9.html?WeiBoModel'>WeiBoModel</a></p>");
+        $('#mainContainer').append("<p><a href='seperateModule9.html?WeiBoMonitor'>WeiBoMonitor</a></p>");
+    }
+    else {
+        setTimeout(function () {
+            seajs.use('Componets/' + parameter, function (c) {
+                c.load('mainContainer', null, function () {
+                    var winHei = $(window).height() - 20;
+                    console.log(winHei);
+                    $("#mainContainer").height(winHei);
+                    var childDiv = $("#mainContainer div.highcharts-container");
+                    childDiv.height(winHei);
+                    var $thrH = $("#mainContainer div.three-content");
+                    $thrH.height(winHei - 60);
+                    $(".eyelid1").height(winHei);
+                    $(".eyelid2").height(winHei);
+                    $(".eyelid3").height(winHei);
+                    $(".four-content").height(winHei - 100);
+                    $(".forum-hot").height(winHei - 100);
+                    $(".warn_content").height(winHei - 20);
+                    $(".bottom-green").height(winHei);
+                    $(".bottom-green .pull-left").height(winHei);
+                });
+            });
+
+        }, 500);
+
+
+    }
+
+</script>
+
+</html>

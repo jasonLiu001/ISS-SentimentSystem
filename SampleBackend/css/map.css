@@ -1,0 +1,115 @@
+﻿#head_topmap {
+    background-image: url("../../img/login_topbg.jpg");
+    border-bottom: 2px solid #8a0500;
+    width:100%;
+    height:100px;
+    background-repeat:repeat-x;
+}
+.top_admin_yq_lefthui img{
+    width:150px;
+}
+.top_admin_yq_lefthui{
+    margin-top:22px;
+}
+#content{
+    padding-left:1px;
+    padding-right:1px;
+    padding-bottom:1px;
+}
+.map_content{
+    position:relative;
+    background-color:#d6e2ee;
+    margin-top:1px;
+}
+.map_content a{
+    position:absolute;
+    width:90px;
+    height:30px;
+    text-indent:-99999px;
+}
+.map_content a.haerbin{
+    left:808px;
+    top:114px;
+}
+.map_content a.yantai{
+    left:767px;
+    top:286px;
+}
+.map_content a.yancheng{
+    left:777px;
+    top:326px;
+}
+.map_content a.nantong{
+    left:797px;
+    top:386px;
+}
+.map_content a.kunshan{
+    left:750px;
+    top:415px;
+}
+.map_content a.foshan{
+    left:641px;
+    top:596px;
+}
+.map_content a.hongze{
+    left:645px;
+    top:345px;
+}
+.map_content a.wuxi{
+    left:650px;
+    top:377px;
+}
+#main_container{
+    min-width:1250px;
+}
+.icon_circleadd{
+    width:14px;
+    height:14px;
+    background-position:-27px -245px;
+}
+.icon_circledel{
+    width:14px;
+    height:14px;
+    background-position:-75px -245px;
+}
+.icon_heng{
+    width:14px;
+    height:14px;
+    background-position:-60px -161px;
+}
+.im_nav > ul > li i.icon{
+    margin-top:10px;
+}
+.im_nav li.dropdownli> ul> li{
+    padding-bottom:8px;
+    margin-bottom:8px;
+    border-bottom:1px solid #d9d9d9;
+    color:#686868;
+}
+.im_nav li.dropdownli> ul> li:last-child{
+    border-bottom:none;
+}
+.im_nav li.dropdownli> ul> li>div{
+    height:24px;
+    line-height:24px;
+}
+.im_nav > ul > li>ul>li i.icon{
+    margin-top:6px;
+    margin-left:30px;
+}
+.name_map{
+    color:#a32624;
+}
+.zs_mp,.zs_zm,.zs_fm{
+    padding-left:59px;
+}
+.bhei{
+    font-weight:bold;
+    color:#000000;
+}
+.green{
+    color:#42b57e;
+}
+.hong{
+    color:#ee0e28;
+}

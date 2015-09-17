@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>初始化</title>
+    <script src="/js/jQuery.js"></script>
+    <script src="/js/manage/initialization.js"></script>
+</head>
+<body>
+
+<div id="container" style="margin-left: auto; margin-right: auto;width: 800px;">
+    <div>
+        <div style="font-weight: bold; font-size: 26px">数据初始化 版本号<input type="text" id="txtVersion" class="form-control" value="480"></div>
+        <div id="result" style="font-size: 14px; color: #ff0000; font-weight: bold;"></div>
+    </div>
+    <hr>
+    <table style="border: 1px solid #f9f2f4; width: 100%">
+        <thead>
+        <tr>
+            <td>序号</td>
+            <td>说明</td>
+            <td>操作</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td>自动获取SIT最新代码并执行自动部署操作</td>
+            <td>
+                <button id="deploy_sit" name="deploy_sit">自动部署SIT</button>
+            </td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>自动获取SIT最新代码并执行自动部署操作</td>
+            <td>
+                <button id="deploy_prod" name="deploy_prod">自动部署PROD</button>
+            </td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>初始化SIT系统数据，此操作会清空redis中原有SIT数据</td>
+            <td>
+                <button id="data_init_sit" name="data_init_sit">初始化SIT数据</button>
+            </td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>初始化PROD系统数据，此操作会清空redis中原有SIT数据</td>
+            <td>
+                <button id="data_init_prod" name="data_init_prod">初始化PROD数据</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

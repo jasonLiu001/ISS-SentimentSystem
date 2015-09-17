@@ -1,0 +1,110 @@
+﻿<div class="newlist_j">
+<div class="content_title">
+    <i class="icon icon_direction"></i>
+    <span>舆情监听 > 新闻信息</span>
+</div>
+<div class="sel_condition">
+    <div class="hight-search">
+        <div class="high-search-left-btn">
+            <button id="lqAll" class="btn-info-n currentredBtn">全部</button>
+            <button id="lqToday" class="btn-info-n">今日</button>
+            <button id="lqWeek" class="btn-info-n">本周</button>
+            <button id="lqMonth" class="btn-info-n">本月</button>
+        </div>
+        <div class="high-search-left-key">
+            <input type="text" id="lqTitle" title="关键字">
+            <button id="lqsearch" class="btnn btn-defaultsmall">搜索</button>
+        </div>
+        <button id="hqsearch" class="btnn btn-defaultbig">高级搜索</button>
+    </div>
+    <div class="navbar-form hight-search-list">
+        <div class="form-group">
+            <span>日期：</span>
+            <div class="input-group date form_date col-md-5">
+                <input id="qDateStart" class="form-control" size="16" type="text" value="">
+                <span class="input-group-addon input-group-addona"><span class="glyphicon glyphicon-remove"></span></span>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+            </div>
+            <span> - </span>
+            <div class="input-group date form_date col-md-5">
+                <input id="qDateEnd" class="form-control" size="16" type="text" value="">
+                <span class="input-group-addon input-group-addona"><span class="glyphicon glyphicon-remove"></span></span>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <span>预警：</span>
+            <select id="PosAndNegRating" class="form-control">
+                <option value="-2">请选择</option>
+                <option value="-1">正面</option>
+                <option value="0">中性</option>
+                <option value="1">负面</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <span>舆情状态：</span>
+            <select id="qState" class="form-control">
+                <option value="-2">请选择</option>
+                <option value="0">未处理</option>
+                <option value="1">已处理</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <span>关键字：</span>
+            <input type="text" id="qTitle" class="form-control" title="关键字">
+        </div>
+        <button id="search" class="btnn btn-defaultsmall">搜索</button>
+        <button class="btnn btn-graysmall" id="back">返回</button>
+    </div>
+</div>
+<div class="table-responsive news_newslist weiboNews-i" id="list1">
+    <div id="newsMonitor" class="weiboNews-con">
+        <div class="loadindex"></div>
+        <div class="newsweibo" data-bind="foreach:news">
+            <div class="weibo-news-list">
+                <div class="index-left-icon">
+                    <i data-bind="attr:{title:score>3?'正面':(score<=3&&score>=-3?'中性':'负面')},css:{icon:true,icon_zheng:score>3,icon_zhong:score<=3&&score>=-3,icon_fu:score<-3}"></i>
+                </div>
+                <div class="weibo-right-listcon">
+                    <div class="index-news-list-title">
+                        <div class="index-news-list-title-left">
+                            <a class="black" data-bind="attr: { href: news_url, title: news_title }, html:news_title.trim()" onclick="window.open(this.href, '_blank', 'width=800,height=600,top=100,left=200,toolbar=no,resizable=no,location=no,menubar=no,scrollbars,scrollbars=yes'); return false"></a>
+                        </div>
+                        <div class="index-news-list-title-right"><span class="tag" style="display: none;"></span></div>
+                    </div>
+                    <div class="index-news-list-summary">
+                        <div class="news-ummary" data-href="#"><span data-bind="html:summary.trim(), attr: { title: summary.trim() }"></span></div>
+                    </div>
+                    <div class="source-date">
+                        <span class="date" data-bind="text:isToday(report_date)?formatDate(report_date).substr(11,8):formatDate(report_date).substr(0,10),style:{color:isToday(report_date)?'rgba(206, 51, 28, 1)':'#333'}"></span>
+                        <span class="source" data-bind="attr:{title:report_sites},text:report_sites"></span>
+                    </div>
+                </div>
+                <div class="operation-right">
+                    <i class="operation-icon" title="处理" data-bind="click:$root.showEmerModal,value:$index()"></i>
+                </div>
+            </div>
+        </div>
+        <div class="list-footer">
+            <div class="list-footer-total"><span id="totalcount"></span></div>
+            <div class="list-footer-pagination">
+                <ul class="pagination pagination-sm" id="pagination"></ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="emer"></div>
+<div id="track"></div>
+    </div>
+<!--<div id="tooltip">
+    <div class="tooltip-relative">
+        <div class="arrtopimg"></div>
+        <div class="toop-content">
+            <div class="toop-del"><i class="icon icon_delete"></i></div>
+            <div class="toop-con">继山东<span class="redbold">烟台</span>乡村旅游规划出炉后，过去两天时间里，包括龙口、莱阳、栖霞、莱州以及海阳在内的第一批县市区，发布了县域乡村旅游规 ...</div>
+            <div class="toop-more"><a href="#">[查看全文]</a></div>
+        </div>
+    </div>
+</div>-->
+<script src="/js/grain.js"></script>
+<script src="/js/business/newsMonitor.js"></script>

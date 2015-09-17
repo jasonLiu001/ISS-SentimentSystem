@@ -1,0 +1,64 @@
+﻿<div class="exponent">
+    <div class="content_title">
+        <i class="icon icon_direction"></i>
+        <span>舆情后台管理 > 分词管理</span>
+    </div>
+    <div class="sel_condition">
+        <form class="navbar-form navbar-left" role="search" style="width:100%">
+            <!--<div class="form-group">
+                <span>指数等级：</span>
+                <select id="indexLevel" class="form-control">
+                    <option>二级</option>
+                    <option>三级</option>
+                </select>
+            </div>-->
+            <div id="level-three-div" class="form-group">
+                <span>所属二级：</span>
+                <select id="indexLevelTwo" class="form-control">
+                    <option>加载中...</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <span>指数名称：</span>
+                <input class="form-control" id="inputvalue">
+            </div>
+
+            <a class="btn btn-default ml10" id="add">添加</a>
+            <span class="ml10 has-error" id="errortext"></span>
+        </form>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <td style="width:30%">城市管理综合指数</td>
+                    <td style="width:75%" class="hastable">
+                        <table class="table table-hover table-bordered" id="table"></table>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModalKey" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModaltitle" field="" category="">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="defaultKeys"></div>
+                    <textarea rows="5" style="resize:none;" class="areaModalKey"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btnSave" class="btn btn-default">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/jquery.easyui.min.js"></script>
+<script src="/js/manage/sixteenmanager.js"></script>

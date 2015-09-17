@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>欢迎使用舆情监测系统</title>
+    <link href="css/bootstrapa.css" rel="stylesheet" />
+    <link href="css/basic.css" rel="stylesheet" />
+    <link href="css/basecss.css" rel="stylesheet" />
+    <link href="css/skin/default.css" rel="stylesheet" />
+    <link href="css/map.css" rel="stylesheet" />
+
+    <script src="js/jQuery.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <script src="js/jquery.nicescroll.js"></script>
+    <script src="js/common/tools.js"></script>
+    <script src="js/business/base.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.2"></script>
+    <script src="js/business/bMap.js"></script>
+    <script src="js/business/simulatedLogin.js"></script>
+    
+</head>
+<body mid="1">
+    <div id="main_container">
+        <div id="head_topmap">
+            <div class="fleft_yq top_admin_yq_left">
+                <div class="top_admin_yq_lefthui"><img id="logoImg" src="img/login_hui.png" alt="logo"></div>
+                <div class="top_admin_yq_leftlogo">
+                    <div class="login_logo"><span class="cityName" id="cityName"></span><!----><span class="cityName">政府</span><span>舆情监测系统</span></div>
+                    <!--<div class="login_eng">The government public opinion management system</div>-->
+                </div>
+            </div>
+            <div class="fright_yq top_admin_yq_right">
+                <div class="left_admin">
+                    <ul>
+                        <li class="im_android"><i class="icon icon_android" data-toggle="modal" data-target="#myModalAndroid"></i></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="media media-container">
+            <div class="pull-left">
+                <div id="head_menumap">
+                    <div class="left_menu_yq">
+                        <div class="im_nav navbar-inverse">
+                            <ul id="main_menu"></ul>
+                        </div>
+                    </div>
+                    <div class="left_arr"><i class="icon icon_arrleft"></i></div>
+                </div>
+            </div>
+            <div class="media-body">
+                <div id="content">
+                    <div class="content_title">
+                        <i class="icon icon_direction"></i>
+                        <span><b>位置：</b>全国舆情实时监听</span>
+                    </div>
+                    <div class="bmap_content" id="bmap_content">
+                        
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div id="foot">
+            <div class="footdiv">
+                Copyright © 2014-2015 舆情管理系统 版权所有 软通动力 京ICP备88888888号, All Rights Reserved.
+
+            </div>
+
+        </div>
+    </div>
+
+    <!--Android app弹层-->
+    <div class="modal fade androidModel" id="myModalAndroid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Android APP 下载</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="androin-dowm">
+                        <div class="andrion-down-btn">
+                            <a href="/download/app.apk">
+                                <i class="icon icon_down"></i><span>点击下载</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="andrion-scan">
+                        <i class="icon icon_scan"></i><span>扫描二维码</span>
+                    </div>
+                    <div class="andrion-scan-img">
+                        <img src="../img/apkcode.png" style="width:220px;height:220px;" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--Android app弹层-->
+</body>
+</html>

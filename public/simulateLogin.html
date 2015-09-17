@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>舆情登录系统</title>
+    <script src="js/jQuery.js"></script>
+    <script src="/js/jquery.cookie.js"></script>
+    <script src="/js/common/tools.js"></script>
+    <script src="/js/business/base.js"></script>
+    <script src="js/business/simulatedLogin.js"></script>
+    <script>
+        $(function () {
+            function getTenantByAPI(callback) {//获取租户信息
+                var params = {params: {orderby: {}, query: {}, pagination: {}}};
+                window.baseTools.getTenantList(params, callback);
+            }
+            var acname =unescape(parseUrl("customer"));
+            console.log(acname);
+            var alias = '';
+            if (acname) {
+                getTenantByAPI(function (result) {
+                    if (result && result.success) {
+                        for (var i = 0; i < result.rows.length; i++) {
+                            if (acname == result.rows[i].name) {
+                                alias = result.rows[i].alias;
+                            }
+                        }
+                        //console.log(alias);
+                        pLogin(alias, function (result) {
+                            //console.log(result);
+                            $.cookie(cookieInfo.ccname,result.FullCustomerName);
+                            window.location.href = "/index.html";
+                        });
+                    }
+                });
+            }
+        });
+    </script>
+</head>
+<body style="text-align: center;color: #ff0000;font-size:40px">
+<div style="margin-top: 20%">
+    正在跳转...
+</div>
+&nbsp;
+</body>
+</html>

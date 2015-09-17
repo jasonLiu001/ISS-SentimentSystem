@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Model</title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+
+    <!-- 可选的Bootstrap主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="./css/bootstrap-theme.min.css">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="./js/jQuery.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="./js/bootstrap.min.js"></script>
+</head>
+<body width="80%">
+<div class="form-horizontal" role="form">
+    <div class="form-group">
+        <label for="parent" class="col-sm-2 control-label">Parent</label>
+        <div class="col-sm-10">
+            <select class="form-control" id="parentid">
+                <option value="0">顶级分组</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="name" class="col-sm-2 control-label">name</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="name" placeholder="name">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="uri" class="col-sm-2 control-label">uri</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="uri" placeholder="uri">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="value" class="col-sm-2 control-label">value</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="value" placeholder="value">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="notes" class="col-sm-2 control-label">notes</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="notes" placeholder="notes">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default" id="btn-submit">Save</button>
+        </div>
+    </div>
+</div>
+
+<div>
+    <table class="table table-hover">
+        <thead>
+            <th>id</th>
+            <th>parentid</th>
+            <th>name</th>
+            <th>uri</th>
+            <th>value</th>
+            <th>notes</th>
+            <th></th>
+        </thead>
+        <tbody id="ModelList">
+
+        </tbody>
+    </table>
+</div>
+<script>
+    $(function () {
+
+        $.ajax({
+            type: "post",
+            url: "/api/manage/GetModelList",
+            data:{},
+            success:function(data){
+                if(data&&data.Result)
+                {
+                    var options = data.Data;
+
+                    for(var item in options)
+                    {
+                        var opValue = options[item].id,
+                            opText  = options[item].name;
+                        $("#parentid").append("<option value='"+opValue+"'>"+opText+"</option>");  //添加一项option
+
+                        $("#ModelList").append("<tr><td>"+options[item].id
+                                +"</td><td>"+options[item].parentid
+                                +"</td><td>"+options[item].name
+                                +"</td><td>"+options[item].uri
+                                +"</td><td>"+options[item].value
+                                +"</td><td>"+options[item].notes
+                                +"</td><td><a href='javascript:void(0)' name='delete' bind-id="+options[item].id
+                                +">Delete</a> |  <a href='editmodel.html?id="+options[item].id+"'>Edit</a></td></tr>")
+                    }
+                }
+            }
+        });
+
+        $("#ModelList").delegate("a","click",function(e){
+            if(e.target.name == "delete"){
+                $.ajax({
+                    type: "delete",
+                    url: "/api/manage/SaveModel",
+                    data: {id:$(e.target).attr("bind-id")},
+                    success:function(data){
+                        if(data&&data.Result)
+                        {
+                            alert(JSON.stringify(data.Data));
+                        }
+                    }
+                });
+            }
+        });
+
+        $("#btn-submit").click(function(){
+
+            var group = {};
+            group.parentid = $("#parentid").val();
+            group.name = $("#name").val();
+            group.uri = $("#uri").val();
+            group.value = $("#value").val();
+            group.notes = $("#notes").val();
+
+            $.ajax({
+                type: "post",
+                url: "/api/manage/SaveModel",
+                data: group,
+                success:function(data){
+                    if(data&&data.Result)
+                    {
+                        alert(JSON.stringify(data.Data));
+                    }
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

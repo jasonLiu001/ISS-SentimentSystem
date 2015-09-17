@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>添加租户下的用户</title>
+    <script src="js/jQuery.js"></script>
+    <script>
+        $(function(){
+            var strHref = window.location.href;
+            var intPos = strHref.indexOf("=");
+            var tenantId = strHref.substr(intPos + 1);
+
+            $("#btnSave").click(function(){
+                var userName=$("#username").val();
+                var firstName=$("#firstname").val();
+                var lastName=$("#lastname").val();
+                var email=$("#email").val();
+                $.post('./api/tenant/AddTenantUser?',{id:tenantId,username:userName,firstname:firstName,lastname:lastName,email:email},function (data) {
+                            var json = eval(data);
+                            if(json.success){
+                                window.location.href="userList.html?id="+tenantId;
+                            }
+                            else{
+                                console.log(json.success);
+                            }
+                        }
+                );
+            })
+        });
+    </script>
+</head>
+<body>
+<form>
+<div id="divUserList">
+    添加用户：<br>
+    <table id="tbUserList" cellspacing="10px" cellpadding="10px">
+        <tr>
+            <td>username:</td>
+            <td><input type="text" name="username" id="username"/> </td>
+        </tr>
+        <tr>
+            <td>firstname:</td>
+            <td><input type="text" name="firstname" id="firstname"/> </td>
+        </tr>
+        <tr>
+            <td>lastname:</td>
+            <td><input type="text" name="lastname" id="lastname"/> </td>
+        </tr>
+        <tr>
+            <td>email:</td>
+            <td><input type="text" name="email" id="email"/> </td>
+        </tr>
+        <tr>
+            <td><input type="button" value="添加" id="btnSave"></td>
+            <td><input type="reset" value="取消"></td>
+        </tr>
+    </table>
+</div>
+</form>
+</body>
+</html>

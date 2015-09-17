@@ -1,0 +1,190 @@
+﻿
+a {
+    color: #9e2a1b;
+}
+
+    a:hover {
+        color: #9e2a1b;
+    }
+/*left menu*/
+.left_menu_yq {
+    background-color: #ffffff;
+    border-right: 1px solid #e6e6e6;
+}
+
+.im_nav > ul > li > a, .im_nav > ul > li > a:hover {
+    color: #9e2a1b;
+}
+
+.im_nav > ul > li.currentli > a, .im_nav > ul > li.currentli > a:hover {
+    color: #ffffff;
+}
+
+.im_nav li.current {
+    background-color: #ffe5e5;
+}
+
+.im_nav > ul > li.currentli > a {
+    color: #ffffff;
+    background: url("../../img/left_menu_yq.png") 0px 0px;
+}
+
+.im_nav li.current a {
+    color: #ffffff;
+}
+
+.im_nav li.dropdownli ul a, .im_nav li.dropdownli ul a:hover {
+    color: #333333;
+}
+
+.im_nav > ul > li a.disabled {
+    color: #cccccc;
+}
+
+    .im_nav > ul > li a.disabled:hover {
+        color: #cccccc;
+    }
+
+.navbar-inverse {
+    background-color: #ffffff;
+}
+
+.im_nav {
+    color: #9e2a1b;
+}
+/*left menu*/
+
+
+/*content*/
+#content {
+    background-color: #ffffff;
+}
+
+.content_title {
+    border: 1px solid #f4dede;
+    background: url("../../img/repeatbg.png") 0px -94px repeat-x;
+    color: #555555;
+}
+
+.table > thead > tr {
+    background: url("../../img/repeatbg_yq.png") 0px -181px repeat-x;
+    border-bottom: 0px;
+}
+
+.table-responsive {
+    border: 1px solid #cfcfcf;
+    position:relative;
+}
+
+.table {
+    background-color: #ffffff;
+}
+
+    .table > tbody > tr > td {
+        border-top: 1px solid #e6e6e6;
+    }
+
+    .table > thead > tr > th {
+        border-bottom: 1px solid #d8d8d8;
+    }
+
+.loadingdata {
+    background-image: url('/img/loaddata.gif');
+    background-position: center,center;
+    background-repeat: no-repeat;
+}
+
+.newsHtml .nav-tabs > li {
+    border: 3px solid #ffffff;
+}
+
+    .newsHtml .nav-tabs > li > a {
+        background-color: #8698ae;
+        color: #ffffff;
+    }
+
+    .newsHtml .nav-tabs > li.active > a, .newsHtml .nav-tabs > li.active > a:hover, .newsHtml .nav-tabs > li.active > a:focus {
+        background-color: #46b7ff;
+        color: #ffffff;
+    }
+
+.exponent #table span.titlezi {
+    color: #ffffff;
+}
+/*content*/
+
+
+/*top admin*/
+#head_top {
+    background-image: url("../../img/login_topbg.jpg");
+    border-bottom: 2px solid #8a0500;
+}
+
+.top_admin_yq_leftlogo {
+    color: #ffffff;
+}
+
+.left_admin li.im_admin {
+    color: #ffffff;
+}
+
+.left_admin li.im_out div.about {
+    border-right: 1px solid #902900;
+}
+
+.left_admin li.im_out div.help {
+    border-left: 1px solid #c0472e;
+    border-right: 1px solid #902900;
+}
+
+.im_admin a {
+    color: #ffffff;
+}
+/*top admin*/
+
+
+
+#foot {
+    color: #f0ad99;
+    background: url("../../img/repeatbg_yq.png") 0px -219px repeat-x;
+}
+
+
+/*default*/
+.btn-default {
+    color: #ffffff;
+    background-color: #46b7ff;
+}
+
+    .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active {
+        color: #ffffff;
+        background-color: #2eacfc;
+    }
+
+.btn-primary {
+    color: #ffffff;
+    background-color: #edad00;
+}
+
+    .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active {
+        color: #ffffff;
+        background-color: #f8bd1c;
+    }
+
+.btn-success {
+    color: #ffffff;
+    background-color: #a2ca00;
+}
+
+    .btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active {
+        color: #ffffff;
+        background-color: #86a602;
+    }
+
+.has-error {
+    color: #d6000f;
+}
+
+#pagination > li.selected > a {
+    color: #5a626e;
+}

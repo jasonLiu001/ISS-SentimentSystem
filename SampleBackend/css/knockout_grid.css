@@ -1,0 +1,38 @@
+﻿body {
+}
+
+.ko-grid {
+    border-color: #c5c5c5;
+}
+
+    .ko-grid th {
+        text-align: left;
+        background-color: #e3e3e3;
+        color: #2e2e2e;
+    }
+
+    .ko-grid td, th {
+        padding: 0.4em;
+    }
+
+    .ko-grid tr:nth-child(odd) {
+        background-color: #DDD;
+    }
+
+.ko-grid-pageLinks {
+    margin-bottom: 1em;
+}
+
+    .ko-grid-pageLinks a {
+        padding: 0.5em;
+    }
+
+        .ko-grid-pageLinks a.selected {
+            background-color: Black;
+            color: White;
+        }
+
+.liveExample {
+    height: 20em;
+    overflow: auto;
+}

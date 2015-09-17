@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>多租户列表</title>
+    <script src="js/jQuery.js"></script>
+    <style>
+        div{margin:80px auto;width:950px;}
+        table,table td,table th{border:1px solid grey;border-collapse:collapse;}
+    </style>
+    <script>
+        $(function(){
+            getTenantList();
+            $("#tbTenantList").delegate("a","click",function(e){
+                if(e.target.name == "delete"){
+                    $.ajax({
+                        type: "post",
+                        url: "/api/tenant/DeleteTenant",
+                        data: {id:$(e.target).attr("bind-id")},
+                        success:function(data){
+                            if(data&&data.Result)
+                            {
+                                alert(JSON.stringify(data.Data));
+                            }
+                        }
+                    });
+                }
+            });
+        });
+        function getTenantList() {
+            $.post('./api/tenant/GetTenantList', {params:"{\"query\":{},\"orderby\":{},\"pagination\":{}}"}, function (data) {
+                var jsonArr = eval(data);
+                if (!jsonArr.success) {
+                    alert(jsonArr.success);
+                    return;
+                }
+                var tb = $("#tbTenantList");
+                if (jsonArr.rows.length > 0) {
+                    for (var i = 0; i < jsonArr.rows.length; i++) {
+                        var tr = $("<tr></tr>");
+                        var json = jsonArr.rows[i];
+                        tr.append("<td>" + json.id + "</td>");
+                        tr.append("<td>" + json.name + "</td>");
+                        tr.append("<td>" + json.alias + "</td>");
+                        tr.append("<td>" + json.mappeddomain + "</td>");
+                        tr.append("<td>" + json.language + "</td>");
+                        tr.append("<td>" + json.creationdatetime + "</td>");
+                        tr.append("<td><a href='userList.html?id=" + json.id + "'>查看用户</a></td>");
+                        tr.append("<td><a href='UpdateTenant.html?id=" + json.id + "'>租户资料修改</a></td>");
+                        tr.append("<td><a href='javascript:void(0)' name='delete' bind-id='"+json.id+"'>租户删除</a></td>");
+                        tb.append(tr);
+                    }
+                }
+            }
+            );
+        }
+    </script>
+</head>
+<body>
+<div id="divTenantList">
+    租户列表：<br>
+    <table id="tbTenantList" cellpadding="10px" cellspacing="10px">
+        <tr>
+            <td>id</td>
+            <td>name</td>
+            <td>alias</td>
+            <td>mappeddomain</td>
+            <td>language</td>
+            <td>creationdatetime</td>
+            <td>operate</td>
+            <td>update</td>
+            <td>Delete</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

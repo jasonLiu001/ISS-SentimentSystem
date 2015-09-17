@@ -1,0 +1,38 @@
+
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>App</title>
+    <script src="js/jQuery.js"></script>
+    <script>
+        $(function(){
+            $("#upApp").bind("click", function (event) {
+                $.ajax({
+                    type: "post",
+                    url: "/api/middleware/GetLastAppFile",
+                    data:{"versionCode": "12.0.1"},
+                    success:function(data){
+alert(data);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<form>
+    <div id="divUserList">
+        添加用户：<br>
+        <table id="tbUserList" cellspacing="10px" cellpadding="10px">
+
+            <tr>
+                <td><input type="button" value="获取APP" id="upApp"></td>
+
+            </tr>
+        </table>
+    </div>
+</form>
+</body>
+</html>

@@ -1,0 +1,155 @@
+﻿body {
+    margin:0px;
+    padding:0px;
+    font-size:14px;
+    font-family:'Microsoft YaHei'; 
+    background-image:url("../img/login_shade.png");
+    background-size:100% 100%;
+    overflow-x:hidden;
+}
+#login_im{
+    width:100%;
+    position:relative;
+}
+#login_con{
+    max-width:570px;
+    margin:0 auto;
+    padding-top:200px;
+}
+.login_logo{
+    margin-bottom:10px;
+    text-align:center;
+}
+.login_logo img{
+    display:inline-block;
+}
+.login_title{
+    text-align:center;
+    font-size:30px;
+    margin-bottom:20px;
+    color:#ffffff;
+}
+.login_whitebg {
+    width:100%;
+    background:#ffffff;
+    min-height:220px;
+}
+.left_bgword{
+    width:100%;
+    height:220px;
+    background-image:url("../img/login_lebg.jpg");
+    background-size:100% 100%;
+    background-position:left bottom;
+    color:#0090ff;
+    font-size:18px;
+}
+.left_bgword span{
+    float:right;
+    display:block;
+    padding-right:20px;
+    clear:both;
+}
+.left_bgword span:first-child{
+    font-weight:bold;
+    padding-top:80px;
+}
+.login_check .form-horizontal .control-label{
+    padding-left:0px;
+    padding-right:0px;
+    padding-top:5px;
+    font-weight:normal;
+    text-align:right;
+}
+.login_check .form-control{
+    height:30px;
+}
+.login_check .form-group{
+    margin-bottom:10px;
+}
+.login_check .form-group:first-child{
+    margin-bottom:5px;
+    color:#ff0000;
+    height:20px;
+}
+.login_check .form-group:nth-child(4){
+    margin-bottom:2px;
+}
+.login_check .form-horizontal{
+    padding-top:10px;
+}
+img.yzm{
+    height:30px;
+}
+.forgetpass{
+    text-align:right;
+    color:#ff0000;
+}
+.forgetpass a{
+    color:#ff0000;
+
+}
+#btnLogin{
+    float:right;
+}
+.btn-warning{
+    font-size:12px;
+    width:74px;
+    height:24px;
+    line-height:24px;
+    background:url("../img/repeatbg.png") repeat-x 0px 0px;
+    padding-top:0px;
+    padding-bottom:0px;
+}
+.btn-primary{
+    font-size:12px;
+    width:74px;
+    height:24px;
+    line-height:24px;
+    background:url("../img/repeatbg.png") repeat-x 0px -24px;
+    padding-top:0px;
+    padding-bottom:0px;
+}
+#foot{
+    position:absolute;
+    bottom:50px;
+    left:0px;
+    width:100%;
+    color:#ffffff;
+    font-size:12px;
+    text-align:center;
+    margin:20px auto;
+}
+.login_shadow{
+    width:100%;
+    height:41px;
+    background-image:url("../img/login_shadow.png");
+    background-size:100% 100%;
+    margin-top:3px;
+}
+@media (max-width:992px) {
+    #login_con {
+        padding-top:50px;
+    }
+    #foot{
+        bottom:20px;
+    }
+    .login_whitebg{
+        padding-bottom:20px;
+    }
+}
+@media (max-width:768px) {
+    .login_check .form-horizontal .form-group{
+        margin-left:0px;
+        margin-right:0px;
+    }
+    .login_check .form-horizontal .control-label{
+        padding-left:15px;
+        text-align:left;
+    }
+}
+@media (max-width:570px){
+    #login_con{
+        max-width:570px;
+        margin:0 8px;  
+    }
+}

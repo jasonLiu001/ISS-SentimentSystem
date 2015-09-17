@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>舆情多级分析</title>
+    <link href="/css/bootstrap.css" rel="stylesheet" />
+    <link href="/css/base.css" rel="stylesheet" />
+
+    <link href="/css/styleGov.css" rel="stylesheet" type="text/css" />
+    <link id="skinLink" href="/css/skin/default.css" rel="stylesheet" />
+    <script src="/js/jQuery.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/knockout.js"></script>
+
+    <script src="/js/jquery.flot.js"></script>
+    <script src="/js/jquery.flot.resize.js"></script>
+    <script src="/js/highcharts.js"></script>
+    <script src="/js/exporting.js"></script>
+    <script src="/js/rotater/tools/util.js"></script>
+    <script src="/js/rotater/tools/observer.js"></script>
+    <script src="/js/rotater/tools/log.js"></script>
+    <script src="/js/rotater/tools/requestAnimationFrame.js"></script>
+    <script src="/js/rotater/tools/timer.js"></script>
+    <script src="/js/rotater/tools/easing.js"></script>
+    <script src="/js/rotater/lib/core.js"></script>
+    <script src="/js/rotater/lib/animate.js"></script>
+    <script src="/js/rotater/marquee.js"></script>
+    <script src="/js/rotater/animationMgr.js"></script>
+    <script src="/js/rotater/blockRotater.js"></script>
+    <script src="/js/rotater/lineSwitcher.js"></script>
+    <script src="/js/sea.js" type="text/javascript"></script>
+    <style>
+        .left-top-blue {
+        height:620px;
+        }
+
+    </style>
+</head>
+<body mid="2-2">
+    <div id="main_container">
+        <div class="media media-container">
+            <div class="pull-left">
+                <div id="head_menu"></div>
+            </div>
+            <div class="media-body">
+                <div id="head_top"></div>
+                <div id="content">
+                    <div class="content_title">
+                        <i class="icon icon_direction"></i>
+                        <span>舆情分析报告 > 舆情多级分析</span>
+                    </div>
+                    <div id="mainContainer"></div>
+                </div>
+                <div id="foot"></div>
+            </div>
+        </div>
+    </div>
+   <script>
+       var chartHeight = 580;
+       setTimeout(function () {
+           seajs.use(['/showroom/Componets/yq','/showroom/Componets/base'], function (c,cc) {
+               cc.chartHeight = chartHeight;
+               c.load('mainContainer', function () {
+                   var winHei = $(window).height() - 200;
+                   $("#mainContainer").height(winHei);
+                   var childDiv = $("#mainContainer div.highcharts-container");
+                   $(".left-top-blue").height(winHei);
+                   childDiv.height(winHei);
+                   var $thrH = $("#mainContainer div.three-content");
+                   $thrH.height(winHei - 60);
+                   //$("#eyelid1").height(winHei);
+                   //$("#eyelid2").height(winHei);
+                   //$("#eyelid3").height(winHei);
+                   //$(".four-content").height(winHei - 100);
+                   //$(".forum-hot").height(winHei - 100);
+                   //$(".warn_content").height(winHei - 20);
+                   //$(".bottom-green").height(winHei);
+                   //$(".bottom-green .pull-left").height(winHei);
+               });
+           });
+
+       }, 500);
+   </script>
+</body>
+</html>

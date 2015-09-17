@@ -1,0 +1,608 @@
+﻿body {
+    font-size: 14px;
+    font-family: 'Microsoft YaHei';
+}
+ul {
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+    overflow: hidden;
+}
+.media-container > .pull-left {
+    margin-right: 0px;
+    width: 245px;
+}
+#main_container {
+    min-width: 1400px;
+    margin: 0px auto;
+}
+.im_logo {
+    width: 100%;
+    height: 150px;
+    text-align: center;
+    line-height: 150px;
+    vertical-align: middle;
+}
+    .im_logo .alpha_img {
+        width: 0px;
+        height: 100%;
+        vertical-align: middle;
+    }
+
+/*common*/
+.btn {
+    border: 0px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 0px;
+}
+.form-control {
+    border-radius: 0px;
+}
+#foot {
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+}
+.ml10 {
+    margin-left: 10px;
+}
+.form-group {
+    overflow: hidden;
+}
+.required-xing{
+    color:#ff0000;
+    padding:0px 3px;
+    display:inline;
+}
+a{
+    cursor:pointer;
+}
+
+/*left menu*/
+.im_nav a {
+    display: block;
+    width: 100%;
+    height: 45px;
+}
+.im_nav > ul > li {
+    width: 100%;
+    min-height: 45px;
+}
+.im_nav li.current i.currentTriangle {
+    float: right;
+    margin-top: 11px;
+}
+.im_nav > ul > li i.icon {
+    float: left;
+    display: inline-block;
+    margin-left: 12px;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+.im_nav > ul > li span.level {
+    float: left;
+    line-height: 45px;
+}
+.im_nav > ul > li i.icon_menuright, .im_nav > ul > li i.icon_menudown {
+    float: right;
+    margin-right: 30px;
+    margin-top: 17px;
+}
+.im_nav > ul > li a {
+    outline: none;
+    overflow: hidden;
+    line-height: 45px;
+}
+.im_nav li.dropdownli ul {
+    display: none;
+    clear: both;
+    margin: 0px;
+}
+    .im_nav li.dropdownli ul a {
+        padding-left: 75px;
+    }
+.im_nav > ul > li a.disabled {
+    text-decoration: none;
+    cursor: not-allowed;
+}
+.im_nav > ul > li a:hover {
+    text-decoration: none;
+}
+@media (max-width: 700px) {
+    .media-container > .pull-left {
+        float: none !important;
+        width: 100%;
+    }
+    .im_logo {
+        display: none;
+    }
+    .navbar-brand {
+        padding-top: 6px;
+        padding-bottom: 0px;
+        height: 45px;
+    }
+    .im_nav > ul > li {
+        display: none;
+    }
+        .im_nav > ul > li.drop-menu {
+            overflow: hidden;
+            display: block;
+        }
+        .im_nav > ul > li:last-child {
+            border-bottom: none;
+        }
+    .ml10 {
+        margin-left: 0px;
+    }
+}
+.navbar-toggle {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+@media (min-width: 700px) {
+    .im_nav > ul > li {
+        display: block !important;
+    }
+        .im_nav > ul > li.drop-menu {
+            overflow: hidden;
+            display: none !important;
+        }
+}
+/*left menu*/
+
+
+/*right top admin*/
+.left_admin {
+    margin-left: 15px;
+    margin-top: 15px;
+    margin-bottom: 12px;
+}
+    .left_admin li {
+        float: left;
+        height: 25px;
+        line-height: 25px;
+        overflow: hidden;
+    }
+        .left_admin li.im_admin {
+            padding-right: 25px;
+        }
+        .left_admin li.im_out {
+            padding-left: 25px;
+        }
+        .left_admin li .icon_admin {
+            float: left;
+            margin-right: 10px;
+        }
+        .left_admin li.im_admin span {
+            float: left;
+        }
+.one_track, .one_emergency, .one_opinion {
+    height: 53px;
+}
+.hotdiv a {
+    display: block;
+    width: 100%;
+    height: 53px;
+}
+.hotdiv > div {
+    padding: 0px;
+}
+.hotdiv a i.icon {
+    float: left;
+    margin-left: 15px;
+    margin-top: 13px;
+    margin-right: 8px;
+}
+.hotdiv a span {
+    float: left;
+    line-height: 53px;
+}
+#head_top {
+    min-height: 53px;
+}
+@media (max-width:992px) {
+    .one_track a {
+        padding-left: 15px;
+    }
+}
+@media (min-width:1020px) {
+    .hotdiv {
+        float: right;
+        width: 500px;
+    }
+}
+@media (min-width: 768px) {
+    #tModalUser .form-horizontal .control-label {
+        padding-right: 0px;
+        padding-left: 10px;
+    }
+}
+/*right top admin*/
+
+
+/*icon*/
+.icon {
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    background-image: url("../img/im_icon.png");
+    background-repeat: no-repeat;
+}
+.icon_news {
+    background-position: 0px 0px;
+}
+.icon_sina {
+    background-position: -28px 0px;
+}
+.icon_yqreport {
+    background-position: -56px 0px;
+}
+.icon_show {
+    background-position: 0px -28px;
+}
+.icon_yqmanage {
+    background-position: -28px -28px;
+}
+.icon_system {
+    background-position: -56px -28px;
+}
+.icon_menuright {
+    background-position: -66px -153px;
+    width: 10px;
+    height: 10px;
+}
+.icon_menudown {
+    background-position: -66px -140px;
+    width: 10px;
+    height: 10px;
+}
+.icon_admin {
+    background-position: 0px -173px;
+}
+.icon_track {
+    background-position: 0px -112px;
+}
+.icon_emergency {
+    background-position: -28px -112px;
+}
+.icon_opinion {
+    background-position: -56px -112px;
+}
+.icon_direction {
+    background-position: -28px -173px;
+}
+.icon_redmark {
+    background-position: -28px -56px;
+}
+.icon_orangemark {
+    background-position: -56px -56px;
+}
+.icon_yellowmark {
+    background-position: 0px -84px;
+}
+.icon_lightGreenmark {
+    background-position: -28px -84px;
+}
+.icon_greenmark {
+    background-position: -56px -84px;
+}
+.icon_tracksource {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    background-position: 0px -140px;
+    margin-right: 10px;
+}
+.icon_emhand {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    background-position: -33px -140px;
+}
+.icon_emhanddisable {
+    cursor:not-allowed;
+    width: 30px;
+    height: 30px;
+    background-position: 0px -262px;
+}
+.icon_edit {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    background-position: 0px -201px;
+    margin-right: 10px;
+}
+.icon_delete {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    background-position: -33px -201px;
+}
+.icon_deletesmall {
+    cursor: pointer;
+    width: 14px;
+    height: 14px;
+    background-position: -65px -201px;
+}
+.icon_addsmall {
+    cursor: pointer;
+    width: 14px;
+    height: 14px;
+    background-position: -65px -217px;
+}
+.icon_monitor {
+    background-position: 0px -234px;
+}
+.icon_analysis {
+    background-position: -28px -234px;
+}
+.icon_triangle {
+    width: 14px;
+    height: 14px;
+    background-position: -56px -173px;
+}
+.icon_save {
+    background-position: -56px -234px;
+}
+/*icon*/
+
+
+/*content*/
+#content {
+    min-height: 800px;
+    padding-left: 20px;
+    padding-right: 20px;
+    overflow: hidden;
+}
+.content_title {
+    height: 35px;
+    line-height: 35px;
+    padding-left: 15px;
+    overflow: hidden;
+    margin-left: -20px;
+    margin-right: -20px;
+    margin-bottom: 15px;
+}
+    .content_title i, .content_title span {
+        float: left;
+    }
+    .content_title i {
+        margin-right: 5px;
+        margin-top: 5px;
+    }
+.sel_condition {
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+.navbar-form {
+    margin: 0px;
+    padding: 0px;
+}
+.table {
+    margin-bottom: 0px;
+}
+    .table > tbody > tr > td {
+        height: 30px;
+        vertical-align: middle;
+        text-align: center;
+    }
+tfoot ul.pagination {
+    margin: 0px;
+}
+.table > thead > tr > th {
+    text-align: center;
+    background: url("../img/title_line.png") no-repeat right center;
+    padding: 10px;
+}
+    .table > thead > tr > th:last-child {
+        background: none;
+    }
+    .table > thead > tr > th.serialNum {
+        width: 100px;
+    }
+    .table > thead > tr > th.handle {
+        width: 150px;
+    }
+    .table > thead > tr > th.left {
+        text-align: left;
+    }
+    .table > thead > tr > th.w120 {
+        width: 110px;
+    }
+.table > tbody > tr > td.hastable {
+    padding: 0px;
+    border: 0px;
+}
+.hastable .table > tbody > tr > td {
+    text-align: left;
+}
+.table > thead > tr > th.date{
+    width:160px;
+}
+.table > tbody > tr > td.left {
+    text-align: left;
+}
+.hotranking .table .left {
+    padding-left: 50px;
+}
+.im_publick #HotWords {
+    height: 290px;
+}
+.im_publick .three-content {
+    height: 250px;
+}
+.im_publick .zh_word1 {
+    font-size: 15px;
+}
+.im_publick .zh_word2 {
+    font-size: 21px;
+}
+.im_publick .zh_word3 {
+    font-size: 12px;
+}
+.im_publick .zh_word4 {
+    font-size: 13px;
+}
+.im_publick .zh_word5 {
+    font-size: 14px;
+}
+.im_publick .zh_word6 {
+    font-size: 17px;
+}
+.im_publick .zh_word7 {
+    font-size: 22px;
+}
+.im_publick .zh_word8 {
+    font-size: 25px;
+}
+.im_publick .zh_word9 {
+    font-size: 19px;
+}
+.im_publick .top-right-level {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+.datasource .table > thead > tr > th:first-child {
+    width: 100px;
+}
+.datasource .table > thead > tr > th:last-child {
+    width: 150px;
+}
+.datasource .table > thead > tr > th:nth-child(2), .datasource .table > thead > tr > th:nth-child(4), .datasource .table > tbody > tr > td:nth-child(2), .datasource .table > tbody > tr > td:nth-child(4) {
+    text-align: left;
+}
+.datasource .table > thead > tr > th:nth-child(6), .datasource .table > thead > tr > th:nth-child(7) {
+    width: 120px;
+}
+.hotsport .table > thead > tr > th:first-child {
+    width: 100px;
+}
+.hotsport .table > thead > tr > th:last-child {
+    width: 150px;
+}
+.hotsport .table > thead > tr > th:nth-child(2), .hotsport .table > tbody > tr > td:nth-child(2) {
+    text-align: left;
+}
+.hotsport .table > thead > tr > th:nth-child(3) {
+    width: 120px;
+}
+.newsHtml ul {
+    background: url("../img/repeatbg1.png") repeat-x center;
+    padding-left: 50px;
+    border: 0px;
+    margin-bottom: 15px;
+}
+.newsHtml .nav-tabs > li {
+    margin-right: 40px;
+}
+.newsHtml .nav-tabs > li > a {
+        padding: 8px 15px;
+        border-radius: 20px;
+        border: 0px;
+    }
+.newsHtml .nav-tabs > li:last-child {
+        margin-right: 0px;
+    }
+.newsHtml .nav-tabs > li.active > a, .newsHtml .nav-tabs > li.active > a:hover, .newsHtml .nav-tabs > li.active > a:focus {
+        border: 0px;
+    }
+ .exponent #content{
+     overflow:visible;
+ }
+ .exponent #table div.label{
+     float:left;
+     padding:0px;
+     margin:0px 10px 10px 0px;
+ }
+ .relative{
+     position:relative;
+ }
+ .exponent #table div.label .titlebg{
+     width:100%;
+     font-size:12px;
+     height:24px;
+     padding-left:5px;
+     padding-right:5px;
+     line-height:20px;
+     background:url("../img/labletag.png") no-repeat left;
+ }
+ .exponent #table span.titlezi{
+     float:left;
+     line-height:24px;
+ }
+ .exponent #table div.label .titlebg .icon{
+     float:left;
+     display:inline-block;
+     margin-left:5px;
+     margin-top:5px;
+     cursor:pointer;
+ }
+ .exponent #table div.label .titlebg .icon_deletesmall{
+     margin-top:5px;
+ }
+ .exponent #table div.label .hidekey{
+     width:150px;
+     position:absolute;
+     right:0px;
+     top:24px;
+     border:1px solid #ccc;
+     background-color:#ffffff;
+     display:none;
+     z-index:1000;
+ }
+  .exponent #table div.label .hidekey li{
+      width:100%;
+      padding-left:5px;
+      padding-right:5px;
+      height:22px;
+      line-height:22px;
+      color:#333333;
+      border-bottom:1px dotted #cccccc;
+      text-align:left;
+      font-weight:normal;
+  }
+   .exponent #table div.label .hidekey li.last{
+       height:30px;
+       border-bottom:none;
+   }
+    .exponent #table div.label .hidekey li.last input {
+        width:90px;
+        height:20px;
+        margin-top:5px;
+        padding:0px 0px 0px 3px;
+        line-height:20px;
+    }
+    .exponent #table div.label .hidekey li.last i{
+        margin-top:9px;
+    }
+  .exponent #table div.label .hidekey li .icon{
+      float:right;
+      margin-top:4px;
+  }
+  .table-bordered > tbody > tr > td.drop{
+      padding-bottom:0px;
+  }
+ #emer-edit .modal-body, #emer-add .modal-body{
+     padding-right:30px;
+ }
+ #emer-edit .modal-body .control-label,#emer-add .modal-body .control-label{
+     padding-right:0px;
+ }
+  .areaModalKey{
+     width:100%;
+ }
+ 
+ @media (min-width: 768px) {
+     #myModalGroup .col-sm-2{
+     padding-left:0px;
+     padding-right:0px;
+ }
+ }
+/*content*/
+
+/*Pagination*/
+#pagination > li {
+    cursor: pointer;
+}
+

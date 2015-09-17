@@ -1,0 +1,1 @@
+﻿1.反向同步的表结构（cgf_xxxx），必须带3列(id、last_modified、is_deleted),建议加上create_record_time:记录创建时间

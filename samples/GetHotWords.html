@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <script src="js/jQuery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <!--<style type="text/css">
+        .form-group {
+        width:40%;
+        }
+    </style>-->
+    <script type="text/javascript">
+        $(function () {
+            $("#search").click(
+                function () {
+                    var postData = {
+                        orderby: {
+                            word_count: "desc"
+                        },
+                        query: {
+                            customer_name: $("#customer_name").val(),
+                            field_name: $("#field_name").val(),
+                            brand_name: $("#brand_name").val(),
+                            start_date: $("#start_date").val(),
+                            end_date: $("#end_date").val(),
+                            topn: $("#topn").val(),
+                            word_value: $("#word_value").val(),
+                        }
+                    }
+                    
+                    $.post("http://localhost:1337/api/middleware/GetHotWords", { params: JSON.stringify(postData) }, function (data) {
+                        $("table tbody").empty();
+                        for (var i = 0; i < data.rows.length; i++) {
+                            $("table").append('<tr><td>'+(i+1)+'</td><td>'+data.rows[i]+'</td></tr>');
+                        }
+                       
+                    }
+                );
+                });
+            })
+    </script>
+</head>
+<body>
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+            <label class='col-sm-2 control-label' for="customer_name">customer_name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="customer_name" value="南通" placeholder="customer_name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class='col-sm-2 control-label' for="field_name">field_name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="field_name" value="城市管理" placeholder="field_name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class='col-sm-2 control-label' for="brand_name">brand_name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="brand_name" value="交通" placeholder="brand_name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class='col-sm-2 control-label' for="start_date">start_date</label>
+            <div class="col-sm-10">
+                <input type="date" class="form-control" id="start_date" value="" placeholder="start_date">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class='col-sm-2 control-label' for="end_date">end_date</label>
+            <div class="col-sm-10">
+                <input type="date" class="form-control" id="end_date" value="" placeholder="end_date">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class='col-sm-2 control-label' for="word_value">极性</label>
+            <div class="col-sm-10">
+                <select id="word_value" class="form-control">
+                  <option value="1">正面</option>
+                  <option value="0">中性</option>
+                  <option value="-1">负面</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class='col-sm-2 control-label' for="topn">top</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="topn" value="12" placeholder="topn">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button id="search" type="button" class="btn btn-default">搜索</button>
+            </div>
+        </div>
+
+    </form>
+        <table class="table table-hover">
+            <thead><tr><th>热度排名</th><th>热词</th></tr></thead>
+            <tbody></tbody>
+        </table>
+</body>
+</html>

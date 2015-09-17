@@ -1,0 +1,441 @@
+/*
+* Model         : Manage
+* Author        : Qing Wang
+* Update Date   : 2014-07-25 17:45
+*/
+
+var manage = require('./manage.js');
+
+// manage : group user permission
+/*
+api名称： /api/manage/GetGroupList
+Type：post
+功能： 获取组列表
+参数：{}或
+{params:{
+    orderby: {
+        last_modified : "desc"
+             },
+    query: {
+
+             },
+    pagination: {
+           topn: "12",
+           pagesize: "2",
+           pageindex: 0
+                 }
+     }
+}
+
+返回值：{Result:ture|false,Data:查询的组列表,Message:失败信息，如果成功则为空,TotalCount:查询的个数，用于分页}
+*/
+router.post('/api/manage/GetGroupList', manage.GetGroupList);
+
+/*
+api名称： /api/manage/GetGroupByCondition
+Type：post
+功能： 根据条件获取组列表
+参数：{}或
+{params:{
+    orderby: {
+        last_modified : "desc"
+             },
+    query: {
+
+             },
+    pagination: {
+           topn: "12",
+           pagesize: "2",
+           pageindex: 0
+                 }
+     }
+}
+返回值：{Result:ture|false,Data:查询的组列表,Message:失败信息，如果成功则为空,TotalCount:查询的个数，用于分页}
+*/
+router.post('/api/manage/GetGroupByCondition', manage.GetGroupByCondition);
+
+/*
+api名称： /api/manage/GetGroupById
+Type：post
+功能： 根据组id获取组信息
+参数：{}或
+{params:{
+    orderby: {
+        last_modified : "desc"
+             },
+    query: {
+
+             },
+    pagination: {
+           topn: "12",
+           pagesize: "2",
+           pageindex: 0
+                 }
+     }
+}
+返回值：{Result:ture|false,Data:组信息+权限列表，字段为permission:[...],api:[...],Message:失败信息，如果成功则为空}
+*/
+router.post('/api/manage/GetGroupById', manage.GetGroupById);
+
+/*
+api名称： /api/manage/SaveGroup
+Type：post
+功能： 添加用户组
+参数：var group = {};
+
+               group.name = $("#name").val();
+               group.removed = $("#removed").val(); //启用状态
+               group.categoryid = $("#categoryid").val();//区分是用户还是租户，可以为空[user|tenant]
+
+
+               var result = new Array();
+               $("[name = pcheck]:checkbox").each(function () {
+                   if ($(this).is(":checked")) {
+                       result.push($(this).attr("value"));
+                   }
+               });
+
+               var apiResult = new Array();
+               $("[name = apicheck]:checkbox").each(function () {
+                   if ($(this).is(":checked")) {
+                       apiResult.push($(this).attr("value"));
+                   }
+               });
+
+               group.permission=result.join("#;"); //module权限以#;分隔
+               group.api=apiResult.join("#;");      //api权限以#;分隔
+
+返回值：{Result:ture|false,Data:{group:{},model:{},api:{}},Message:失败信息，如果成功则为空}
+*/
+router.post('/api/manage/SaveGroup', manage.AddGroup);
+
+/*
+api名称： /api/manage/SaveGroup
+Type：delete
+功能： 根据组id删除用户组
+参数：{id:xx}
+
+返回值：{Result:ture|false,Data:{},Message:失败信息，如果成功则为空}
+*/
+router.delete('/api/manage/SaveGroup', manage.DeleteGroupById);
+
+/*
+api名称： /api/manage/SaveGroup
+Type：put
+功能： 更新用户组
+参数：var group = {};
+                  group.id = $("#id").val();
+                  group.name = $("#name").val();
+                  group.removed = $("#removed").val(); //启用状态
+                  group.categoryid = $("#categoryid").val();//区分是用户还是租户，可以为空[user|tenant]
+
+
+                  var result = new Array();
+                  $("[name = pcheck]:checkbox").each(function () {
+                      if ($(this).is(":checked")) {
+                          result.push($(this).attr("value"));
+                      }
+                  });
+
+                  var apiResult = new Array();
+                  $("[name = apicheck]:checkbox").each(function () {
+                      if ($(this).is(":checked")) {
+                          apiResult.push($(this).attr("value"));
+                      }
+                  });
+
+                  group.permission=result.join("#;"); //module权限以#;分隔
+                  group.api=apiResult.join("#;");      //api权限以#;分隔
+
+返回值：{Result:ture|false,Data:{group:{...},model:{...},api:{...}},Message:失败信息，如果成功则为空}
+*/
+router.put('/api/manage/SaveGroup', manage.UpdateGroup);
+
+//Model
+/*
+api名称： /api/manage/GetModelList
+Type：post
+功能： 获取模块列表
+参数：{}或
+{params:{
+    orderby: {
+        last_modified : "desc"
+             },
+    query: {
+
+             },
+    pagination: {
+           topn: "12",
+           pagesize: "2",
+           pageindex: 0
+                 }
+     }
+}
+
+返回值：{Result:ture|false,Data:查询的组列表,Message:失败信息，如果成功则为空,TotalCount:查询的个数，用于分页}
+*/
+router.post('/api/manage/GetModelList', manage.GetModelList);
+
+/*
+api名称： /api/manage/GetModelByName
+Type：post
+功能： 根据module的名称来获取模块列表
+参数：{name:xx}
+
+返回值：{Result:ture|false,Data:查询的组列表,Message:失败信息，如果成功则为空,TotalCount:查询的个数，用于分页}
+*/
+router.post('/api/manage/GetModelByName', manage.GetModelByName);
+
+/*
+api名称： /api/manage/GetModelByCondition
+Type：post
+功能： 获取模块列表
+参数：{}或
+{params:{
+    orderby: {
+        last_modified : "desc"
+             },
+    query: {
+
+             },
+    pagination: {
+           topn: "12",
+           pagesize: "2",
+           pageindex: 0
+                 }
+     }
+}
+
+返回值：{Result:ture|false,Data:查询的组列表,Message:失败信息，如果成功则为空,TotalCount:查询的个数，用于分页}
+*/
+router.post('/api/manage/GetModelByCondition', manage.GetModelByCondition);
+
+/*
+api名称： /api/manage/GetModelById
+Type：post
+功能： 根据module的名称来获取模块列表
+参数：{id:xx}
+
+返回值：{Result:ture|false,Data:查询的组列表,Message:失败信息，如果成功则为空,TotalCount:查询的个数，用于分页}
+*/
+router.post('/api/manage/GetModelById', manage.GetModelById);
+
+/*
+api名称： /api/manage/SaveModel
+Type：post
+功能： 添加模块
+参数：var m = {};
+               m.parentid = $("#parentid").val();
+               m.name = $("#name").val();
+               m.uri = $("#uri").val();
+               m.value = $("#value").val();
+               m.notes = $("#notes").val();
+
+返回值：{Result:ture|false,Data:{...},Message:失败信息，如果成功则为空}
+*/
+router.post('/api/manage/SaveModel', manage.AddModel);
+
+/*
+api名称： /api/manage/SaveModel
+Type：delete
+功能： 根据模块id删除模块
+参数：{id:xx}
+
+返回值：{Result:ture|false,Data:{...},Message:失败信息，如果成功则为空}
+*/
+router.delete('/api/manage/SaveModel', manage.DeleteModelById);
+
+/*
+api名称： /api/manage/SaveModel
+Type：put
+功能： 添加模块
+参数：var m = {};
+               m.id = $("#id").val();
+               m.parentid = $("#parentid").val();
+               m.name = $("#name").val();
+               m.uri = $("#uri").val();
+               m.value = $("#value").val();
+               m.notes = $("#notes").val();
+
+返回值：{Result:ture|false,Data:{...},Message:失败信息，如果成功则为空}
+*/
+router.put('/api/manage/SaveModel', manage.UpdateModel);
+
+/*
+api名称： /api/manage/GetGroupForTenant
+Type：get
+功能： 租户注册中返回租户的默认的组。
+参数：
+
+返回值：{Result:ture|false,Data:[...],Message:失败信息，如果成功则为空}
+*/
+router.get('/api/manage/GetGroupForTenant', manage.GetGroupForTenant);
+
+//User
+/*
+api名称： /api/manage/GetUserList
+Type：post
+功能： 获取用户列表
+参数：{}或
+{params:{
+    orderby: {
+        last_modified : "desc"
+             },
+    query: {
+
+             },
+    pagination: {
+           topn: "12",
+           pagesize: "2",
+           pageindex: 0
+                 }
+     }
+}
+
+返回值：{Result:ture|false,Data:查询的组列表,Message:失败信息，如果成功则为空,TotalCount:查询的个数，用于分页}
+*/
+router.post('/api/manage/GetUserList', manage.GetUserList);
+
+/*
+api名称： /api/manage/GetUserById
+Type：post
+功能： 根据用户id获取用户
+参数：{}
+
+返回值：{Result:ture|false,Data:查询的组列表,Message:失败信息，如果成功则为空,TotalCount:查询的个数，用于分页}
+*/
+router.post('/api/manage/GetUserById', manage.GetUserById);
+
+/*
+api名称： /api/manage/GetUserByCondition
+Type：post
+功能： 根据条件获取用户列表
+参数：{}或
+{params:{
+    orderby: {
+        last_modified : "desc"
+             },
+    query: {
+
+             },
+    pagination: {
+           topn: "12",
+           pagesize: "2",
+           pageindex: 0
+                 }
+     }
+}
+
+返回值：{Result:ture|false,Data:查询的组列表,Message:失败信息，如果成功则为空,TotalCount:查询的个数，用于分页}
+*/
+router.post('/api/manage/GetUserByCondition', manage.GetUserByCondition);
+
+/*
+api名称： /api/manage/SaveUser
+Type：post
+功能： 添加用户
+参数： var user = {};
+               user.username = $("#username").val();
+               user.status = $("#status").val();
+               user.email = $("#email").val();
+               user.phone = $("#phone").val();
+               user.groupid=$("#group").val();
+
+
+返回值：{Result:ture|false,Data:{...},Message:失败信息，如果成功则为空}
+*/
+router.post('/api/manage/SaveUser', manage.AddUser);
+
+/*
+api名称： /api/manage/SaveUser
+Type：delete
+功能： 根据id删除用户
+参数： {id:xx}
+
+
+返回值：{Result:ture|false,Data:{...},Message:失败信息，如果成功则为空}
+*/
+router.delete('/api/manage/SaveUser', manage.DeleteUserById);
+
+/*
+api名称： /api/manage/SaveUser
+Type：put
+功能： 更新用户
+参数： var user = {};
+               user.id=$("#id").val();
+               user.username = $("#username").val();
+               user.status = $("#status").val();
+               user.email = $("#email").val();
+               user.phone = $("#phone").val();
+               user.groupid=$("#group").val();
+
+
+返回值：{Result:ture|false,Data:{user:{...},model:{...},api:{...}},Message:失败信息，如果成功则为空}
+*/
+router.put('/api/manage/SaveUser', manage.UpdateUser);
+
+/*
+api名称： /api/manage/UpdateUserInformation
+Type：post
+功能： 登陆用户更新自己的跟人信息
+参数： var user = {};
+               user.email = $("#email").val();
+               user.phone = $("#phone").val();
+
+返回值：{Result:ture|false,Data:{...},Message:失败信息，如果成功则为空}
+*/
+router.post('/api/manage/UpdateUserInformation', manage.UpdateUserInformation);
+
+//Permission
+router.post('/api/manage/GetPermissionByGroupId', manage.GetPermissionByGroupId);
+router.post('/api/manage/GetPermissionByUserId', manage.GetPermissionByUserId);
+router.post('/api/manage/GetPermission', manage.GetPermission);
+router.post('/api/manage/UpdatePermissionForGroup', manage.UpdatePermissionForGroup);
+router.post('/api/manage/UpdatePermissionForUser', manage.UpdatePermissionForUser);
+router.get('/api/manage/GetModulePermissionByToken', manage.GetModulePermissionByToken);
+
+//api
+router.post('/api/manage/GetApiById', manage.GetApiById);
+router.post('/api/manage/GetApiByCondition', manage.GetApiByCondition);
+router.post('/api/manage/SaveApi', manage.AddApi);
+router.delete('/api/manage/SaveApi', manage.DeleteApiById);
+router.put('/api/manage/SaveApi', manage.UpdateApi);
+
+//password
+/*
+api名称： /api/manage/UpdatePassword
+Type：post
+功能： 更新用户密码
+参数： var user = {};
+               user.password = $("#password").val();
+               user.repassword = $("#repassword").val();
+
+返回值：{Result:ture|false,Data:{...},Message:失败信息，如果成功则为空}
+*/
+router.post('/api/manage/UpdatePassword', manage.UpdatePassword);
+
+
+/*
+api名称： /api/manage/ResetPassword
+Type：post
+功能： 重置用户密码
+参数： var user = {};
+               user.userId = $("#userId").val();
+               user.password = $("#password").val();
+
+返回值：{Result:ture|false,Data:{...},Message:失败信息，如果成功则为空}
+*/
+router.post('/api/manage/ResetPassword', manage.ResetPassword);
+
+//:TimeType [hour,minute,second,day]
+//eg: /api/middleware/GetWeiBoSentiment/day
+//eg: /api/middleware/GetWeiBoSentiment/hour
+//eg: /api/middleware/GetWeiBoSentiment/minute
+//eg: /api/middleware/GetWeiBoSentiment/second
+
+router.post('/api/middleware/GetWeiBoSentiment/:TimeType', middleware.GetWeiBoSentiment);
+router.post('/api/middleware/GetNewsSentiment/:TimeType', middleware.GetNewsSentiment);
+router.post('/api/middleware/GetWeiBoAndNewsSentiment/:TimeType', middleware.GetWeiBoAndNewsSentiment);
+
+
+router.post('/api/middleware/GetWeiXinList', middleware.GetWeiXinList);

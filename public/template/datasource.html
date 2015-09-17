@@ -1,0 +1,186 @@
+﻿<div class="datasource">
+    <div class="content_title">
+        <i class="icon icon_direction"></i>
+        <span>舆情后台管理 > 数据源管理</span>
+    </div>
+    <div class="sel_condition">
+        <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+                <span>网站名称：</span><input style="width:180px;" class="form-control" id="webname" />
+            </div>
+            <div class="form-group">
+                <span>URL：</span><input class="form-control" id="weburl" />
+            </div>
+            <div class="form-group">
+                <span>种类：</span><input class="form-control" id="webkind" style="width:100px;" />
+            </div>
+            <div class="form-group">
+                <span>权重：</span><select class="form-control" id="weblevel">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+
+            </div>
+            <span><button type="submit" class="btn btn-default ml10" data-bind="click: addData">添加</button></span>
+        </form>
+    </div>
+    <!--<div data-bind='simpleGrid: gridViewModel' class="table-responsive"></div>-->
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th class="left bigwid">网站名称</th>
+                    <th class="left">URL</th>
+                    <th class="date">种类</th>
+                    <th class="w120">权重</th>
+                    <th class="serialNum">编辑</th>
+                    <th class="serialNum">删除</th> 
+                </tr>
+            </thead>
+            <tbody data-bind="foreach:dataloop">
+                <tr>
+                    <td class="left" data-bind="text:name">百度</td>
+                    <td class="left"><a target="_blank" data-bind="attr:{href: url},text:url">http://www.baidu.com</a></td>
+                    <td data-bind="text:kind">经济</td>
+                    <td data-bind="text:level">1</td>
+                    <td><i class="icon icon_edit" data-toggle="modal" data-bind="click: $root.showEditModal"></i></td>
+                    <td><i class="icon icon_delete" data-bind='click: $root.removeData'></i></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="7" style=" text-align:right;">
+                        <ul class="pagination pagination-sm" id="pagination"></ul>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div> 
+</div>
+<div id="editDate" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content form-horizontal">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">编辑</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" style="padding-right:0px;">网站名称：</label>
+                    <div class="col-sm-10"><input class="form-control" id="webname2" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" style="padding-right:0px;">URL：</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" id="weburl2" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" style="padding-right:0px;">种类：</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" id="webkind2" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" style="padding-right:0px;">权重：</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" id="weblevel2">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="left">数据源名称</th>
+                                <th class="left">数据源网站</th>
+                                <th>种类</th>
+                                <th>区域</th>
+                                <th>关键字</th>
+                                <th>权重</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="left">百度</td>
+                                <td class="left">百度</td>
+                                <td>经济</td>
+                                <td>北京</td>
+                                <td>关键字</td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                                <td class="left"><input /></td>
+                                <td class="left"><input /></td>
+                                <td><input /></td>
+                                <td><input /></td>
+                                <td><input /></td>
+                                <td><input /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-success">保存</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+$(function () {
+    var datas = GetDataData();
+    var datasourceModel = function (source) {
+        var self = this;
+        self.dataloop = ko.observableArray(source);
+        self.addData = function () {
+            if ($("#webname").val().trim()=="" || $("#weburl").val().trim()=="" || $("#weblevel").val().trim()=="") {
+                
+            } else {
+                self.dataloop.push({
+                    name: $("#webname").val(),
+                    url: $("#weburl").val(),
+                    kind: $("#webkind").val(),
+                    level: $("#weblevel").val()
+                })
+            }
+            
+        }
+        self.removeData = function (data) {
+            self.dataloop.remove(data)
+        }
+        self.showEditModal = function () {
+            $("#editDate").modal("show");
+        }
+    }
+    var viewModel = new datasourceModel(datas);
+     ko.applyBindings(viewModel);
+
+
+        function GetDataData() {
+            var data = [
+                { "name": "百度", "url": "http://www.baidu.com", "kind": "经济", "level": 1 },
+                { "name": "搜狗", "url": "http://www.sogou.com", "kind": "经济", "level": 4 },
+                { "name": "必应", "url": "http://www.bing.com", "kind": "经济", "level": 5 },
+                { "name": "有道", "url": "http://www.youdao.com", "kind": "经济", "level": 3 },
+                { "name": "谷歌", "url": "http://www.google.com", "kind": "经济", "level": 2 },
+                { "name": "新浪", "url": "http://www.sina.com", "kind": "经济", "level": 6 },
+            ]
+            return data;
+        };
+})
+
+    
+</script>
+
+

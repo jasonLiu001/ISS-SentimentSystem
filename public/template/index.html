@@ -1,0 +1,208 @@
+﻿<div class="index_leveltwo">
+    <div class="hotnew-title">分类</div>
+    <div class="hotnewscon">
+        <div class="hotnewscon-actual">
+            <div id="brand_Names" class="index_leveclassify"></div>
+        </div>
+    </div>
+</div>
+<div class="index_levelone">
+    <div class="updateToday">
+        <div class="index_title">
+            <span>今日更新</span>
+        </div>
+        <div class="today-update mb10">
+            <div id="today_negative" class="today-updatediv">
+                <div class="negative" data-dimension="80" data-width="6" data-fontsize="20">加载中...</div>
+            </div>
+            <div class="today-updateword"><div class="tagdiv"><span class="tagspan">今日负面</span></div></div>
+        </div>
+        <div class="today-update">
+            <div id="today_update" class="today-updatediv">
+                <div class="update" data-dimension="80" data-width="6" data-fontsize="20">加载中...</div>
+            </div>
+            <div class="today-updateword"><div class="tagdiv"><span class="tagspan">今日正面</span></div></div>
+        </div>
+    </div>
+    <div class="negative-today">
+        <div class="negative-con">
+            <div class="index_title">
+                <span>12小时负面趋势</span>
+            </div>
+            <div class="negative-conbg">
+                <div id="negative-conbg-today"></div>
+            </div>
+        </div>
+
+    </div>
+    <div class="negative-week">
+        <div class="negative-con">
+            <div class="index_title">
+                <span>一周负面趋势</span>
+            </div>
+            <div class="negative-conbg">
+                <div id="negative-conbg-week"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--<div class="index_leveltwo">
+    <div class="hotnew-title">热点播报</div>
+    <div class="hotnewscon">
+        <div class="hotnewscon-actual">
+            <div class="hotnewscon-actual-100" id="hotContainer">
+                <div class="hotnewscon-list" id="content-news">
+                    <ul>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+<div class="index_levelthree index_newslist">
+    <div class="level-threecon">
+        <div id="newsMonitorContainer" class="level-threeconleft">
+            <div class="index_title">
+                <span><a href="/index.html#newslist">新闻监听</a></span>
+                <div class="indexnew-more">
+                    <!--<div id="newsFilter" class="btn-group btn-group-sm">
+                        <button type="button" data-bind="click:function(){filterFun(-1)}" class="btn " level="-1">负面</button>
+                        <button type="button" data-bind="click:function(){filterFun(1)}" class="btn " level="1">正面</button>
+                        <button type="button" data-bind="click:function(){filterFun(-2)}" class="btn " level="-2">全部</button>
+                    </div>-->
+                    <div id="newsFilter" class="indexnew-more-level">
+                        <div class="news-nowtype"><span class="type">全部</span><i class="icon icon_arrdown_gray" id="newsFilterMore"></i></div>
+                        <div class="new-hidetype">
+                            <ul>
+                                <li data-bind="click:function(){filterFun(-1)}" level="-1">负面</li>
+                                <li data-bind="click:function(){filterFun(1)}" level="1">正面</li>
+                                <li data-bind="click:function(){filterFun(2)}" level="2">全部</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive list-hei-index" id="news">
+                <div id="newsMonitor" class="index-news-con">
+                    <div class="loadindex"></div>
+                    <div class="newsweibo-index" data-bind="foreach:news">
+                        <div class="index-news-list">
+                            <div class="index-left-icon">
+                                <i data-bind="attr:{title:score>3?'正面':(score<=3&&score>=-3?'中性':'负面')},css:{icon:true,icon_zheng:score>3,icon_zhong:score<=3&&score>=-3,icon_fu:score<-3}"></i>
+                            </div>
+                            <div class="index-right-listcon">
+                                <div class="index-news-list-title">
+                                    <div class="index-news-list-title-left">
+                                        <span class="title"><a class="black" data-bind="attr:{href: news_url,title:news_title},text:news_title.trim()" target="_blank"></a></span>
+                                    </div>
+                                    <div class="index-news-list-title-right"><span class="tag"></span></div>
+                                </div>
+                                <div class="index-news-list-summary" data-bind="attr:{title:summary},text:handleWords(summary.trim())"></div>
+                                <div class="source-date">
+                                    <span class="date" data-bind="text:isToday(report_date)?formatDate(report_date).substr(11,8):formatDate(report_date).substr(0,10),style:{color:isToday(report_date)?'rgba(206, 51, 28, 1)':'#969595'}"></span>
+                                    <span class="source" data-bind="text:source"></span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="weiboMonitorContainer" class="level-threecon">
+        <div class="index_title">
+            <span><a href="/index.html#weibo">微博监听</a></span>
+            <div class="indexnew-more">
+                <!--<div id="weiboFilter" level="-1" class="btn-group btn-group-sm">
+                    <button type="button" data-bind="click:function(){filterFun(-1)}" class="btn " level="-1">负面</button>
+                    <button type="button" data-bind="click:function(){filterFun(1)}" class="btn " level="1">正面</button>
+                    <button type="button" data-bind="click:function(){filterFun(-2)}" class="btn " level="-2">全部</button>
+                </div>-->
+                <div id="weiboFilter" class="indexnew-more-level">
+                    <div class="news-nowtype"><span class="type">全部</span><i class="icon icon_arrdown_gray" id="weoboFilterMore"></i></div>
+                    <div class="new-hidetype">
+                        <ul>
+                            <li data-bind="click:function(){filterFun(-1)}" level="-1">负面</li>
+                            <li data-bind="click:function(){filterFun(1)}" level="1">正面</li>
+                            <li data-bind="click:function(){filterFun(2)}" level="2">全部</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive list-hei-index" id="news1">
+            <div id="weiboMonitor" class="index-news-con">
+                <div class="loadindex"></div>
+                <div class="newsweibo-index" data-bind="foreach:weibo">
+                    <div class="index-news-list">
+                        <div class="index-left-icon">
+                            <i data-bind="attr:{title:score>3?'正面':(score<=3&&score>=-3?'中性':'负面')},css:{icon:true,icon_zheng:score>3,icon_zhong:score<=3&&score>=-3,icon_fu:score<-3}"></i>
+                        </div>
+                        <div class="index-right-listcon">
+                            <div class="index-news-list-title">
+                                <div class="index-news-list-title-left"><span class="title"><a class="black" data-bind="attr:{href: news_url,title:source},text:source" target="_blank"></a></span></div>
+                                <div class="index-news-list-title-right"><span class="tag"></span></div>
+                            </div>
+                            <div class="index-news-list-summary" data-bind="attr:{title:news_title},text:news_title.trim()"></div>
+                            <div class="source-date">
+                                <span class="date" data-bind="text:isToday(report_date)?formatDate(report_date).substr(11,8):formatDate(report_date).substr(0,10),style:{color:isToday(report_date)?'rgba(206, 51, 28, 1)':'#969595'}"></span>
+                                <span class="source"><span data-bind="attr:{title: window.baseTools.translateWeiBoSourceI(search_engine)},text:window.baseTools.translateWeiBoSourceI(search_engine)"></span></span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/jquery.circliful.min.js"></script>
+<script>
+    $(document).ready(function () {
+        //计算标题长度
+        function calcuTitleWidth() {
+            var $winWid = $(window).width();
+            if ($winWid < 980) {
+                $winWid = 980;
+            }
+            var news$With = ($winWid - 190 - 40) / 2 - 20;
+            var otherWith = 255;
+
+            var titleW = news$With - otherWith;
+            var titleWw = titleW + 90;
+            if ($(".left_menu_yq").width() < 160) {
+                $(".index_newslist .textover>a").css("width", titleWw);
+            } else {
+                $(".index_newslist .textover>a").css("width", titleW);
+            }
+
+        }
+        calcuTitleWidth();
+        $(window).resize(function () {
+            calcuTitleWidth();
+        })
+
+        var flag = true;
+        $(".left_arr").click(function () {
+            var $winWid = $(window).width();
+
+            var otherWith = 255;
+            if ($winWid < 980) {
+                $winWid = 980;
+            }
+            var news$With = ($winWid - 190 - 40) / 2 - 20;
+            var titleW = news$With - otherWith,
+                titleWw = titleW + 90;
+            if (!flag) {
+                $(".index_newslist .textover>a").css("width", titleW);
+                flag = true;
+            }
+            else {
+                $(".index_newslist .textover>a").css("width", titleWw);
+                flag = false;
+            }
+        })
+    });
+</script>
+<script src="/js/business/index.js"></script>

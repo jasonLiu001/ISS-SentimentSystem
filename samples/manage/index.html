@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Group</title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+    <!-- 可选的Bootstrap主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="http://cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div id="Groupdetail"> </div>
+<div id="Groupupdate"> </div>
+<div id="Groupdelete"> </div>
+<div id="Groupadd"> </div>
+
+<table class="table table-hover" id="GroupList">
+    <thead>
+        <th>tenant</th>
+        <th>name</th>
+        <th>categoryid</th>
+        <th>parentid</th>
+        <th>removed</th>
+        <th>last_modified</th>
+        <th></th>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
+<script>
+$(function () {
+$.ajax({
+type: "GET",
+url: "http://localhost:3000/manage/GetGroup",
+success: function (data) {
+console.log(data);
+$("#Groupdetail").text(data);
+}
+});
+
+
+
+$.ajax({
+type: "put",
+url: "http://localhost:3000/manage/SaveGroup",
+success: function (data) {
+console.log(data);
+var ss=JSON.stringify(data)
+$("#Groupupdate").text(ss);
+}
+});
+
+
+});
+</script>
+</body>
+</html>

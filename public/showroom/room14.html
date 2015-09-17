@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>欢迎使用舆情管理系统</title>
+    <link href="/css/bootstrapa.css" rel="stylesheet"/>
+    <link href="/css/bootstrap-switch.min.css" rel="stylesheet"/>
+    <link href="/css/bootstrap-datetimepicker.min.css" rel="stylesheet"/>
+    <link href="/css/basic.css" rel="stylesheet"/>
+    <link href="/css/basecss.css" rel="stylesheet"/>
+    <link href="/css/skin/default.css" rel="stylesheet"/>
+    <script src="/js/jQuery.js"></script>
+    <script src="/js/jquery.cookie.js"></script>
+    <script src="/js/jquery.nicescroll.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap-switch.min.js"></script>
+    <script src="/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="/js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="/js/knockout.js"></script>
+    <script src="/js/common/tools.js"></script>
+    <script src="/js/business/base.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/common/pagination.js"></script>
+    <script src="/js/highstock.js"></script>
+    <script src="/js/rotater/tools/util.js"></script>
+    <script src="/js/rotater/tools/observer.js"></script>
+    <script src="/js/rotater/tools/timer.js"></script>
+    <script src="/js/rotater/tools/easing.js"></script>
+    <script src="/js/rotater/lib/core.js"></script>
+    <script src="/js/rotater/lib/animate.js"></script>
+    <script src="/js/rotater/animationMgr.js"></script>
+    <script src="/js/rotater/blockRotater.js"></script>
+    <script src="/js/rotater/marquee.js"></script>
+    <script src="/js/exporting.js"></script>
+    <script src="/js/iChart.js"></script>
+    <script src="/js/jquery.highlight.js"></script>
+    <script src="/js/business/simulatedLogin.js"></script>
+    <script src="/js/business/indexPage2.js"></script>
+    <script src="/js/jquery.circliful.min.js"></script>
+</head>
+<style>
+
+#head_topmap {
+    background-image: url("/img/login_topbg.jpg");
+    border-bottom: 2px solid #8a0500;
+    width: 100%;
+    min-height: 100px;
+    margin-top: 2px;
+    background-repeat: repeat-x;
+}
+
+.top_admin_yq_lefthui {
+    float: left;
+    margin: 12px 15px 0px 30px;
+}
+
+#container {
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+/*分类*/
+.indexPage_brand_class {
+    background-color: #ededed;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-size: 16px;
+    height: 50px;
+}
+
+.indexPage_brand_flag {
+    border-bottom: 2px solid #e04b3a;
+    float: left;
+    height: inherit;
+    margin-right: -100px;
+    display: inline-block;
+    line-height: 35px;
+    padding: 0px 5px;
+}
+
+.indexPage_brand_container {
+    float: left;
+    width: 100%;
+    height: inherit;
+    background-color: #5a5a5a;
+    border-radius: 5px;
+
+}
+
+.indePage_brand_container_inner {
+    margin-left: 15px;
+    margin-right: 0px;
+    padding-top: 5px;
+    height: inherit;
+    overflow: hidden;
+    color: #ffffff;
+
+}
+
+.indePage_brand_container_inner span {
+    float: left;
+    margin-right: 25px;
+    color: #ffffff;
+    padding-top: 8px;
+}
+
+.indePage_brand_container_inner a {
+    color: #ffffff;
+}
+
+.indePage_brand_container_inner span.current_cate {
+    margin-top: -5px;
+    padding-top: 8px;
+    font-size: 20px;
+    text-align: center;
+    height:inherit;
+    width: 50px;
+    background-color: #cd1c0f;
+}
+
+/*今日更新*/
+.indexPage_levelthree {
+    overflow: hidden;
+    padding-top: 10px;
+}
+
+.indexPage_updateToday {
+    float: left;
+    width: 22%;
+}
+
+.indexPage_updateToday_title {
+    height: 30px;
+    font-size: 18px;
+    line-height: 1.34;
+    font-weight: bold;
+    padding-left: 20px;
+    background: url("../img/red_point.png") no-repeat 12px 10px;
+}
+
+.indexPage_updateToday_container {
+    border: 1px solid #d8d8d8;
+    width: 100%;
+    height: 82px; /*动态的*/
+    /*background: url("../img/updateRepeatbg.png") repeat-x;*/
+    background-color: #f0491b;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.indexPage_updateToday_container_postive {
+    background-color: #67b416;
+}
+
+.indexPage_updateToday_container > div {
+    font-size: 2.5em;
+    font-weight: bold;
+    float: left;
+    width: 50%;
+}
+
+.indexPage_updateToday_container_word {
+    color: #fbc9bb;
+    font-size: 2.5em;
+    font-weight: bold;
+    display: table;
+}
+
+.indexPage_updateToday_container_word > div {
+    /*margin-top: 15%;*/
+    width: 100%;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.indexPage_negative {
+    color: #ffffff;
+}
+
+.indexPage_postive {
+    color: #ffffff;
+}
+
+.indexPage_negative_today {
+    float: left;
+    width: 39%;
+}
+
+.indexPage_negative_content {
+    margin-left: 15px;
+
+}
+
+.indexPage_negative_content_title {
+    height: 30px;
+    font-size: 18px;
+    line-height: 1.34;
+    font-weight: bold;
+    padding-left: 20px;
+    background: url("../img/red_point.png") no-repeat 12px 10px;
+
+}
+
+.indexPage_negative_content_container {
+    width: 100%;
+    /*height: 181px;*//*动态*/
+    background-color: #6669e0;
+    /*background-image: url("../img/index-nagtivebg.png");*/
+    background-size: 100% 100%;
+    color: #ffffff;
+    border-radius: 5px;
+}
+
+.indexPage_negative_week {
+    float: left;
+    width: 39%;
+}
+
+.indexPage_negative_week_content {
+    margin-left: 15px;
+}
+
+.indexPage_negative_week_content_title {
+    height: 30px;
+    font-size: 18px;
+    line-height: 1.34;
+    font-weight: bold;
+    padding-left: 20px;
+    background: url("../img/red_point.png") no-repeat 12px 10px;
+}
+
+.indexPage_negative_week_container {
+    width: 100%;
+    /*height: 181px;*//*动态*/
+    background-color: #0791ee;
+    /*background-image: url("../img/index-nagtivebg.png");*/
+    background-size: 100% 100%;
+    border-radius: 5px;
+}
+
+.indexPage_levefour {
+    overflow: hidden;
+    padding-top: 10px;
+}
+
+.indexPage_levelfour_news {
+    padding-right: 15px;
+    float: left;
+    width: 50%;
+}
+
+.indexPage_levelfour_news_title {
+    height: 30px;
+    font-size: 18px;
+    line-height: 1.34;
+    padding-left: 20px;
+    font-weight: bold;
+    background: url("../img/red_point.png") no-repeat 12px 10px;
+}
+
+.indexPage_levelfour_news_container {
+    border: 1px solid #02d9f9;
+    position: relative;
+    /*height: 470px;*/
+    border-radius: 8px;
+    background-color: #0092a8;
+}
+
+.indexPage_news_list_title {
+    overflow: hidden;
+    min-height: 20px;
+}
+
+.indexPage_news_list_title .title a {
+    color: #ffffff !important;
+    font: bold;
+}
+
+.indexPage_news_list_summary {
+    color: #ffffff;
+    font-size: 12px;
+    max-height: 50px;
+    line-height: 1.34;
+    overflow: hidden;
+}
+@media screen and  (min-width:1445px) and (max-width:1920px)  {
+    .indexPage_brand_class{
+        height: 65px;
+        font-size:20px;
+    }
+    .indexPage_brand_flag{
+        font-size:22px;
+    }
+    .indePage_brand_container_inner span.current_cate{
+        font-size:22px;
+    }
+    .indePage_brand_container_inner{
+     /*margin-top: 10px;*/
+    }
+    .indexPage_news_list_summary{
+        font-size: 18px;
+    }
+    .indexPage_news_list_title .title a {
+        overflow: hidden;
+        font-size: 18px;
+    }
+}
+@keyframes animation_10
+{
+    0%   {margin-top: -15px;}
+    5%   {margin-top: -50px;}
+    10%  {margin-top: -100px;}
+    20%  {margin-top:-200px;}
+    30%  {margin-top:-300px;}
+    40%  {margin-top:-400px;}
+    50%  {margin-top:-500px;}
+    60%  {margin-top:-600px;}
+    70%  {margin-top:-700px;}
+    80%  {margin-top:-800px;}
+    90%  {margin-top:-900px;}
+    100% {margin-top:-1000px;}
+}
+@-webkit-keyframes animation_10 /* Safari 和 Chrome */
+{
+    0%   {margin-top: -15px;}
+    5%   {margin-top: -50px;}
+    10%  {margin-top: -100px;}
+    20%  {margin-top:-200px;}
+    30%  {margin-top:-300px;}
+    40%  {margin-top:-400px;}
+    50%  {margin-top:-500px;}
+    60%  {margin-top:-600px;}
+    70%  {margin-top:-700px;}
+    80%  {margin-top:-800px;}
+    90%  {margin-top:-900px;}
+    100% {margin-top:-1000px;}
+}
+@keyframes animation_5
+{
+    0%   {margin-top: -15px;}
+    10%  {margin-top: -50px;}
+    20%  {margin-top:-100px;}
+    30%  {margin-top:-150px;}
+    40%  {margin-top:-200px;}
+    50%  {margin-top:-250px;}
+    60%  {margin-top:-300px;}
+    70%  {margin-top:-350px;}
+    80%  {margin-top:-400px;}
+    90%  {margin-top:-450px;}
+    100% {margin-top:-500px;}
+}
+@-webkit-keyframes animation_5 /* Safari 和 Chrome */
+{
+    0%   {margin-top: -15px;}
+    10%  {margin-top: -50px;}
+    20%  {margin-top:-100px;}
+    30%  {margin-top:-150px;}
+    40%  {margin-top:-200px;}
+    50%  {margin-top:-250px;}
+    60%  {margin-top:-300px;}
+    70%  {margin-top:-350px;}
+    80%  {margin-top:-400px;}
+    90%  {margin-top:-450px;}
+    100% {margin-top:-500px;}
+}
+.animation_5{
+    animation: animation_5 15s;	/*IE */
+    animation-iteration-count:infinite;
+    animation-delay:1s;
+    animation-timing-function:linear;
+    animation-play-state:running;
+    -webkit-animation: animation_5 15s;	/* Safari 和 Chrome */
+    -webkit-animation-iteration-count:infinite;
+    -webkit-animation-delay:1s;
+    -webkit-animation-timing-function:linear;
+    -webkit-animation-play-state:running;
+}
+.animation_10{
+    animation: animation_10 30s;	/* IE */
+    animation-iteration-count:infinite;
+    animation-delay:1s;
+    animation-timing-function:linear;
+    animation-play-state:running;
+    -webkit-animation: animation_10 30s;	/* Safari 和 Chrome */
+    -webkit-animation-iteration-count:infinite;
+    -webkit-animation-delay:1s;
+    -webkit-animation-timing-function:linear;
+    -webkit-animation-play-state:running;
+}
+.animation_none{
+    animation:none;
+    -webkit-animation:none;
+    margin-top: 0px;
+}
+</style>
+<body>
+<div id="head_topmap">
+    <div class="fleft_yq top_admin_yq_left">
+        <div class="top_admin_yq_lefthui"><img id="logoImg" src="/img/login_hui.png" alt="logo"></div>
+        <div class="top_admin_yq_leftlogo">
+            <div class="login_logo"><span class="cityName" id="cityName"></span><!----><span
+                    class="cityName"></span><span>政府舆情监测系统</span></div>
+        </div>
+    </div>
+</div>
+<div id="container">
+    <div class="indexPage_brand_class">
+        <!--<div class="indexPage_brand_flag">分类</div>-->
+        <div class="indexPage_brand_container">
+            <div class="indePage_brand_container_inner" id="brand_Names">
+            </div>
+        </div>
+    </div>
+
+    <div class="indexPage_levelthree">
+        <div class="indexPage_updateToday">
+            <div class="indexPage_updateToday_title">
+                <span>今日更新</span>
+            </div>
+            <div class="indexPage_updateToday_container">
+                <div id="today_negative" style="margin-top: 3px">
+                    <div class="negative" data-dimension="80" data-width="6" data-fontsize="20">加载中...</div>
+                </div>
+                <div class="indexPage_updateToday_container_word">
+                    <div>今日<br/>负面</div>
+                </div>
+            </div>
+            <div class="indexPage_updateToday_container indexPage_updateToday_container_postive">
+                <div id="today_update" style="margin-top: 3px">
+                    <div class="update" data-dimension="80" data-width="6" data-fontsize="20">加载中...</div>
+                </div>
+                <div class="indexPage_updateToday_container_word">
+                    <div>今日<br/>正面</div>
+                </div>
+            </div>
+        </div>
+        <div class="indexPage_negative_today">
+            <div class="indexPage_negative_content">
+                <div class="indexPage_negative_content_title">
+                    <span>12小时负面趋势</span>
+                </div>
+                <div class="indexPage_negative_content_container">
+                    <div id="negative-conbg-today"></div>
+                </div>
+            </div>
+
+        </div>
+        <div class="indexPage_negative_week">
+            <div class="indexPage_negative_week_content">
+                <div class="indexPage_negative_week_content_title">
+                    <span>一周负面趋势</span>
+                </div>
+                <div class="indexPage_negative_week_container">
+                    <div id="negative-conbg-week"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="indexPage_levelfour">
+        <div id="newsMonitorContainer" class="indexPage_levelfour_news">
+            <div class="indexPage_levelfour_news_title">
+                <span><a href="">新闻监听</a></span>
+
+                <div class="indexnew-more">
+                    <!--<div id="newsFilter" class="btn-group btn-group-sm">
+                        <button type="button" data-bind="click:function(){filterFun(-1)}" class="btn " level="-1">负面</button>
+                        <button type="button" data-bind="click:function(){filterFun(1)}" class="btn " level="1">正面</button>
+                        <button type="button" data-bind="click:function(){filterFun(-2)}" class="btn " level="-2">全部</button>
+                    </div>-->
+                    <div id="newsFilter" class="indexnew-more-level">
+                        <div class="news-nowtype"><span class="type" style="color: #1a9db1">负面</span><i
+                                class="icon icon_arrdown_gray"
+                                id="newsFilterMore"></i></div>
+                        <div class="new-hidetype">
+                            <ul style="color: #1a9db1">
+                                <li data-bind="click:function(){filterFun(-1)}" level="-1">负面</li>
+                                <li data-bind="click:function(){filterFun(1)}" level="1">正面</li>
+                                <li data-bind="click:function(){filterFun(2)}" level="2">全部</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="indexPage_levelfour_news_container" id="news">
+                <div id="newsMonitor" class="index-news-con">
+                    <div class="loadindex"></div>
+                    <div class="newsweibo-index" id="scrollnews" data-bind="foreach:news">
+                        <!--<li class="index-news-list" style="height: 100px">-->
+                        <!--<div class="index-left-icon">-->
+                        <!--<i data-bind="attr:{title:score>3?'正面':(score<=3&&score>=-3?'中性':'负面')},css:{icon:true,icon_zheng:score>3,icon_zhong:score<=3&&score>=-3,icon_fu:score<-3}"></i>-->
+                        <!--</div>-->
+                        <!--<div class="index-right-listcon">-->
+                        <!--<div class="indexPage_news_list_title">-->
+                        <!--<div class="index-news-list-title-left">-->
+                        <!--<span class="title"><a class="white"-->
+                        <!--data-bind="attr:{href: news_url,title:news_title},text:news_title.trim()"-->
+                        <!--target="_blank"></a></span>-->
+                        <!--</div>-->
+                        <!--<div class="index-news-list-title-right"><span class="tag" style="color:#ffffff"></span></div>-->
+                        <!--</div>-->
+                        <!--<div class="indexPage_news_list_summary"-->
+                        <!--data-bind="attr:{title:summary},text:handleWords(summary.trim())"></div>-->
+                        <!--<div class="source-date">-->
+                        <!--<span class="date"-->
+                        <!--data-bind="text:isToday(report_date)?formatDate(report_date).substr(11,8):formatDate(report_date).substr(0,10),style:{color:isToday(report_date)?'rgba(206, 51, 28, 1)':'#ffffff'}"></span>-->
+                        <!--<span class="source" data-bind="text:source" style="color:#ffffff;opacity: 0.6"></span>-->
+                        <!--</div>-->
+                        <!--</div>-->
+
+                        <!--</li>-->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div id="weiboMonitorContainer" class="level-threecon">
+            <div class="indexPage_levelfour_news_title">
+                <span><a href="">微博监听</a></span>
+
+                <div class="indexnew-more">
+                    <!--<div id="weiboFilter" level="-1" class="btn-group btn-group-sm">
+                        <button type="button" data-bind="click:function(){filterFun(-1)}" class="btn " level="-1">负面</button>
+                        <button type="button" data-bind="click:function(){filterFun(1)}" class="btn " level="1">正面</button>
+                        <button type="button" data-bind="click:function(){filterFun(-2)}" class="btn " level="-2">全部</button>
+                    </div>-->
+                    <div id="weiboFilter" class="indexnew-more-level">
+                        <div class="news-nowtype"><span class="type" style="color: #1a9db1">负面</span><i
+                                class="icon icon_arrdown_gray"
+                                id="weoboFilterMore"></i></div>
+                        <div class="new-hidetype" style="color: #1a9db1">
+                            <ul>
+                                <li data-bind="click:function(){filterFun(-1)}" level="-1">负面</li>
+                                <li data-bind="click:function(){filterFun(1)}" level="1">正面</li>
+                                <li data-bind="click:function(){filterFun(2)}" level="2">全部</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="indexPage_levelfour_news_container" id="weibo">
+                <div id="weiboMonitor" class="index-news-con">
+                    <div class="loadindex"></div>
+                    <div class="newsweibo-index" id="scrollweibo">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        //计算标题长度
+        function calcuTitleWidth() {
+            var $winWid = $(window).width();
+            if ($winWid < 980) {
+                $winWid = 980;
+            }
+            var news$With = ($winWid - 190 - 40) / 2 - 20;
+            var otherWith = 255;
+
+            var titleW = news$With - otherWith;
+            var titleWw = titleW + 90;
+            if ($(".left_menu_yq").width() < 160) {
+                $(".index_newslist .textover>a").css("width", titleWw);
+            } else {
+                $(".index_newslist .textover>a").css("width", titleW);
+            }
+
+        }
+
+        calcuTitleWidth();
+        $(window).resize(function () {
+            calcuTitleWidth();
+        })
+
+        var flag = true;
+        $(".left_arr").click(function () {
+            var $winWid = $(window).width();
+
+            var otherWith = 255;
+            if ($winWid < 980) {
+                $winWid = 980;
+            }
+            var news$With = ($winWid - 190 - 40) / 2 - 20;
+            var titleW = news$With - otherWith,
+                    titleWw = titleW + 90;
+            if (!flag) {
+                $(".index_newslist .textover>a").css("width", titleW);
+                flag = true;
+            }
+            else {
+                $(".index_newslist .textover>a").css("width", titleWw);
+                flag = false;
+            }
+        })
+    });
+</script>
+</body>
+</html>

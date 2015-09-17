@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Edit Group</title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+
+    <!-- 可选的Bootstrap主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="./css/bootstrap-theme.min.css">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="./js/jQuery.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="./js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="form-horizontal" role="form" style="width:70%;margin-left: auto;margin-right: auto;">
+    <div >
+        <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">编辑用户组信息</h4>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <span>id：</span>
+                <input type="text" id="id" class="form-control" disabled>
+            </div>
+            <div class="form-group">
+                <span>tenant：</span>
+                <input type="text" id="tenant" class="form-control">
+            </div>
+            <div class="form-group">
+                <span>用户组名：</span>
+                <input type="text" id="eUserGroupName" class="form-control">
+            </div>
+            <div class="form-group">
+                <span>类别</span>
+
+                    <select class="form-control" id="categoryid">
+                        <option value="user">user</option>
+                        <option value="tenant">tenant</option>
+                    </select>
+
+            </div>
+            <div class="form-group">
+                <span>状态：</span>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="status" id="status0" value="0">
+                        未启用
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="status" id="status1" value="1">
+                        启用
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <span>模块权限：</span>
+                <div id="permission">
+
+                </div>
+
+            </div>
+            <div class="form-group">
+                <span>api权限：</span>
+                <div id="api">
+
+                </div>
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <!--<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>-->
+            <button type="button" class="btn btn-default" id="btn-submit">保存</button>
+        </div>
+    </div>
+</div>
+<script>
+    function getGroupListbyId()
+    {
+        var id= getParameters();
+        var postData = {id:id};
+        $.ajax({
+            type: "post",
+            url: "/api/manage/GetGroupById",
+            data: postData,
+            success:function(data){
+                if(data&&data.Result)
+                {
+                    var options = data.Data;
+                    $("#eUserGroupName").val(options[0].name);
+                    $("#id").val(options[0].id);
+                    $("#tenant").val(options[0].tenant);
+
+                    $("input:radio[value="+options[0].removed+"]").attr("checked",true);
+
+                    $("#categoryid").val(options[0].categoryid)
+                    var permission = options[0].permission;
+                    for(var item in permission) {
+                        $("[name = pcheck]:checkbox").each(function () {
+                            if ($(this).val() == permission[item].id) {
+                                $(this).attr("checked", true);
+                            }
+                        });
+                    }
+
+
+                    var api = options[0].api;
+                    for(var item in api) {
+                        $("[name = apicheck]:checkbox").each(function () {
+                            if ($(this).val() == api[item].id) {
+                                $(this).attr("checked", true);
+                            }
+                        });
+                    }
+
+
+                }
+            }
+        });
+    }
+
+    function getParameters(){
+        var url = location.href;
+        var param=url.split('?');
+        var kw = param[1].split('=');
+        return kw[1];
+    }
+
+    $(function () {
+
+        
+        
+
+        //get model
+        $.ajax({
+            type: "post",
+            url: "/api/manage/GetPermission",
+            data: {},
+            success:function(data){
+                if(data&&data.Result)
+                {
+                    
+                    var options = data.Data.model;
+                    for(var item in options){
+                        if(options[item].parentid == '0'){
+                            var subOptions = $.grep(options,function(n,i){
+                                return n.parentid == options[item].id;
+                            });
+                            var label =$("<div></div>");
+                            for(var sumItem in subOptions){
+                                label.append('<div class="checkbox"><label><input type="checkbox" name="pcheck" value ='+subOptions[sumItem].id+' data-parentid='+subOptions[sumItem].parentid+'>'+subOptions[sumItem].name+'</label></div>');
+                            }
+
+                            $("#permission").append('<div class="checkbox"><label><input type="checkbox" name="pcheck" value ='+options[item].id+'>'+options[item].name +label.html()+'</label></div>');
+                        }
+                    }
+                     options = data.Data.api;
+                    for(var item in options){
+                        
+                            $("#api").append('<div class="checkbox"><label><input type="checkbox" name="apicheck" value ='+options[item].id+'>'+options[item].notes+'</label></div>');
+                    }
+
+                }
+                getGroupListbyId();
+            }
+        });
+
+
+        $("#btn-submit").click(function(){
+
+            var group = {};
+            group.id = $("#id").val();
+            group.tenant = $("#tenant").val();
+            group.name = $("#eUserGroupName").val();
+            group.removed =  $("input[name='status']:checked").val();
+            group.categoryid = $("#categoryid").val();
+            var result = new Array();
+            $("[name = pcheck]:checkbox").each(function () {
+                if ($(this).is(":checked")) {
+                    result.push($(this).attr("value"));
+                }
+            });
+
+            group.permission=result.join("#;");
+
+            var apiResult = new Array();
+            $("[name = apicheck]:checkbox").each(function () {
+                if ($(this).is(":checked")) {
+                    apiResult.push($(this).attr("value"));
+                }
+            });
+            group.api=apiResult.join("#;");
+
+            $.ajax({
+                type: "put",
+                url: "/api/manage/SaveGroup",
+                data: group,
+                success:function(data){
+                    if(data&&data.Result)
+                    {
+                        alert(JSON.stringify(data.Data));
+                    }
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

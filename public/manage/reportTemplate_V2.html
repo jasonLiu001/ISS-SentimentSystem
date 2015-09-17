@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>{reportTitle}</title>
+    <style type="text/css">
+        table.gridtable {
+            font-family: verdana, arial, sans-serif;
+            font-size: 11px;
+            color: #333333;
+            border-width: 1px;
+            border-color: #666666;
+            border-collapse: collapse;
+            margin: 12px;
+        }
+
+        table.gridtable th {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #dedede;
+        }
+
+        table.gridtable td {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #ffffff;
+        }
+
+        .aligncenter{
+            clear:both;
+            text-align: center
+        }
+        h2{
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div class="aligncenter">
+    <h2>{reportTitle}</h2>
+</div>
+<div class="aligncenter">{reportDataCheckTime}</div>
+<hr>
+<strong>爬虫Solr:</strong><a href="http://192.168.100.38:8080/solr/#/collection1/query" target="_blank">http://192.168.100.38:8080/solr/#/collection1/query</a>
+<br/>
+<strong>运算Solr:</strong><a href="http://192.168.100.211:8888/solr/#/crawler_core/query" target="_blank">http://192.168.100.211:8888/solr/#/crawler_core/query</a>
+<br/>
+<table class="gridtable">
+    <!--表头-->
+    <tr>
+        <td rowspan="2">数据类型</td>
+        <td colspan="2">爬虫平台</td>
+        <td colspan="2">运算平台</td>
+        <td rowspan="2">数据可用率</td>
+    </tr>
+    <tr>
+        <td>条件</td>
+        <td>入库量</td>
+        <td>条件</td>
+        <td>入库量</td>
+    </tr>
+
+
+    <!--表体-->
+    <tr>
+        <td rowspan="2">新闻-模板</td>
+        <td>publish_time:{queryPublishTime}</td>
+        <td rowspan="2" style="padding: 0px;">{crawl_news_stockQuantity_template}</td>
+        <td>publishDate:{queryPublishTime}</td>
+        <td rowspan="2">{analyze_news_stockQuantity_template}</td>
+        <td rowspan="2">{data_news_available_template}%</td>
+    </tr>
+    <tr>
+        <td>data_source:1 and media_type:1</td>
+        <td>dataSource:1  and mediaType:1</td>
+    </tr>
+    <tr>
+        <td rowspan="2">新闻-引擎</td>
+        <td>publish_time:{queryPublishTime}</td>
+        <td rowspan="2" style="padding: 0px;">
+            {crawl_news_stockQuantity_engine}
+        </td>
+        <td>publishDate:{queryPublishTime}</td>
+        <td rowspan="2">{analyze_news_stockQuantity_engine}</td>
+        <td rowspan="2">{data_news_available_engine}%</td>
+    </tr>
+    <tr>
+        <td>data_source:2 and media_type:1</td>
+        <td>dataSource:2 and mediaType:1</td>
+    </tr>
+
+
+    <tr>
+        <td rowspan="2">论坛</td>
+        <td>publish_time:{queryPublishTime}</td>
+        <td rowspan="2">{crawl_forum_stockQuantity}</td>
+        <td>publishDate:{queryPublishTime}</td>
+        <td rowspan="2">{analyze_forum_stockQuantity}</td>
+        <td rowspan="2">{data_forum_available}%</td>
+    </tr>
+    <tr>
+        <td>media_type:2</td>
+        <td>mediaType:2</td>
+    </tr>
+
+
+    <tr>
+        <td rowspan="2">博客</td>
+        <td>publish_time:{queryPublishTime}</td>
+        <td rowspan="2">{crawl_blog_stockQuantity}</td>
+        <td>publishDate:{queryPublishTime}</td>
+        <td rowspan="2">{analyze_blog_stockQuantity}</td>
+        <td rowspan="2">{data_blog_available}%</td>
+    </tr>
+    <tr>
+        <td>media_type:3</td>
+        <td>mediaType:3</td>
+    </tr>
+
+
+    <tr>
+        <td rowspan="2">音视频</td>
+        <td>publish_time:{queryPublishTime}</td>
+        <td rowspan="2">{crawl_media_stockQuantity}</td>
+        <td>publishDate:{queryPublishTime}</td>
+        <td rowspan="2">{analyze_media_stockQuantity}</td>
+        <td rowspan="2">{data_media_available}%</td>
+    </tr>
+    <tr>
+        <td>media_type:4</td>
+        <td>mediaType:4</td>
+    </tr>
+
+
+    <tr>
+        <td rowspan="2">微博</td>
+        <td>publish_time:{queryPublishTime}</td>
+        <td rowspan="2">{crawl_weibo_stockQuantity}</td>
+        <td>publishDate:{queryPublishTime}</td>
+        <td rowspan="2">{analyze_weibo_stockQuantity}</td>
+        <td rowspan="2">{data_weibo_available}%</td>
+    </tr>
+    <tr>
+        <td>media_type:5</td>
+        <td>mediaType:5</td>
+    </tr>
+
+
+    <tr>
+        <td rowspan="2">微信</td>
+        <td>publish_time:{queryPublishTime}</td>
+        <td rowspan="2">{crawl_weixin_stockQuantity}</td>
+        <td>publishDate:{queryPublishTime}</td>
+        <td rowspan="2">{analyze_weixin_stockQuantity}</td>
+        <td rowspan="2">{data_weixin_available}%</td>
+    </tr>
+    <tr>
+        <td>media_type:6</td>
+        <td>mediaType:6</td>
+    </tr>
+    <tr>
+        <td rowspan="2">商机通</td>
+        <td>publish_time:{queryPublishTime}</td>
+        <td rowspan="2">{crawl_sjt_stockQuantity}</td>
+        <td>publishDate:{queryPublishTime}</td>
+        <td rowspan="2">{analyze_sjt_stockQuantity}</td>
+        <td rowspan="2">{data_sjt_available}%</td>
+    </tr>
+    <tr>
+        <td>media_type:10</td>
+        <td>subMediaType :206||subMediaType :207</td>
+    </tr>
+
+
+    <!--合计-->
+    <tr>
+    <td>合计:</td>
+    <td></td>
+    <td>{crawl_stock_total}</td>
+    <td></td>
+    <td>{analyze_stock_total}</td>
+    <td>{data_total_available}%</td>
+</tr>
+    <tr>
+        <td>爬虫日入库量:</td>
+        <td>fetch_time:{queryPublishTime}</td>
+        <td>{crawl_fetch_total}</td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+</body>
+</html>

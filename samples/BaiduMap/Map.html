@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <title>Map</title>
+
+    <script type="text/javascript">
+        function initialize() {
+            var mp = new BMap.Map('map');
+            mp.centerAndZoom(new BMap.Point(121.491, 31.233), 11);
+        }
+
+        function loadScript() {
+            var script = document.createElement("script");
+            script.src = "http://api.map.baidu.com/api?v=1.5&ak=oEsrw0ZlR37fo4jvWnDVrxC1&callback=initialize";//此为v1.5版本的引用方式
+            // http://api.map.baidu.com/api?v=1.5&ak=您的密钥&callback=initialize"; //此为v1.4版本及以前版本的引用方式
+            document.body.appendChild(script);
+        }
+
+        window.onload = loadScript;
+    </script>
+</head>
+<body>
+<div id="map" style="width:800px;height:620px"></div>
+</body>
+</html>

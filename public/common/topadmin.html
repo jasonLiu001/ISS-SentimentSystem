@@ -1,0 +1,180 @@
+﻿<!--<div class="row">
+    <div class="col-md-5">
+        <div class="left_admin">
+            <ul>
+                <li class="im_admin"><i class="icon icon_admin"></i><span>您好：<a href="#" data-toggle="modal" data-target="#tModalUser">admin</a></span></li>
+                <li class="im_out"><a href="#" id="loginout">【退出】</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-7">
+        <div class="row hotdiv">
+            <div class="col-xs-4 col-md-4">
+                <div class="one_track">
+                    <a href="#"><i class="icon icon_track"></i><span>负面一键追踪</span></a>
+                </div>
+            </div>
+            <div class="col-xs-4 col-md-4">
+                <div class="one_emergency">
+                    <a href="#"><i class="icon icon_emergency"></i><span>应急处理</span></a>
+                </div>
+            </div>
+            <div class="col-xs-4 col-md-4">
+                <div class="one_opinion">
+                    <a href="#"><i class="icon icon_opinion"></i><span>舆情分析</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+<div class="fleft_yq top_admin_yq_left">
+    <div class="top_admin_yq_lefthui"><img src="/img/login_hui.png" /></div>
+    <div class="top_admin_yq_leftlogo">
+        <div class="login_logo"><span class="cityName" id="cityName"></span><!--<img id="logoImg" src="img/default/logo.png" class="img-responsive" alt="logo" width="149">--><span>政府舆情监测系统</span></div>
+        <!--<div class="login_eng">The government public opinion management system</div>-->
+    </div>
+</div>
+<div class="fright_yq top_admin_yq_right">
+    <div class="left_admin">
+        <ul>
+            <li class="im_admin"><i class="icon icon_admin"></i><span>欢迎您：<a href="#" data-toggle="modal" id="currentUserName"></a></span></li>
+            <li class="im_android"><i class="icon icon_android" data-toggle="modal" data-target="#myModalAndroid"></i></li>
+            <li class="im_out">
+                <div class="about"><a href="#" data-toggle="modal" data-target="#myModalAbout"><i class="icon icon_about" title="关于"></i><span>关于</span></a></div>
+                <div class="help"><i class="icon icon_help" title="帮助"></i></div>
+                <div class="out"><a href="#" id="loginout"><i class="icon icon_out" title="退出"></i><span>退出</span></a></div>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade topadmin" id="tModalUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="tModalLabel">修改用户信息</h4>
+            </div>
+            <div class="modal-body" id="teuser">
+                <ul class="nav nav-tabs" role="tablist" id="userList">
+                    <li class="active"><a href="#info" role="tab" data-toggle="tab">基本信息</a></li>
+                    <li><a href="#pwd" role="tab" data-toggle="tab">修改密码</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="info">
+                        <div class="form-group">
+                            <label for="teUserName" class="col-md-2 control-label">姓名：</label>
+                            <div class="col-md-10">
+                                <input type="text" id="teUserName" class="form-control" readonly="readonly">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="tePhoneNum" class="col-md-2 control-label">联系电话：</label>
+                            <div class="col-md-10">
+                                <input type="text" id="tePhoneNum" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="teEmail" class="col-md-2 control-label">邮箱：</label>
+                            <div class="col-md-10">
+                                <input type="text" id="teEmail" class="form-control">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" id="infosave">保存</button>
+                            <!--<button type="button" class="btn btn-success" id="pwdsave" style="display:none">保存</button>-->
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="pwd">
+                        <div class="form-group">
+                            <label for="tePwdOld" class="col-md-2 control-label">原始密码：</label>
+                            <div class="col-md-10">
+                                <input type="password" id="tePwdOld" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="tePwdnew" class="col-md-2 control-label">新密码：</label>
+                            <div class="col-md-10">
+                                <input type="password" id="tePwdnew" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="tePwdNew2" class="col-md-2 control-label">确认密码：</label>
+                            <div class="col-md-10">
+                                <input type="password" id="tePwdNew2" class="form-control">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <!--<button type="button" class="btn btn-success" id="infosave">保存</button>-->
+                            <button type="button" class="btn btn-success" id="pwdsave">保存</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Android app弹层-->
+<div class="modal fade androidModel" id="myModalAndroid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Android Pad版客户端下载</h4>
+            </div>
+            <div class="modal-body">
+                <div class="androin-dowm">
+                    <div class="andrion-down-btn">
+                        <a href="/download/app.apk">
+                            <i class="icon icon_down"></i><span>点击下载</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="andrion-scan">
+                    <i class="icon icon_scan"></i><span>扫描二维码</span>
+                </div>
+                <div class="andrion-scan-img">
+                    <img src="../img/apkcode.png" style="width:220px;height:220px;" />
+                </div>       
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--Android app弹层-->
+
+<!--Android 关于我们弹层-->
+<div class="modal fade aboutModel bs-example-modal-lg" id="myModalAbout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">关于我们</h4>
+            </div>
+            <div class="modal-body">
+                <img src="../img/about-img.jpg" class="mb10" />
+                <div class="about-isoft">
+                    <div class="about-isoft-name">公司简介</div>
+                    <div class="about-isoft-title">软通动力——中国领先的技术服务提供商及全球客户首选合作伙伴</div>
+                    <div class="about-isoft-content">软通动力立足中国，服务全球市场，具有端到端“软件+服务”综合服务能力，服务范围包括：咨询服务、解决方案及系统集成服务、IT外包及业务流程外包服务等。在高科技/通信、银行/企业金融/保险、电力/能源/水务/环保、交通/物流、汽车/制造、零售/电商等10多个重要行业及业务领域，软通动力具有强大的纵深服务优势。</div>
+                    <div class="about-isoft-title">软通动力大数据政府舆情系统</div>
+                    <div class="about-isoft-content">充分把握科技大势，借助云计算、移动互联、大数据等新兴技术手段，和合作伙伴一起推出创新型解决方案，致力于帮助我们的客户成为智慧的政府和智慧的企业。我们研发了全面而针对性强的舆情产品，实现了微博、微信、新闻、论坛、海外媒体等新兴媒体全面、及时、准确的监听，第一时间微信预警，以及支持手机版、PAD版APP和微信访问，并支持个性化定制，以更好的满足客户需求。</div>
+                </div>
+                <div class="contact-isoft">
+                    <div class="about-isoft-name">联系方式</div>
+                    <div class="about-isoft-content">
+                        公司总部电话：总机 010-58749000<br />
+                        售前咨询电话：直线 010-58749486	手机 15811019932<br />
+                        售前联系邮箱：qhliud@isoftstone.com
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--Android 关于我们弹层-->

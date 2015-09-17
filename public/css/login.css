@@ -1,0 +1,351 @@
+﻿body {
+    margin:0px;
+    padding:0px;
+    font-size:14px;
+    font-family:'Microsoft YaHei';  
+    background:url("../img/loginrepeatbg.png") repeat-x 0px 200px; 
+}
+#login_im{
+    min-width:980px;
+    position:relative;
+    background-image:url("../img/login_topbg.jpg");
+    background-repeat:repeat-x;
+
+}
+.login_top{
+    width:800px;
+    margin:0px auto;
+    height:100px;
+}
+#login_con{
+    width:627px;
+    margin:200px auto 0px auto;
+    background-image:url("../img/login_cont_bg.png");
+    background-repeat:no-repeat;
+    height:376px;
+    position:relative;
+}
+.login-hui{
+    position:absolute;
+    left:215px;
+    width:175px;
+    height:185px;
+    background:url("../img/login_hui.png");
+    top:-120px;
+}
+.login_logo{
+    padding-bottom:10px;
+    padding-top:12px;
+    font-size:18px;
+    color:#ffffff;
+    overflow:hidden;
+}
+.login_logo img{
+    float:left;
+    margin-left:100px;
+    margin-top:5px;
+    width:95px;
+    display:inline-block;
+}
+.login_logo .login_zi{
+    float:left;
+    margin:15px 0px 8px 10px;
+   
+}
+.login_logo .login_zi span{
+     font-size:30px;
+     letter-spacing:3px;
+}
+.login_eng{
+    clear:both;
+    text-align:center;
+    font-size:10px;
+    color:#ffffff;
+}
+.login_title{
+    text-align:center;
+    font-size:30px;
+    margin-bottom:20px;
+    color:#ffffff;
+}
+.login_whitebg {
+    width:100%;
+    min-height:220px;
+    padding-top:58px;
+}
+.left_bgword{
+    width:100%;
+    height:220px;
+    background-image:url("../img/login_lebg.jpg");
+    background-size:100% 100%;
+    background-position:left bottom;
+    color:#0090ff;
+    font-size:18px;
+}
+.left_bgword span{
+    float:right;
+    display:block;
+    padding-right:20px;
+    clear:both;
+}
+.left_bgword span:first-child{
+    font-weight:bold;
+    padding-top:80px;
+}
+.login_check .form-horizontal .control-label{
+    padding-left:0px;
+    padding-right:0px;
+    padding-top:5px;
+    font-weight:normal;
+    text-align:right;
+    color:#9e2a1b;
+    font-weight:bold;
+}
+.login_check .form-control{
+    height:35px;
+    border:1px solid #d7d7d7;
+}
+.login_check .form-group{
+    margin-bottom:12px;
+}
+.login_check .form-group:first-child{
+    margin-bottom:5px;
+    color:#ff0000;
+    height:20px;
+}
+.login_check .form-group:nth-child(4){
+    margin-bottom:2px;
+}
+.login_check .form-horizontal{
+    padding-top:10px;
+}
+img.yzm{
+    width:95px;
+}
+.forgetpass{
+    text-align:right;
+    color:#ff0000;
+}
+.forgetpass a{
+    color:#ffffff;
+
+}
+#btnLogin{
+    float:left;
+}
+.btn-warning,.btn-warning:hover,.btn-warning:active,.btn-warning:visited{
+    font-size:16px;
+    width:90px;
+    height:34px;
+    line-height:34px;
+    background:url("../img/repeatbg_yq.png") repeat-x 0px 0px;
+    padding-top:0px;
+    padding-bottom:0px;
+    border:1px solid #a8850e;
+    border-radius:5px;
+}
+.btn-primary,.btn-primary:hover,.btn-primary:active,.btn-primary:visited{
+    font-size:16px;
+    width:220px;
+    height:34px;
+    line-height:34px;
+    background:url("../img/repeatbg_yq.png") repeat-x 0px -32px;
+    padding-top:0px;
+    padding-bottom:0px;
+    border:1px solid #e0200c;
+    border-radius:5px;
+}
+#foot{
+    height:40px;
+    line-height:40px;
+    text-align:center;
+    width:100%;
+    color: #f0ad99;
+    background: url("../../img/repeatbg_yq.png") 0px -219px repeat-x;
+}
+.footdiv{
+    position:relative;
+}
+
+.loginloading,.loginloading:hover{
+    background:url("../img/loginloading.gif");
+    text-indent:9999px;
+    border:0px;
+}
+@media (min-width: 200px){
+  .col-sm-2{
+      float:left;
+      width:16.66666667%;
+  }
+  .col-sm-offset-2{
+      margin-left:16.66666667%;
+  }
+  .col-md-offset-3{
+      margin-left:25%;
+  }
+  .col-sm-4{
+      float:left;
+      width:33.33333333%;
+  }
+  .col-md-7{
+      float:left;
+      width:58.33333333%;
+  }
+  .col-sm-8{
+      float:left;
+      width:66.66666667%;
+  }
+}
+.icon {
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    background-image: url("../img/icon_yq.png");
+    background-repeat: no-repeat;
+}
+.icon_android {
+    cursor:pointer;
+    width:30px;
+    height:30px;
+    background-position: 0px -291px;
+}
+.android-absolute{
+    position:absolute;
+    top:34px;
+    right:30px;
+}
+
+#tModalUser .form-horizontal .control-label{
+    padding-right:0px;
+}
+.topadmin .nav-tabs{
+    margin-bottom:15px;
+}
+.topadmin .control-label{
+    padding-right:0px;
+    text-align:right;
+    padding-top:5px;
+}
+.topadmin .nav > li > a{
+    color:#333333;
+}
+.topadmin .nav-tabs > li.active > a{
+    font-weight:bold;
+}
+.topadmin .modal-footer{
+    margin-left:-15px;
+    margin-right:-15px;
+    padding-bottom:0px;
+}
+.im_admin a{
+    cursor:default;
+}
+.im_admin a:hover{
+    text-decoration:none;
+}
+.aboutModel .modal-header,.androidModel .modal-header{
+    background-color:#b83116;
+    color:#ffffff;
+    border-bottom-color:#b83116;
+}
+.aboutModel .close,.androidModel .close{
+    font-size:40px;
+    color:#f1d6d0;
+    font-weight:normal;
+    text-shadow:none;
+    margin-top:-8px;
+    border-left:1px solid #902900;
+    opacity:0.8;
+    outline:none;
+    
+}
+.aboutModel .close span:first-child,.androidModel .close span:first-child{
+    float:left;
+    padding-left:15px;
+    border-left:1px solid #bf462e;
+}
+.aboutModel .modal-content,.androidModel .modal-content{
+    box-shadow:none;
+    border-radius:0px;
+    border:none;
+}
+.aboutModel .modal-lg{
+    width:890px !important;
+}
+.about-isoft{
+    margin-bottom:12px;
+    border-bottom:1px dashed #b5b5b5;
+}
+.androin-dowm{
+    margin-bottom:20px;
+    padding-bottom:20px;
+    border-bottom:1px dashed #b5b5b5;
+}
+.about-isoft-name{
+    color:#b83116;
+    font-size:16px;
+    margin-bottom:10px;
+    font-weight:bold;
+}
+.about-isoft-title{
+    font-size:12px;
+    font-weight:bold;
+    margin-bottom:5px;
+    font-family:"宋体";
+}
+.about-isoft-content{
+    text-indent:24px;
+    margin-bottom:12px;
+    font-size:12px;
+    line-height:1.8;
+    font-family:"宋体";
+}
+.contact-isoft .about-isoft-content{
+    margin-bottom:0px;
+    text-indent:0px;
+}
+.andrion-down-btn{
+    padding:8px;
+    width:140px;
+    border:1px solid #9e2a1b;
+    font-size:16px;
+    color:#9e2a1b;
+    overflow:hidden;
+}
+.andrion-down-btn a{
+    color:#9e2a1b;
+}
+.andrion-down-btn i,.andrion-down-btn span,.andrion-scan i,.andrion-scan span{
+    float:left;
+}
+.andrion-down-btn i{
+    margin-right:8px;
+    margin:3px 8px 0px 15px;
+}
+.andrion-scan{
+    font-size:16px;
+    color:#9e2a1b;
+    overflow:hidden;
+}
+.andrion-scan i{
+    margin-right:8px;
+    margin-top:3px;
+}
+.andrion-scan-img{
+    padding:30px 0px;
+    text-align:center;
+}
+
+.icon_down{
+    background-position: -79px 0px;
+}
+.icon_scan{
+    width:23px;
+    height:19px;
+    background-position: -39px -19px;
+}
+.devices {
+    position: absolute;
+    right: 20px;
+    top: 0px;
+}

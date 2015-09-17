@@ -1,0 +1,181 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>应急预案定制</title>
+    <link href="/css/bootstrap.css" rel="stylesheet" />
+    <link href="/css/base.css" rel="stylesheet" />
+    <link id="skinLink" href="/css/skin/default.css" rel="stylesheet" />
+    <script src="/js/jQuery.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/knockout.js"></script>
+    <script src="/js/business/base.js"></script>
+    <script src="/js/common/tools.js"></script>
+    <script src="/js/common/pagination.js"></script>
+    <script src="/js/business/emergencyplan.js"></script>
+    <!--<script>
+        $(function () {
+            var datas = GetEmData();
+            var viewModel = function (data) {
+                var self = this;
+                self.emergency = ko.observableArray(data);
+                self.removeNews = function (news) {
+                    self.emergency.remove(news);
+                }
+            }
+            ko.applyBindings(new viewModel(datas));
+        })
+    </script>-->
+</head>
+<body mid="5-4">
+    <div id="main_container" class="emergency">
+        <div class="media media-container">
+            <div class="pull-left">
+                <div id="head_menu"></div>
+            </div>
+            <div class="media-body">
+                <div id="head_top"></div>
+                <div id="content">
+                    <div class="content_title">
+                        <i class="icon icon_direction"></i>
+                        <span>舆情后台管理 > 应急预案定制</span>
+                    </div>
+                    <div class="sel_condition">
+                        <div class="navbar-form navbar-left" role="search">
+                            <div class="form-group">
+                                <span>标题：</span>
+                                <input id="qTitle" type="text" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <span>正负极性：</span>
+                                <select id="qPolarity" class="form-control">
+                                    <option value="-2">请选择</option>
+                                    <option value="0">正</option>
+                                    <option value="1">负</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <span>分类：</span>
+                                <select id="qClassify" class="form-control">
+                                    <option value="-2">请选择</option>
+                                    <option value="1">健康</option>
+                                    <option value="2">安全</option>
+                                    <option value="3">生活</option>
+                                </select>
+                            </div>
+                            <button id="search" class="btn btn-default ml10">搜索</button>
+                            <a class="btn btn-primary ml10" data-toggle="modal" id="addEmergency">添加</a>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="serialNum">序号</th>
+                                    <th class="left">应急预案标题</th>
+                                    <th class="left">分类</th>
+                                    <th class="left">内容</th>
+                                    <th class="left w120">联系人</th>
+                                    <th class="w120">正负极性</th>
+                                    <th class="handle">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody data-bind="foreach:emergencys">
+                                <tr>
+                                    <td data-bind="text:$index()+1">1</td>
+                                    <td data-bind="text:title" class="left"></td>
+                                    <td data-bind="text:classify==1?'健康':(classify==2?'安全':'生活')" class="left"></td>
+                                    <td data-bind="text:content" class="left"></td>
+                                    <td data-bind="text:contacts" class="left"></td>
+                                    <td data-bind="text:polarity==0?'正':'负'" class="w120"></td>
+                                    <td><i class="icon icon_edit" title="编辑" data-bind="click:$root.showEdieEmerModal"></i><i data-bind="click: $root.removeEmergency" class="icon icon_delete" title="删除"></i></td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="50" style="text-align:right;">
+                                        <ul class="pagination pagination-sm" id="pagination"></ul>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+                <div id="foot"></div>
+            </div>
+        </div>
+    </div>
+    <!--编辑弹框-->
+    <div class="modal fade" id="emer-edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">应急预案编辑</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal" role="form" id="modal-em">
+                        <div class="form-group">
+                            <label for="inputTitle" class="col-sm-3 control-label">应急预案标题：</label>
+                            <div class="col-sm-9">
+                                <input type="email" class="form-control" id="inputTitle">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputClass" class="col-sm-3 control-label">所属三级类别：</label>
+                            <div class="col-sm-6">
+                                <select id="inputClass" class="form-control">
+                                    <option>安全</option>
+                                    <option>健康</option>
+                                    <option>水利</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputClass" class="col-sm-3 control-label">正负极性：</label>
+                            <div class="col-sm-6">
+                                <select id="inputPolarity" class="form-control">
+                                    <option>正极</option>
+                                    <option>负极</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputUrl" class="col-sm-3 control-label">应急预案Url：</label>
+                            <div class="col-sm-9">
+                                <input type="email" class="form-control" id="inputUrl">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputName" class="col-sm-3 control-label">联系人：</label>
+                            <div class="col-sm-9">
+                                <input type="email" class="form-control" id="inputName">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPhone" class="col-sm-3 control-label">联系电话：</label>
+                            <div class="col-sm-9">
+                                <input type="email" class="form-control" id="inputPhone">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputContent" class="col-sm-3 control-label">内容：</label>
+                            <div class="col-sm-9">
+                                <textarea id="inputContent" class="form-control" style="width:400px;height:200px;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal" id="saveEmergency">保存</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--编辑弹框-->
+</body>
+</html>
+

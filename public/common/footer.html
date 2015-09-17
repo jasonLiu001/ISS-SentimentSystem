@@ -1,0 +1,19 @@
+﻿<div class="footdiv">
+    Copyright © 2014-2015 舆情监测系统 版权所有 软通动力 京ICP备11019727号, All Rights Reserved.
+    <div class="devices" id="version">0.5.24.140915.2102</div>
+</div>
+<script type="text/javascript">
+  $(function () {
+      console.log('123');
+      if(window.baseTools.getVersion){
+          console.log('456');
+           var params={params:{query:{key:'innerVersion'}}}
+          window.baseTools.getVersion(params,function(result){
+              if(result.Result){
+              $("#version").html(result.Data.version);
+              }
+
+          });
+      }
+  });  
+</script>

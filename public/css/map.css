@@ -1,0 +1,236 @@
+﻿#head_topmap {
+    background-image: url("/img/login_topbg.jpg");
+    border-bottom: 2px solid #8a0500;
+    width:100%;
+    height:100px;
+    background-repeat:repeat-x;
+}
+
+.top_admin_yq_lefthui{
+    float:left;
+    margin:12px 15px 0px 30px;
+}
+.login_logo span.cityName{
+    font-size:30px;
+    margin-left:0px;
+}
+#content{
+    padding-left:1px;
+    padding-right:1px;
+    padding-bottom:1px;
+}
+.map_content{
+    position:relative;
+    background-color:#d6e2ee;
+    margin-top:1px;
+}
+.bmap_content{
+    position:relative;
+    background-color:#d6e2ee;
+    margin-top:1px;
+}
+.anchorBL{
+
+}
+.bmap_content a{
+    outline:none;
+    position:absolute;
+    width:97px;
+    height:66px;
+    color:#740101;
+    padding:36px 0px 0px 5px;
+    text-align:center;
+    display:block;
+}
+.BMap_cpyCtrl{
+    display: none;
+}
+.map_content a{
+    outline:none;
+    position:absolute;
+    width:97px;
+    height:66px;
+    color:#740101;
+    padding:36px 0px 0px 5px;
+    text-align:center;
+    display:block;
+    background:url("../img/map_city.png") no-repeat 0px 0px;
+}
+.map_content a.city_right{
+    width:149px;
+    height:63px;
+    padding:29px 60px 0px 5px;
+    background:url("../img/map_city_right.png") no-repeat 0px 0px;
+}
+.map_content a.haerbin{
+    left:808px;
+    top:78px;
+    display:none;
+}
+.map_content a.yantai{
+    left:750px;
+    top:260px;
+}
+.map_content a.yancheng{
+    left:750px;
+    top:326px;
+    z-index:6;
+}
+.map_content a.nantong{
+    left:750px;
+    top:355px;
+    z-index:5;
+}
+.map_content a.kunshan{
+    left:755px;
+    top:385px;
+    z-index:4;
+}
+.map_content a.foshan{
+    left:541px;
+    top:565px;
+}
+.map_content a.hongze{
+    left:645px;
+    top:345px;
+    z-index:3;
+}
+.map_content a.wuxi{
+    left:654px;
+    top:377px;
+    z-index:2;
+}
+.map_content a.beijing{
+    left:684px;
+    top:200px;
+}
+.map_content a.dongguan{
+    left:651px;
+    top:565px;
+}
+#main_container{
+    min-width:1000px;
+}
+.icon_circleadd{
+    width:14px;
+    height:14px;
+    background-position:-27px -245px;
+}
+.icon_circledel{
+    width:14px;
+    height:14px;
+    background-position:-75px -245px;
+}
+.icon_heng{
+    width:14px;
+    height:14px;
+    background-position:-60px -161px;
+}
+.im_nav > ul > li i.icon{
+    margin-top:10px;
+}
+.im_nav li.dropdownli> ul> li{
+    padding-bottom:8px;
+    margin-bottom:8px;
+    border-bottom:1px solid #d9d9d9;
+    color:#686868;
+}
+.im_nav li.dropdownli> ul> li:last-child{
+    border-bottom:none;
+}
+.im_nav li.dropdownli> ul> li>div{
+    height:24px;
+    line-height:24px;
+    font-size:12px;
+}
+.im_nav > ul > li>ul>li i.icon{
+    margin-top:6px;
+    margin-left:20px;
+}
+.name_map{
+    color:#a32624;
+}
+.toop-content{
+    border:1px solid #ccc;
+}
+
+.toop-content .zs_mp,.toop-content .zs_zm,.toop-content .zs_fm{
+    padding-left:10px;
+}
+.zs_zm .green,.zs_zm .hong{
+    margin-right: 15px;
+}
+.zs_mp,.zs_zm,.zs_fm{
+    padding-left:20px;
+}
+.bhei{
+    font-weight: bold;
+    color:#000;
+}
+.toop-content .zs_mp .bhei{
+    font-weight: normal;
+    color:#333;
+}
+.green{
+    color:#42b57e;
+}
+.hong{
+    color:#ee0e28;
+}
+#head_menumap{
+    overflow:hidden;
+}
+@media (max-width: 1400px){
+    .map_content img{
+        width:900px;
+    }
+    .map_content a.haerbin{
+        left:688px;
+        top:58px;
+        display:none;
+    }
+    .map_content a.yantai{
+        left:630px;
+        top:208px;
+    }
+    .map_content a.yancheng{
+        left:630px;
+        top:266px;
+    }
+    .map_content a.nantong{
+        left:630px;
+        top:290px;
+    }
+    .map_content a.kunshan{
+        left:638px;
+        top:315px;
+        z-index:4;
+    }
+    .map_content a.foshan{
+        left:438px;
+        top:470px;
+    }
+    .map_content a.hongze{
+        left:530px;
+        top:280px;
+    }
+    .map_content a.wuxi{
+        left:535px;
+        top:308px;
+        z-index:2;
+    }
+    .map_content a.beijing{
+        left:570px;
+        top:160px;
+    }
+    .map_content a.dongguan{
+        left:541px;
+        top:470px;
+   }
+}
+#tooltip{
+    width: 250px;
+}
+.zs_mpp{
+    color: #000;
+}

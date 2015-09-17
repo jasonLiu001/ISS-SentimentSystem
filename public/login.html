@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>登录</title>
+    <link href="/css/bootstrap.css" rel="stylesheet" />
+    <link href="/css/login.css" rel="stylesheet" />
+    <script src="/js/jQuery.js"></script>
+    <script src="/js/jquery.cookie.js"></script>
+    <script src="/js/jquery.nicescroll.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/common/tools.js"></script>
+    <script src="/js/business/base.js"></script>
+    <script src="/js/business/login.js"></script>
+    <!--<script src="/js/business/simulatedLogin.js"></script>-->
+</head>
+<body>
+    <div id="login_im">
+        <div class="android-absolute"><i class="icon icon_android" data-toggle="modal" data-target="#myModalAndroid"></i></div>
+        <div class="login_top">
+            <div class="login_logo">
+                <img src="img/login_hui.png" class="img-responsive" alt="logo" width="149" />
+                <div class="login_zi">
+                    <span id="citySystem">舆情管理系统</span>
+                    <!--<div class="login_eng">The government public opinion management system</div>-->
+               </div>
+            
+            </div>
+        </div>
+        <div id="login_con">
+            <!--<div class="login_logo"><img src="img/default/logo.png" class="img-responsive" alt="logo" /></div>
+            <div class="login_title">欢迎登陆舆情管理系统</div>-->
+            <div class="login-hui" style="display:none;"></div>
+            <div class="login_whitebg">
+                <div class="row">
+                    <!--<div class="col-md-5">
+                        <div class="left_bgword">
+                            <span>智慧洪泽</span>
+                            <span>舆情管理系统</span>
+                        </div>
+                    </div>-->
+                    <div class="col-md-offset-3 col-md-7 login_check">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"></label>
+                                <div class="col-sm-8 texterror">
+                                    <!--错误提示!-->
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail" class="col-sm-2 control-label">用户名：</label>
+                                <div class="col-sm-8">
+                                    <input type="email" class="form-control" id="inputEmail" placeholder="用户名">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword" class="col-sm-2 control-label">密<span style="padding:0px 7px;"></span>码：</label>
+                                <div class="col-sm-8">
+                                    <input type="password" class="form-control" id="inputPassword" placeholder="密码">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputCptcha" class="col-xs-12 col-sm-2 control-label">验证码：</label>
+                                <div class="col-xs-6 col-sm-4">
+                                    <input class="form-control" id="inputCptcha" placeholder="验证码">
+                                </div>
+                                <div class="col-xs-6 col-sm-4">
+                                    <img src="" alt="验证码" class="img-responsive yzm" title="点击换一张" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-4">
+                                    <div class="checkbox">
+                                        <label>
+                                            <!--<input type="checkbox" id="chbRem">记住密码-->
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 checkbox forgetpass"></div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-8">
+                                    <!--col-sm-offset-2<button class="btn btn-warning" type="button" id="register">&nbsp;&nbsp;注册&nbsp;&nbsp;</button>-->
+                                    <a class="btn btn-primary" id="btnLogin">&nbsp;&nbsp;登录&nbsp;&nbsp;</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--<div class="login_shadow"></div>-->
+        </div>
+        <div id="foot">
+        </div>
+    </div>
+
+    <!--Android app弹层-->
+    <div class="modal fade androidModel" id="myModalAndroid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Android Pad版客户端下载</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="androin-dowm">
+                        <div class="andrion-down-btn">
+                            <a href="/download/app.apk">
+                                <i class="icon icon_down"></i><span>点击下载</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="andrion-scan">
+                        <i class="icon icon_scan"></i><span>扫描二维码</span>
+                    </div>
+                    <div class="andrion-scan-img">
+                        <img src="../img/apkcode.png" style="width:220px;height:220px;" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--Android app弹层-->
+</body>
+</html>

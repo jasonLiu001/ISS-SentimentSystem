@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>{reportTitle}</title>
+    <style type="text/css">
+        table.gridtable {
+            font-family: verdana, arial, sans-serif;
+            font-size: 11px;
+            color: #333333;
+            border-width: 1px;
+            border-color: #666666;
+            border-collapse: collapse;
+            margin: 12px;
+        }
+
+        table.gridtable th {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #dedede;
+        }
+
+        table.gridtable td {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #ffffff;
+        }
+
+        .aligncenter{
+            clear:both;
+            text-align: center
+        }
+        h2{
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div class="aligncenter">
+    <h2>{reportTitle}</h2>
+</div>
+<div class="aligncenter">{reportDataCheckTime}</div>
+<hr>
+<div>{reportMainContent}</div>
+</body>
+</html>

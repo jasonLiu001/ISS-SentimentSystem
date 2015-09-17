@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>舆情趋势总览</title>
+    <link href="/css/bootstrap.css" rel="stylesheet" />
+    <link href="/css/base.css" rel="stylesheet" />
+
+    <link href="/css/styleGov.css" rel="stylesheet" type="text/css" />
+    <link id="skinLink" href="/css/skin/default.css" rel="stylesheet" />
+    <script src="/js/jQuery.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/knockout.js"></script>
+    <script src="/js/jquery.flot.js"></script>
+    <script src="/js/jquery.flot.resize.js"></script>
+    <script src="/js/highcharts.js"></script>
+    <script src="/js/exporting.js"></script>
+    <script src="/js/rotater/tools/util.js"></script>
+    <script src="/js/rotater/tools/observer.js"></script>
+    <script src="/js/rotater/tools/log.js"></script>
+    <script src="/js/rotater/tools/requestAnimationFrame.js"></script>
+    <script src="/js/rotater/tools/timer.js"></script>
+    <script src="/js/rotater/tools/easing.js"></script>
+    <script src="/js/rotater/lib/core.js"></script>
+    <script src="/js/rotater/lib/animate.js"></script>
+    <script src="/js/rotater/marquee.js"></script>
+    <script src="/js/rotater/animationMgr.js"></script>
+    <script src="/js/rotater/blockRotater.js"></script>
+    <script src="/js/rotater/lineSwitcher.js"></script>
+    <script src="/js/sea.js" type="text/javascript"></script>
+</head>
+<body mid="2-1">
+    <div id="main_container">
+        <div class="media media-container">
+            <div class="pull-left">
+                <div id="head_menu"></div>
+            </div>
+            <div class="media-body">
+                <div id="head_top"></div>
+                <div id="content">
+                    <div class="content_title">
+                        <i class="icon icon_direction"></i>
+                        <span>舆情分析报告 > 舆情趋势总览</span>
+                    </div>
+                    <div class="outer">
+                        <div class="row margin-bo20">
+                            <div class="col-md-6 margin-sm-bo20" id="yq">
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row top-right-level margin-bo20">
+                                    <!--观众数据模块-->
+                                    <div class="col-sm-6 col-md-6 mar-sx-bo20" id="WarningModel" area="2">
+                                    </div>
+                                    <!--微博模块-->
+                                    <div class="col-sm-6 col-md-6" id="NewsMonitor" area="3">
+                                    </div>
+                                </div>
+
+                                <div class="row top-right-level">
+                                    <!--推荐交易活动模块-->
+                                    <div class="col-sm-6 col-md-6 mar-sx-bo20" id="HotWords" area="4">
+                                    </div>
+                                    <!--新闻模块-->
+                                    <div class="col-sm-6 col-md-6" id="WeiBoMonitor" area="5">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row margin-bo20">
+                            <!--展台人气榜模块-->
+                            <div class="col-md-4 margin-sm-bo20" id="CityInformation" area="6">
+                            </div>
+                            <!--最活跃观众模块-->
+                            <div class="col-md-4 margin-sm-bo20" id="PeopleInformation" area="7">
+                            </div>
+                            <!--最具人气论坛模块-->
+                            <div class="col-md-4" id="EconomicInformation" area="8">
+                            </div>
+                        </div>
+                        <div class="row margin-bo20">
+                            <!--微博监控模块-->
+                            <div class="col-md-12" id="WeiBoModel" area="9">
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div id="zz" style="position:absolute;margin:0px;z-index:999;left:0;top:0;background:#eee;width:100%;height:200%;text-align:center;">
+                        <h1>正在加载，请稍候（<span id="loadingPlan">0</span>%）……</h1>
+                    </div>-->
+
+
+
+                </div>
+                <div id="foot"></div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    seajs.config({
+        base: './'
+    });
+    seajs.use('/showroom/Componets/yq', function (c) {
+        c.load('yq');
+    });
+    seajs.use('/showroom/Componets/CityInformation', function (c) {
+        c.load('CityInformation');
+    });
+    seajs.use('/showroom/Componets/EconomicInformation', function (c) {
+        c.load('EconomicInformation');
+    });
+    seajs.use('/showroom/Componets/HotWords', function (c) {
+        c.load('HotWords');
+    });
+    seajs.use('/showroom/Componets/NewsMonitor', function (c) {
+        c.load('NewsMonitor');
+    });
+    seajs.use('/showroom/Componets/PeopleInformation', function (c) {
+        c.load('PeopleInformation');
+    });
+    seajs.use('/showroom/Componets/WarningModel', function (c) {
+        c.load('WarningModel');
+    });
+    seajs.use('/showroom/Componets/WeiBoModel', function (c) {
+        c.load('WeiBoModel');
+    });
+    seajs.use('/showroom/Componets/WeiBoMonitor', function (c) {
+        c.load('WeiBoMonitor');
+    });
+    </script>
+
+
+
+</body>
+</html>

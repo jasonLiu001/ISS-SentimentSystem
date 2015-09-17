@@ -1,0 +1,131 @@
+﻿<div class="content_title">
+    <i class="icon icon_direction"></i>
+    <span>分析报告 > 汇总报告</span>
+</div>
+<div class="sel_condition">
+    <div class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+            <span>时间区间：</span>
+            <div class="input-group date form_date">
+                <input id="qDateStart" class="form-control" size="16" type="text" value="">
+                <span class="input-group-addon input-group-addona"><span class="glyphicon glyphicon-remove"></span></span>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+            </div>
+            <span> - </span>
+            <div class="input-group date form_date">
+                <input id="qDateEnd" class="form-control" size="16" type="text" value="">
+                <span class="input-group-addon input-group-addona"><span class="glyphicon glyphicon-remove"></span></span>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <button class="btnn btn-defaultbig ml10" id="search">生成报告</button>
+        </div>
+        <div class="form-group">
+            <button class="btnn btn-defaultsmall ml10" id="print">打印</button>
+        </div>
+    </div>
+</div>
+<div id="mainContainer">
+  <div class="catebgbg">
+    <div id="title" class="catetitle_one"><span class="customer"></span>舆情汇总报告</div>
+    <div id="titleDate" style="text-align:center"></div>
+      <div class="catetitle_two"><span>机密级</span></div>
+      <div class="catetitle"><i class="icon icon_arrred"><img src="../img/arricon.png" /></i><span id="contenttitle"></span></div>
+      <div class="pielist">
+          <div class="listone">
+              <div id="content1" class="levelone loading"></div>
+              <div class="countall">总计：<span id="sum1"></span></div>
+          </div>
+          <div class="listtwo">
+              <div id="content2" class="levelone loading"></div>
+              <div class="countall">总计：<span id="sum2"></span></div>
+          </div>
+      </div>
+    <div id="pie" class="catapie loading"></div>
+    <div id="mainMedia">
+    <div class="catetitle" style="color:rgb(138,55,55);"><i class="icon icon_arrred"><img src="../img/arricon.png" /></i>主要传播媒体</div>
+    <div class="table-responsive">
+        <table id="list1" class="table table-hover">
+            <thead>
+                <tr>
+                    <th class="serialNum">序号</th>
+                    <th class="serialNum">类别</th>
+                    <th class="aleft">来源</th>
+                    <th>负面评分</th>
+                    <th>报道数</th>
+                    <th class="adreessa aleft">地址</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach:media">
+                <tr>
+                    <td data-bind="text:$index()+1">1</td>
+                    <td><span data-bind="text:sourcetype"></span></td>
+                    <td class="left"><div class="datasource-cate" data-bind="attr:{title:report_sites},text:report_sites"></div></td>
+                    <td class="cate-min90" data-bind="text:totalScore"></td>
+                    <td class="cate-min90" data-bind="text:reportCount"></td>
+                    <td class="left adreessa"><a class="lightblack" data-bind="attr:{href:url,title:url},text:url" target="_blank"></a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
+    <div id="mainSentive">
+        <div class="catetitle"><i class="icon icon_arrred"><img src="../img/arricon.png" /></i>敏感报道</div>
+        <div class="table-responsive">
+            <table id="list2" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th class="serialNum">序号</th>
+                        <th class="serialNum">类别</th>
+                        <th class="date">日期</th>
+                        <th class="w120 aleft">来源</th>
+                        <th class="aleft">内容</th>
+                        <!--<th class="aleft">内容</th>-->
+                        <th class="aleft adreess">地址</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach:media">
+                    <tr>
+                        <td data-bind="text:$index()+1">1</td>
+                        <td><span data-bind="text:sourcetype"></span></td>
+                        <td class="w120" data-bind="text:formatDatebyDay(report_date)"></td>
+                        <td class="w120" data-bind="text:report_sites"></td>
+                        <td class="left cata-caontent-a" >
+                            <a class="black" data-bind="attr:{href: url,title:title},text:title.length>30?subString(title,30)+'...':title" target="_blank" >
+                            </a>
+                                <div class="news-ummary" data-href="#"><span data-bind="text:summarySubstr(content)"></span></div>
+</td>
+                        <!--<td class="left" data-bind="attr:{title:content},text:content.length>30?subString(content,30)+'...':content"></td>-->
+                        <td class="left adreess"><a class="lightblack" data-bind="attr:{href:url,title:url},html:url" target="_blank"></a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+</div>
+<!--<script src="/js/sea.js"></script>-->
+<!--<script src="/showroom/Componets/NewsMonitor2.js"></script>-->
+<script src="js/grain.js"></script>
+<script src="js/business/categoryreport.js"></script>
+<script src="js/jquery.PrintArea.js"></script>
+<!--<script src="js/jquery.jqprint-0.3.js"></script>-->
+<script type="text/javascript">
+    //seajs.use('showroom/Componets/NewsMonitor2', function (c) {
+    //    c.load('mainContainer', function () {
+    //    });
+    //});
+    //$(function () {
+    //    window.baseTools.GetNewsSentimentPie({ query: { customer_name: '南通' } }, function (result) {
+    //        if (result && result.success) {
+    //            $("#mainContainer").pieChart({ title: "舆情分类报告", data: result.data });
+    //        }
+
+    //    });
+
+    //});
+  
+
+</script>
+

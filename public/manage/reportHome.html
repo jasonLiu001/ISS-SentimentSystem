@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="../css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="../js/jQuery.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/manage/reportHome.js"></script>
+    <script type="text/javascript" src="../js/jquery.simplePagination.js"></script>
+    <script type="text/javascript" src="../js/jquery.validate.min.js"></script>
+    <link href="../css/simplePagination.css" rel="stylesheet"/>
+    <title>系统运维工具</title>
+    <style>
+        .voffset {
+            margin-top: 2px;
+        }
+
+        .voffset1 {
+            margin-top: 5px;
+        }
+
+        .voffset2 {
+            margin-top: 10px;
+        }
+
+        .voffset3 {
+            margin-top: 15px;
+        }
+
+        .voffset4 {
+            margin-top: 30px;
+        }
+
+        .voffset5 {
+            margin-top: 40px;
+        }
+
+        .voffset6 {
+            margin-top: 60px;
+        }
+
+        .voffset7 {
+            margin-top: 80px;
+        }
+
+        .voffset8 {
+            margin-top: 100px;
+        }
+
+        .voffset9 {
+            margin-top: 150px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Modal delete -->
+<div class="modal fade" id="delConfirmModel" tabindex="-1" role="dialog" aria-labelledby="del_ModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="del_ModalLabel"></h4>
+            </div>
+            <div class="modal-body" id="modal_delBodyContext"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="model_btn_delete"></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal addNewReport -->
+<div id="modal_addNewReport" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog"
+     aria-labelledby="addnew_ModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="addnew_ModalLabel"></h4>
+                <div id="addnew_Modal_errMessage" style="font-weight: bold; color: #ff0000"></div>
+            </div>
+            <div class="modal-body">
+                <div class="container" style="width: 100%">
+                    <div class="row">
+                        <div class="col-md-2"><!-- Nav tabs -->
+                            <ul class="nav nav-pills nav-stacked" role="tablist">
+                                <li role="presentation" class="active"><a href="#basicSetting" role="tab"
+                                                                          data-toggle="tab">基础设置</a>
+                                </li>
+                                <li role="presentation"><a href="#emailSetting" role="tab" data-toggle="tab">邮件设置</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="col-md-8">
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="basicSetting">
+                                    <form class="form-horizontal" id="form-basic-settings">
+                                        <div class="form-group">
+                                            <label for="db_ip" class="col-sm-2 control-label">数据库IP:</label>
+
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="db_ip"
+                                                      name="db_ip" placeholder="数据库IP 如:182.92.104.145">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="db_port" class="col-sm-2 control-label">数据库端口:</label>
+
+                                            <div class="col-sm-10">
+                                                <input type="text"  class="form-control" id="db_port"
+                                                       value="3306" disabled="true" name="db_port">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group" style="display: none">
+                                            <label for="db_dbname" class="col-sm-2 control-label">数据库名称：</label>
+
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="db_dbname"
+                                                       value="mysql" name="db_dbname">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="db_username" class="col-sm-2 control-label">用户名：</label>
+
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="db_username"
+                                                       placeholder="数据库登录用户名" name="db_username">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="db_passwd" class="col-sm-2 control-label">密码：</label>
+
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="db_passwd" name="db_passwd" placeholder="数据库登录密码">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="report_tablenames"
+                                                   class="col-sm-2 control-label">查询表显示名称：</label>
+
+                                            <div class="col-sm-10">
+                                                <input type="text" id="report_tablenames" name="report_tablenames" class="form-control"
+                                                          placeholder="和报告sql中查询的表互相对应，多个表名之间用|分割">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="report_querysql"
+                                                   class="col-sm-2 control-label">报告内容查询sql：</label>
+
+                                            <div class="col-sm-10">
+                                                <textarea id="report_querysql" style="height: 150px" name="report_querysql"
+                                                          class="form-control"
+                                                          placeholder="生成报告sql,必须使用use关键字来指定数据库,类似这种格式:use databaseA;select * from tableA;"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label"></label>
+
+                                            <div class="col-sm-10">
+                                                <div class="alert alert-warning alert-dismissible" role="alert">
+                                                    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                                    <strong>说明：</strong> 请正确填写各项参数值！
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="emailSetting">
+                                    <form class="form-horizontal" id="form-email-settings">
+                                        <div class="form-group">
+                                            <label for="email_smtp_server"
+                                                   class="col-sm-2 control-label">邮件SMTP服务器：</label>
+
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="email_smtp_server"
+                                                       value="smtp.isoftstone.com" disabled="true" name="email_smtp_server">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email_port" class="col-sm-2 control-label">端口：</label>
+
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="email_port" value="25"
+                                                       disabled="true" name="email_port">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email_sender" class="col-sm-2 control-label">用户名：</label>
+
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="email_sender"
+                                                       placeholder="公司邮箱用户名 如：wangliu@isoftstone.com" name="email_sender">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email_passwd" class="col-sm-2 control-label">密码：</label>
+
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="email_passwd"
+                                                       placeholder="邮箱登录密码" name="email_passwd">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="report_templatepath" class="col-sm-2 control-label">报告模板路径：</label>
+
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="report_templatepath" disabled="true"
+                                                       value="/manage/reportTemplate.html" name="report_templatepath">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="report_title" class="col-sm-2 control-label">主题：</label>
+
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="report_title"
+                                                       placeholder="邮件主题 如：舆情系统运维报告" name="report_title">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email_reciever" class="col-sm-2 control-label">收件人：</label>
+
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="email_reciever"
+                                                       placeholder="邮件收件人列表，多个收件人之间请用逗号分隔" name="email_reciever">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email_cc" class="col-sm-2 control-label">抄送：</label>
+
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="email_cc" placeholder="邮件抄送列表,多个抄送人之间用逗号分隔" name="email_cc">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email_sendTimes" class="col-sm-2 control-label">发送报告时间：</label>
+
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="email_sendTimes"
+                                                       placeholder="时间只接受:cron格式，如：0 0 8-21/2 * * 0-6 多个计划任务之间用|分隔即可" name="email_sendTimes">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label"></label>
+
+                                            <div class="col-sm-10">
+                                                <div class="alert alert-warning alert-dismissible" role="alert">
+                                                    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                                    <strong>说明：</strong> 时间格式必须是<a href="https://www.npmjs.org/package/cron" target="_blank" class="alert-link">cron格式字符串</a>！
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="modal_btn_addNewAndSave"></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal reportReview -->
+<div id="modal_reportView" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog"
+     aria-labelledby="addnew_ModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="reportPreview_ModalLabel"></h4>
+            </div>
+            <div class="modal-body">
+                <div class="container" style="width: 100%"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="modal_btn_previewConfirm"></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-5"></div>
+        <div class="col-md-7">
+            <h3>系统运维工具</h3>
+        </div>
+    </div>
+    <div class="row voffset3">
+        <div id="action_message" style="color: #ff0000; font-weight: bold"></div>
+    </div>
+    <div class="row voffset3">
+        <button type="button" class="btn btn-primary" data-optiontype="new" data-toggle="modal"
+                data-target="#modal_addNewReport">添加运维检查点
+        </button>
+        <button type="button" class="btn btn-primary" data-optiontype="new_V2" data-toggle="modal"
+                data-target="#modal_addNewReport">添加运维报告V2.0
+        </button>
+        <!--<button type="button" class="btn btn-primary" data-optiontype="preview_all" data-toggle="modal"-->
+                <!--data-target="#modal_reportView">预览运维报告-->
+        <!--</button>-->
+        <!--<button type="button" class="btn btn-primary" data-optiontype="start_all" data-toggle="modal"-->
+                <!--data-target="#delConfirmModel">启用定时发送-->
+        <!--</button>-->
+        <!--<button type="button" class="btn btn-primary" data-optiontype="stop_all" data-toggle="modal"-->
+                <!--data-target="#delConfirmModel">停用定时发送-->
+        <!--</button>-->
+    </div>
+    <div class="row voffset3">
+        <table class="table table-bordered table-striped" id="report_table">
+            <thead>
+            <tr style="font-size: 1.2em">
+                <td>序号</td>
+                <td>名称</td>
+                <td>运行状态</td>
+                <td>定时发送</td>
+                <td>报告预览</td>
+                <td>设置</td>
+                <td>版本</td>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="7">
+                  <div id="data_pagination"></div>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

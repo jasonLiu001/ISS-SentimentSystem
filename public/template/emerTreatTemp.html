@@ -1,0 +1,440 @@
+﻿<script>
+    //初始化当前步骤数，总步骤，计数
+    var curStept = 0;
+    var stepNum = 0;
+    var count = 0;
+    var emerid = 0;
+    var newobj;
+    var optionlog={dataSource:ko.observableArray([])};//日志数据源
+    var viewModellog=function(data){
+        var self = this;
+        self.logList =ko.observableArray(data);
+        optionlog.dataSource=self.logList;
+
+    };
+    //绑定处理日志
+    function bindLogList(){
+        viewlog = new viewModellog([]);
+        ko.applyBindings(viewlog, document.getElementById('list3'));
+    }
+    function btnNextClick() {
+        if (curStept < stepNum - 1) {
+            curStept += 1;
+            $('#emergencyList li:eq("' + curStept + '") a').tab('show');
+            changeBtnState();
+            //if ($("input[name='emRadios']").val() == 1) {
+            //    $("#btnNext").hide();
+            //}
+            if ($("input[name='emRadios']").val() == 1 && ($("input[name='choose']").val() == "on" || !$("input[name='choose']").val())) {
+                $("#btnNext").addClass("disabled");
+                $("#btnNext").unbind("click");
+            }
+            if (curStept == 1) {
+                if (count == 0) {
+                    initPageem();
+                    count++;
+                } else {
+                    updateEmerData();
+                }
+            }
+        }
+    }
+    $(function () {
+        //获取总步骤数，初始化按钮状态
+        stepNum = $("#emergencyList li").length;
+        changeBtnState();
+        //绑定上一步按钮点击事件
+        $("#btnPrev").click(function () {
+            if (curStept > 0) {
+                curStept -= 1;
+                $('#emergencyList li:eq("' + curStept + '") a').tab('show');
+                changeBtnState();
+            }
+        });
+        //绑定下一步按钮点击事件
+        $("#btnNext").unbind("click").bind("click", btnNextClick);
+
+        //绑定完成按钮点击事件
+        $("#btnFinish").click(function () {
+            $("#myModalEmer").modal("hide");
+            //todo：完成事件调用API
+            var emR = $("input[name='emRadios']:checked").val();
+            var t = newobj;
+            var newObject = jQuery.extend({}, newobj);
+            newObject.status = true;
+            if (emR == 1) {
+                if (emerid == 0) {
+                    alert("请选择应急预案!");
+                } else {
+                    emerHandle(t, emerid, 1, null, newObject);//选择已经预案
+                }
+            } else if (emR == 2) {
+                emerHandle(t, emerid, 2, $("#area").val(), newObject);//选择其他
+            } else if (emR == 3) {
+                emerHandle(t, emerid, 3, null, newObject);//选择忽略
+            }
+        });
+        //第一步根据选择控制按钮和多选框的状态
+        $("input[name='emRadios']").click(function () {
+            if (this.value == 2) {
+                $("#area").show();
+            } else {
+                $("#area").hide();
+            }
+            if (this.value != 1) {
+                $("#btnPrev").hide();
+                $("#btnNext").hide();
+                $("#btnFinish").show();
+            } else {
+                $("#btnNext").show();
+                $("#btnFinish").hide();
+            }
+        });
+        bindLogList();
+      
+    });
+    var parametersem;
+    //分页
+    var optionsem = {
+        pagerCount: 5,
+        pageSize: 5,
+        dataCount: 0,
+        dataSource: ko.observableArray([]),
+        pageIndex: 0,
+        callback: function (pageIndex, element) {
+            //var parameters = getParametersem();
+            parametersem.pagination.pageindex = pageIndex - 1;
+            //todo:获取查询参数
+            window.baseTools.getEmergency(parametersem, function (result) {
+                optionsem.dataSource(result.rows);
+                bindClickrow();
+                selectedRecord();
+            });
+        }
+    };
+
+    var viewModelem = function (data) {
+        var self = this;
+        self.emergencys = ko.observableArray(data);
+        optionsem.dataSource = self.emergencys;
+        self.choose = function (m) {
+            emerid = m.id;
+            console.log(emerid);
+            $("#edTitle").text(m.title);
+            $("#edClassify").text(m.classify == 1 ? '健康' : (this.classify == 2 ? '安全' : '生活'));
+            $("#edUrl").text(m.url);
+            $("#edName").text(m.name);
+            $("#edPhone").text(m.phone);
+            $("#edContent").text(m.content);
+            $("#btnNext").removeClass("disabled");
+            $("#btnNext").unbind("click").bind("click", btnNextClick);
+            //$("#btnNext").show();
+            return true;
+        };
+    };
+
+    function initPageem() {
+        //todo:初始化控件
+        //var parametersem = getParametersem();
+        //绑定控件事件
+        $("#searchem").unbind("click").bind("click", function (event) {
+            parametersem = getParametersem();
+            window.baseTools.getEmergency(parametersem, function (result) {
+                optionsem.dataSource(result.rows);
+                initPaginationem(optionsem, result.totalcount);
+                if (result.rows.length == 0) {
+                    $("#list2 tbody").empty().append("<tr class='kong'><td colspan='6'>很抱歉，目前你搜索的内容为空！</td></tr>");
+                } else {
+                    $("#list2 .kong").remove();
+                }
+                $("#btnNext").addClass("disabled");
+                $("#btnNext").unbind("click");
+                //绑定行点击事件
+                bindClickrow();
+            });
+        });
+        parametersem = getParametersem();
+        //todo:初始化查询参数
+        window.baseTools.getEmergency(parametersem, function (result) {
+            initGridListem(result);;
+            initPaginationem(optionsem, result.totalcount);
+
+        });
+
+    }
+
+    //获取查询参数
+    function getParametersem() {
+        var polarity = $("#qPolarityem").val();
+        var title = $("#qTitleem").val();
+        var classify = $("#qClassifyem").val();
+        //todo:格式验证
+        var parametres = { orderby: { createDt: "desc" }, query: {}, pagination: { pagesize: optionsem.pageSize, pageindex: optionsem.pageIndex } };
+        if (polarity != "" && polarity != "-2") {
+            parametres.query.polarity = polarity;
+        }
+        if (classify != "" && classify != "-2") {
+            parametres.query.classify = classify;
+        }
+        if (title != "") {
+            parametres.query.title = title;
+        }
+        return parametres;
+    }
+    //初始化分页
+    function initPaginationem(options, count) {
+        $("#paginationem").html("");
+        if (options) {
+            if (count != undefined) {
+                options.dataCount = count;
+            }
+            $("#paginationem").pagination(options);
+        }
+    }
+    //绑定应急预案数据
+    function initGridListem(result) {
+
+        if (result.rows.length != 0) {
+            viewem = new viewModelem(result.rows);
+            ko.applyBindings(viewem, document.getElementById('list2'));
+            //绑定行点击事件
+            bindClickrow();
+        }
+        else {
+            $("#list2 tbody").empty().append("<tr><td colspan='6'>很抱歉，没有相关数据！</td></tr>");
+        }
+    }
+    //更新应急预案数据
+    function updateEmerData() {
+        //var parameters = getParametersem();
+        parametersem = getParametersem();
+        window.baseTools.getEmergency(parametersem, function (result) {
+            optionsem.dataSource(result.rows);
+            initPaginationem(optionsem, result.totalcount);
+            //绑定行点击事件
+            bindClickrow();
+        });
+        $("#edTitle").text("");
+        $("#edClassify").text("");
+        $("#edUrl").text("");
+        $("#edName").text("");
+        $("#edPhone").text("");
+        $("#edContent").text("");
+    }
+
+    //给整行绑定行点击事件
+    function bindClickrow() {
+        $(".emtr").unbind("click").bind("click", function () {
+            $(this).find("td input[name='choose']").attr("checked", true);
+            $(this).find("td input[name='choose']").triggerHandler("click");
+        });
+    }
+
+    //改变按钮状态
+    function changeBtnState() {
+        if ($("#btnNext").hasClass("disabled")) {
+            $("#btnNext").removeClass("disabled");
+            $("#btnNext").unbind("click").bind("click", btnNextClick);
+        }
+        if (curStept == 0) {
+            $("#btnPrev").hide();
+            $("#btnNext").show();
+            $("#btnFinish").hide();
+        }
+        else if (curStept > 0 && curStept < stepNum - 1) {
+            $("#btnPrev").show();
+            $("#btnNext").show();
+            $("#btnFinish").hide();
+        }
+        else {
+            $("#btnPrev").show();
+            $("#btnNext").hide();
+            $("#btnFinish").show();
+        }
+    }
+
+    //记录当前选中的应急预案
+    function selectedRecord() {
+        $("#list2 .emtr").each(function (i, m) {
+            //console.log(emerid);
+            if ($(this).find("td input[name='choose']").attr("value") == emerid) {
+                $(this).find("td input[name='choose']").attr("checked", true);
+            }
+        })
+    }
+
+</script>
+<!-- Modal -->
+<div class="modal fade" id="myModalEmer" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">操作</h4>
+            </div>
+            <div class="modal-body">
+                <div class="blockdiv">
+                    <div class="is_sensitive">
+                        <span class="title">是否敏感:</span><!--<span id="sensitive" style="cursor:pointer;">已处理</span>-->
+                        <div class="swich">
+                            <span>是</span>
+                            <span>否</span>
+                            <div id="sensitive" class="open-close"></div>
+                        </div>
+                    </div>
+                    <div class="is_sensitive">
+                        <span class="title">舆情状态:</span><!--<span id="state">已处理</span>-->
+                        <div class="swich disclick">
+                            <span>已处理</span>
+                            <span>未处理</span>
+                            <div id="state" class="open-close"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="emergencyList_0">
+                    
+                    <div id="emerBody">
+                        <div class="blockdiv">
+                            <span class="title-18px">应急预案</span>
+                        </div> 
+                        <ul class="nav nav-tabs" role="tablist" id="emergencyList" style="display:none">
+                            <li class="active"><a href="#estep1" role="tab" data-toggle="tab"></a></li>
+                            <li><a href="#estep2" role="tab" data-toggle="tab"></a></li>
+                            <li><a href="#estep3" role="tab" data-toggle="tab"></a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="estep1">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="emRadios" id="emRadios1" value="1" checked>
+                                        选择应急预案
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="emRadios" id="emRadios2" value="2">
+                                        其他
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="emRadios" id="emRadios3" value="3">
+                                        忽略
+                                    </label>
+                                </div>
+                                <textarea class="form-control" rows="3" id="area" style="display:none" placeholder="备注..."></textarea>
+                            </div>
+                            <div class="tab-pane" id="estep2">
+                                <div class="sel_condition">
+                                    <div class="navbar-form navbar-left" role="search">
+                                        <div class="form-group">
+                                            <span>标题：</span>
+                                            <input id="qTitleem" type="text" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <span>正负极性：</span>
+                                            <select id="qPolarityem" class="form-control">
+                                                <option value="-2">全部</option>
+                                                <option value="0">正</option>
+                                                <option value="1">负</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <span>分类：</span>
+                                            <select id="qClassifyem" class="form-control">
+                                                <option value="-2">全部</option>
+                                                <option value="1">健康</option>
+                                                <option value="2">安全</option>
+                                                <option value="3">生活</option>
+                                            </select>
+                                        </div>
+                                        <button id="searchem" class="btnn btn-defaultsmall">搜索</button>
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-hover" id="list2">
+                                        <thead>
+                                            <tr>
+                                                <th class="serialNum">选择</th>
+                                                <th class="left">应急预案标题</th>
+                                                <th class="left">分类</th>
+                                                <th class="left w120">联系人</th>
+                                                <th class="w120">正负极性</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody data-bind="foreach:emergencys">
+                                            <tr class="emtr">
+                                                <td><input name="choose" type="radio" data-bind="click:$root.choose,value:id" /></td>
+                                                <td data-bind="text:title&&title.length>25?subString(title,25)+'...':title" class="left"></td>
+                                                <td data-bind="text:classify==1?'健康':(classify==2?'安全':'生活')" class="left"></td>
+                                                <td data-bind="text:contacts" class="left"></td>
+                                                <td data-bind="text:polarity==0?'正':'负'" class="w120"></td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="50" style="text-align:right;">
+                                                    <ul class="pagination pagination-sm" id="paginationem"></ul>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="estep3">
+                                <ul>
+                                    <li>应急预案标题：<span id="edTitle"></span></li>
+                                    <li>所属三级类别：<span id="edClassify"></span></li>
+                                    <li>应急预案Url：<span id="edUrl"></span></li>
+                                    <li>联系人：<span id="edName"></span></li>
+                                    <li>联系电话：<span id="edPhone"></span></li>
+                                    <li>内容：<span id="edContent"></span></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="log">
+                <div class="blockdiv">
+                        <span class="title">处理日志</span><!--<span id="sensitive" style="cursor:pointer;">已处理</span>-->
+                </div>
+                <div class="tab-content"></div>
+                    <div class="table-responsive">
+                        <table class="table table-hover" id="list3">
+                            <thead>
+                            <tr>
+                                <th class="left">处理时间</th>
+                                <th class="left">处理状态</th>
+                                <th class="left">处理类型</th>
+                                <th class="left w120">备注</th>
+                            </tr>
+                            </thead>
+                            <tbody data-bind="foreach:logList">
+                            <tr class="emtr">
+                                <td data-bind="text:formatDate(create_record_time)" class="left"></td>
+                                <td data-bind="text:status==1?'已处理':'未处理'" class="left"></td>
+                                <td data-bind="text:handle_type==1?title:(handle_type==2?'其他':'忽略')" class="left"></td>
+                                <td data-bind="text:handle_remark" class="w120"></td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td colspan="50" style="text-align:right;">
+
+                                </td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btnPrev" type="button" class="btnn btn-defaultbig" role="button">上一步</button>
+                <button id="btnNext" type="button" class="btnn btn-defaultbig" role="button">下一步</button>
+                <button id="btnFinish" type="button" class="btnn btn-defaultbig" role="button">完成</button>
+            </div>
+        </div>
+    </div>
+</div>

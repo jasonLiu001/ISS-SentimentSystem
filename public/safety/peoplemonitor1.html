@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>数据源管理</title>
+    <link href="/css/bootstrap.css" rel="stylesheet" />
+    <link href="/css/base.css" rel="stylesheet" />
+    <link href="/css/knockout_grid.css" rel="stylesheet" />
+    <link id="skinLink" href="/css/skin/default.css" rel="stylesheet" />
+    <script src="/js/jQuery.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/knockout.js"></script>
+    <script src="/js/knockout.simpleGrid.js"></script>
+    <style>
+        
+    </style>
+
+</head>
+<body mid="7-1">
+    <div id="main_container" class="datasource">
+        <div class="media media-container">
+            <div class="pull-left">
+                <div id="head_menu"></div>
+            </div>
+            <div class="media-body">
+                <div id="head_top"></div>
+                <div id="content">
+                    <div class="content_title">
+                        <i class="icon icon_direction"></i>
+                        <span>公共安全监控 > 区域人流监控</span>
+                    </div>
+                    <div style="margin-bottom:20px;"><a href="peoplemonitor2.html"><img src="../img/tempImg/safe2.jpg" class="img-responsive" /></a></div>
+                    
+
+                </div>
+                <div id="foot"></div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+<script>
+    var initialData = {
+        data: [
+            { sn: 1, name: "百度", place: "全国", url: "www.baidu.com", value: "5", createtime: "2014-07-09", state: "已处理" },
+            { sn: 2, name: "腾讯", place: "全国", url: "www.qq.com", value: "5", createtime: "2014-07-09", state: "已处理" },
+               { sn: 3, name: "新浪", place: "全国", url: "www.sina.com", value: "5", createtime: "2014-07-09", state: "已处理" },
+              { sn: 4, name: "天涯", place: "全国", url: "www.tianya.com", value: "5", createtime: "2014-07-09", state: "已处理" },
+               { sn: 5, name: "新华", place: "全国", url: "www.xinhua.com", value: "5", createtime: "2014-07-09", state: "已处理" },
+               { sn: 6, name: "微信", place: "全国", url: "www.winxin.com", value: "5", createtime: "2014-07-09", state: "已处理" },
+              { sn: 7, name: "微博", place: "全国", url: "www.weibo.com", value: "5", createtime: "2014-07-09", state: "已处理" },
+               { sn: 8, name: "搜狐", place: "全国", url: "www.souhu.com", value: "5", createtime: "2014-07-09", state: "已处理" },
+               { sn: 9, name: "网易", place: "全国", url: "www.wangyi.com", value: "5", createtime: "2014-07-09", state: "已处理" },
+               { sn: 10, name: "百度", place: "全国", url: "www.baidu.com", value: "5", createtime: "2014-07-09", state: "已处理" },
+               { sn: 11, name: "百度", place: "全国", url: "www.baidu.com", value: "5", createtime: "2014-07-09", state: "已处理" },
+              { sn: 12, name: "百度", place: "全国", url: "www.baidu.com", value: "5", createtime: "2014-07-09", state: "已处理" },
+              { sn: 13, name: "百度", place: "全国", url: "www.baidu.com", value: "5", createtime: "2014-07-09", state: "已处理" },
+               { sn: 14, name: "百度", place: "全国", url: "www.baidu.com", value: "5", createtime: "2014-07-09", state: "已处理" },
+               { sn: 15, name: "百度", place: "全国", url: "www.baidu.com", value: "5", createtime: "2014-07-09", state: "已处理" }
+        ], pageSize: 10, currentPageIndex: 0
+    };
+    var PagedGridModel = function (items) {
+        this.items = ko.observableArray(items.data);
+
+        this.addItem = function () {
+            this.items.push({ name: "New item", sales: 0, price: 100 });
+        };
+
+        this.sortByName = function () {
+            this.items.sort(function (a, b) {
+                return a.name < b.name ? -1 : 1;
+            });
+        };
+
+        this.jumpToFirstPage = function () {
+            this.gridViewModel.currentPageIndex(0);
+        };
+        this.jumpToLastPage = function () {
+
+        };
+        this.gridViewModel = new ko.simpleGrid.viewModel({
+            data: this.items,
+            columns: [
+                { headerText: "序号", rowText: "sn" },
+                { headerText: "网站名称", rowText: "name" },
+                { headerText: "地区", rowText: "place" },
+                { headerText: "Url", rowText: "url" },
+                { headerText: "权重", rowText: "value" },
+                { headerText: "创建时间", rowText: "createtime" },
+                { headerText: "状态", rowText: "state" },
+                { headerText: "操作", rowText: function (item) { return "<i href=\"#\" class=\"icon icon_edit\" title=\"编辑\" target=\"_blank\"></i><i class=\"icon icon_delete\" href=\"#\" target=\"_blank\" title=\"删除\"></i>" } }
+            ],
+            pageSize: 4,
+            showPageIndexCount: 3
+        });
+    };
+
+    ko.applyBindings(new PagedGridModel(initialData));
+</script>

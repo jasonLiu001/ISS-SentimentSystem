@@ -1,0 +1,36 @@
+﻿<div id="eyelid3" class="eyelid3">
+    <div class="top-right-four">
+        <div class="four-content">
+            <ul id="ulweibojt" data-bind="foreach:weibos">
+                <li>
+                    <div data-bind="attr:{class:'fl-content '+(level==0?'nt_yellow':(level>0?'nt_green':'nt_red'))}">
+                        <a data-bind="attr:{href:status_url}" target="_blank">
+                            <span data-bind="text:status_text">
+                            </span>
+                        </a>
+                    </div>
+                    <span class="data" data-bind="text:created_at.toString().substr(5,5)"></span>
+                </li>
+            </ul>
+        </div>
+        <div class="four-title"><a href="templates/WarningModel2.html" target="_blank"><i class="nt_icon ntilist"></i>微博监听<span>（负面汇总）</span></a></div>
+    </div>
+    <div class="top-right-four">
+        <div class="four-content">
+            <div id="wm_1" style="width:100%;"></div>
+        </div>
+        <div class="four-title"><i class="nt_icon ntilist"></i>负面微博按职能分布图</div>
+    </div>
+    <div class="top-right-four">
+        <div class="four-content">
+            <div id="wm_2" style="width:100%;"></div>
+        </div>
+        <div class="four-title"><i class="nt_icon ntilist"></i>负面微博按月分布图</div>
+    </div>
+    <!--<div class="top-right-four">
+        <div class="four-content">
+            <div id="wm_3" style="width:100%;"></div>
+        </div>
+        <div class="four-title"><i class="nt_icon ntilist"></i>负面微博按区域分布图</div>
+    </div>-->
+</div>

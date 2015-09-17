@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>租户注册</title>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+
+    <script src="js/jQuery.js"></script>
+    <!--core javascript-->
+    <script src="js/knockout-3.1.0.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/tenantRegister.js"></script>
+</head>
+<body>
+<div class="container" id="container">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    租户注册API演示</h4>
+            </div>
+            <div class="panel-body">
+                    <fieldset>
+                        <legend>新租户注册</legend>
+                        <div class="control-group">
+                            <label class="control-label">公司名称:</label>
+                            <div class="controls">
+                                <input type="text" id="tenantName" name="tenantName">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">公司简称:</label>
+                            <div class="controls">
+                                <input type="text" id="alias" name="alias">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">默认管理员:</label>
+                            <div class="controls">
+                                <input type="text" id="admin" name="admin" >
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">默认管理员密码:</label>
+                            <div class="controls">
+                                <input type="text" id="adminPwd" name="adminPwd" >
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">默认域:</label>
+                            <div class="controls">
+                                <input type="text" id="mappedDomain" name="mappedDomain">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">客户:</label>
+                            <div class="controls">
+                                <input type="text" id="customerNames" name="customerNames">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">组:</label>
+                            <div class="controls">
+                                <select id="group">
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">联系人电话：</label>
+                            <div class="controls">
+                                <input type="text" id="phone" name="phone">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">电子邮件：</label>
+                            <div class="controls">
+                                <input type="text" id="email" name="email">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">验证码：</label>
+                                <input type="text" id="verificationCode" placeholder="验证码" name="verificationCode">
+                                <img src="./api/tenant/GetVerificationCode" onclick="this.src='./api/tenant/GetVerificationCode?'+Math.random()">
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label"></label>
+                            <div class="controls">
+                                <button id="btn_register" class="btn btn-success" >确认注册</button>
+                            </div>
+                        </div>
+                    </fieldset>
+
+            </div>
+            <div class="panel-footer">
+                <div id="registerResult"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

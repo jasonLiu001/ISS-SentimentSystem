@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<h2 class="form-signin-heading">Demo 1 客户端请求Access Token</h2>
+
+<form method="post" action="http://localhost:1337/oauth2/token">
+    client_id:<input name="client_id" type="text" value="1"/><br />
+    client_secret:<input name="client_secret" type="text" value="8e3b77ab41308da88ebc5bc2800d6fe42cc5f64d"/><br />
+    username:<input name="username" type="text" value="5100admin"/><br />
+    password:<input name="password" type="text" value="5100admin"/><br />
+    grant_type:<input name="grant_type" type="text" value="password"/><br />
+    <input type="submit" value="Apply"/>
+</form>
+<h2 class="form-signin-heading">Demo 2 客户端Authentication</h2>
+<form method="get" action="http://localhost:1337/oauth2/authorize">
+    client_id:<input name="client_id" type="text" value="1"/><br />
+    client_secret:<input name="client_secret" type="text" value="8e3b77ab41308da88ebc5bc2800d6fe42cc5f64d"/><br />
+    grant_type:<input name="grant_type" type="text" value="password"/><br />
+    access_token:<input name="access_token" type="text" value="8b86911161fdb3a3e7583ae58fa670a8ea8f0030"/><br />
+    <input type="submit" value="Apply"/>
+</form>
+
+</body>
+</html>

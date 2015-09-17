@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>洪泽民生舆情应急预案</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="../css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="../css/base.css" rel="stylesheet" type="text/css" />
+    <link href="../css/style.css" rel="stylesheet" type="text/css" />
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <style>
+        .is_footer {
+            position: fixed;
+            bottom: 0px;
+        }
+
+        .modal-content {
+            margin-left: 20px;
+            margin-right: 20px;
+            border-radius: 0px;
+            box-shadow: none;
+            border: 0px;
+        }
+    </style>
+    <script>
+        $(function () {
+            function calcuHei() {
+                $wiHei = $(window).height();
+                $outHei = $(".is_outer").height();
+                if ($outHei > $wiHei) {
+                    $(".is_footer").css({ "position": "relative", "margin-top": "0px" });
+
+                } else {
+                    $(".is_footer").removeAttr("style");
+                }
+
+            }
+            calcuHei();
+            window.onresize = function () {
+                calcuHei();
+            }
+        })
+    </script>
+
+</head>
+
+<body>
+    <a class="sr-only" href="#content">Skip to main content</a>
+    <div class="is_outer">
+        <nav class="navbar">
+            <a class="navbar-brand" href="#">
+                <img src="../images/im_logo.png" /></a>
+            <div class="is_head_leword">软通动力“慧眼”舆情分析系统</div>
+        </nav>
+        <div class="is_head_topimg">
+            <div class="is_head_img1">
+                <img src="../images/ntlogo.png" class="img-responsive" />
+            </div>
+            <div class="is_head_img2">
+                <img src="../images/ntword1.png" class="img-responsive" />
+            </div>
+            <div class="is_head_img3">
+                <img src="../images/ntword2.png" class="img-responsive" />
+            </div>
+        </div>
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
+                <h4 class="modal-title" id="myModalLabel">洪泽市各级应急预案</h4>
+            </div>
+            <div class="modal-body">
+                <div style="margin-right: 10px;" class="yuqingpic">
+                    <img src="../images/Alert.gif" style="width: 100%;" />
+                </div>
+                <div class="yuqingcontent">
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-selected="true">洪泽市公路交通突发事件应急预案
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <div class="warning_con">
+                                        <ul>
+                                            <li>值班电话：0513-85151252</li>
+                                            <li>详细内容：
+                                                <div style="width: 100%; word-break: break-all;">
+                                                    <a href="http://www.ntjt.gov.cn/contents/1667/47157.html" target="_blank">http://www.ntjt.gov.cn/contents/1667/47157.html</a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <button type="button" class="btn" style="background-color: #3276b1; color: white;" onclick="sendToContact()">点击此处发送消息至以下联系人</button>
+                                                <ul>
+                                                    <li>张三 15115625421</li>
+                                                    <li>李四 15115625421</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-selected="false">洪泽市辐射事故应急预案
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <div class="warning_con">
+                                        <ul>
+                                            <li>值班电话：0513-85158666</li>
+                                            <li>详细内容：
+                                                <div style="width: 100%; word-break: break-all;">
+                                                    <a href="http://hbj.nantong.gov.cn/art/2010/7/30/art_22060_660464.html" target="_blank">http://hbj.nantong.gov.cn/art/2010/7/30/art_22060_660464.html</a>
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <button type="button" class="btn" style="background-color: #3276b1; color: white;" onclick="sendToContact()">点击此处发送消息至以下联系人</button>
+                                                <ul>
+                                                    <li>张三 15115625421</li>
+                                                    <li>李四 15115625421</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default" aria-expanded="false" aria-selected="false">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">洪泽市旅游突发事件应急预案
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="warning_con">
+                                    <ul>
+                                        <li>值班电话：0513- 85099211</li>
+                                        <li>详细内容：
+                                                <div style="width: 100%; word-break: break-all;">
+                                                    <a href="http://www.nantong.gov.cn/art/2013/10/28/art_43919_1553841.html" target="_blank">http://www.nantong.gov.cn/art/2013/10/28/art_43919_1553841.html</a>
+                                                </div>
+                                        </li>
+                                        <li>
+                                            <button type="button" class="btn" style="background-color: #3276b1; color: white;" onclick="sendToContact()">点击此处发送消息至以下联系人</button>
+                                            <ul>
+                                                <li>张三 15115625421</li>
+                                                <li>李四 15115625421</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="warning_list">
+                    <div class="warning_title">前往<a href="http://www.nantong.gov.cn/" target="_blank">洪泽市政府网查询其它应急预案</a></div>
+                </div>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+
+    <div class="is_footer">©2014 版权所有 软通动力控股有限公司 京ICP备11019727号</div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    function sendToContact() {
+        alert("紧急通知已发送！");
+    }
+</script>

@@ -1,0 +1,27 @@
+﻿<div class="left-top-blue left-top-yq">
+    <div id="container" area="1"></div>
+    <div class="yq_title"><i class="nt_icon ntiline"></i>综合舆情指数</div>
+    <div class="yq_subtitle" id="yqSubTitle"><span class="nantong">洪泽</span><span style="font-weight:bold;font-size:25px;color:black;"></span>在刚刚过去的一分钟测到了<span id="yqMinCount">0</span>次关注度。</div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">负面因素列表</h4>
+                </div>
+                <div class="modal-body">
+                    <ul data-bind="foreach:downNews">
+                        <li>
+                            <a data-bind="attr:{href:news_url}" target="_blank"> <span class="poup_title" data-bind="text:news_title"></span></a>
+                            <span data-bind="text:report_date.replace('T',' ').replace('.000Z','')" style="float:right;margin-right:5px"></span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <a type="button" href="/templates/WarningModel2.html" target="_blank" class="btn btn-primary">应急预案</a>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关&nbsp;&nbsp;&nbsp;&nbsp;闭</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</div>

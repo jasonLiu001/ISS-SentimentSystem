@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <title></title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/skin/default.css" rel="stylesheet" />
+
+    <script src="/js/jQuery.js"></script>
+    <script src="/Tools/js/base.js"></script>
+    <script src="/js/knockout.js"></script>
+
+    <script src="/js/jquery.cookie.js"></script>
+    <script src="/js/jquery.nicescroll.js"></script>
+    <script src="/js/common/tools.js"></script>
+    <script src="/js/business/base.js"></script>
+    <script src="/Tools/js/apihelper.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/Tools/js/pageHelper.js"></script>
+    <script>
+        $(function () {
+            $("#menu li a").click(function () {
+                var href = $(this).attr("hurl");
+                $("#content").load(href, function () {
+                });
+                $("#menu li").removeClass("active");
+                $(this).parent("li").addClass("active");
+            });
+        });
+    </script>
+    <style>
+        #newsList {
+            border-collapse: collapse;
+        }
+
+            #newsList td {
+                margin: 0px;
+                padding: 1px;
+            }
+    </style>
+</head>
+<body>
+    <table width="100%">
+        <tr>
+            <td style=" width:180px; vertical-align:top;">
+                <ul id="menu" class="nav nav-pills nav-stacked" role="tablist">
+                    <li role="presentation"><a href="#" hurl="/Tools/newsManager.html">新闻管理</a></li>
+                    <li role="presentation"><a href="#" hurl="/Tools/weiboManager.html">微博管理</a></li>
+                    <li role="presentation"><a href="#" hurl="/Tools/weixinManager.html">微信管理</a></li>
+                </ul>
+            </td>
+            <td>
+                <div id="content" style="border-left:1px solid gray;">新闻微博微信极性维护</div>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,34 @@
+﻿<div id="eyelid2" class="eyelid2">
+    <div class="top-right-news nt_news">
+        <div class="four-content">
+            <ul id="ulnewsJt" data-bind="foreach:news">
+                <li>
+                    <div data-bind="attr:{class:'fl-content '+(level==0?'nt_yellow':(level>0?'nt_green':'nt_red'))}">
+                        <a data-bind="attr:{href:news_url}" target="_blank"> <span data-bind="text:news_title"></span></a>
+                    </div>
+                    <span class="data" data-bind="text:report_date.toString().substr(5,5)"></span>
+                </li>
+            </ul>
+        </div>
+        <div class="right-news-title"><a href="templates/WarningModel2.html" target="_blank"><i class="nt_icon ntilist"></i>新闻监听<span>（负面汇总）</span></a></div>
+    </div>
+    <div class="top-right-news">
+        <div class="four-content">
+
+            <div id="nm_1" style="width:100%;"></div>
+        </div>
+        <div class="right-news-title"><i class="nt_icon ntilist"></i>负面新闻按职能分布图</div>
+    </div>
+    <div class="top-right-news">
+        <div class="four-content">
+            <div id="nm_2" style="width:100%;"></div>
+        </div>
+        <div class="right-news-title"><i class="nt_icon ntilist"></i>负面新闻按月分布图</div>
+    </div>
+    <!--<div class="top-right-news">
+         <div class="four-content">
+             <div id="nm_3" style="width:100%;"></div>
+         </div>
+         <div class="right-news-title"><i class="nt_icon ntilist"></i>负面新闻按区域分布图</div>
+    </div>-->
+</div>

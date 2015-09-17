@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>租户下的用户管理</title>
+    <script src="js/jQuery.js"></script>
+    <style>
+        div{margin:80px auto;width:900px;}
+        table,table td,table th{border:1px solid grey;border-collapse:collapse;}
+    </style>
+    <script>
+        $(function(){
+            var strHref = window.location.href;
+            var intPos = strHref.indexOf("=");
+            var id = strHref.substr(intPos + 1);
+            getUseList(id);
+
+            $("#addUser").click(function(){
+                $(this).attr("href","addUser.html?id="+id);
+            })
+        });
+        function getUseList(id) {
+            $.get('./api/tenant/GetUserListByTenant?id='+id,{},function (data) {
+                        var jsonArr = eval(data);
+                        var tb = $("#tbUserList");
+                        if (jsonArr.data.length > 0) {
+                            for (var i = 0; i < jsonArr.data.length; i++) {
+                                var tr = $("<tr></tr>");
+                                var json = jsonArr.data[i];
+                                tr.append("<td>" + json.tenant + "</td>");
+                                tr.append("<td>" + json.username + "</td>");
+                                tr.append("<td>" + json.sex + "</td>");
+                                tr.append("<td>" + json.status + "</td>");
+                                tr.append("<td>" + json.email + "</td>");
+                                tr.append("<td>" + json.phone + "</td>");
+                                tr.append("<td>" + json.last_modified + "</td>");
+                                tr.append("<td><a href='./api/tenant/DeleteUserByUserID?id="+json.id+"'>删除</a></td>");
+                                tb.append(tr);
+                            }
+                        }
+                    }
+            );
+        }
+    </script>
+</head>
+<body>
+<div id="divUserList">
+    租户下的用户列表：<br>
+    <table id="tbUserList" cellspacing="10px" cellpadding="10px">
+        <tr>
+            <td>tenant</td>
+            <td>username</td>
+            <td>sex</td>
+            <td>status</td>
+            <td>email</td>
+            <td>phone</td>
+            <td>last_modified</td>
+            <td>operate</td>
+        </tr>
+    </table>
+    <a href="" id="addUser">新增</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,90 @@
+﻿﻿<div>搜索关键字维护</div>
+<div id="tbapp" class="table-responsive">
+    <table id="keysList" class="table table-hover">
+        <thead>
+            <tr>
+                <th>业务ID</th>
+                <th>行业领域</th>
+                <th>品牌名称</th>
+                <th>客户行业</th>
+                <th>关键字</th>
+                <th>监控范围</th>
+                <th>是否有效</th>
+                <th>执行方式</th>
+                <th>搜索语言</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach:objData">
+            <tr>
+                <td data-bind="text:id"></td>
+                <td data-bind="text:field_name"></td>
+                <td data-bind="text:brand_name"></td>
+                <td data-bind="text:dict_category"></td>
+                <td><input data-bind="value:keyword" /></td>
+                <td>
+                    <select data-bind="value:search_engine">
+                        <option value="baidu_news">baidu_news</option>
+                        <option value="bing_news">bing_news</option>
+                        <option value="sina_weibo">sina_weibo</option>
+                        <option value="solr_local">solr_local</option>
+                        <option value="sogou_weixin">sogou_weixin</option>
+                        <option value="163_weibo">163_weibo</option>
+                        <option value="qq_weibo">qq_weibo</option>
+                    </select>
+                </td>
+                <td><select data-bind="value:is_search"><option value="0">无效</option><option value="1">有效</option></select></td>
+                <td><select data-bind="value:manner"><option value="manual">手动</option><option value="auto">自动</option></select></td>
+                <td><select data-bind="value:language"><option value="zh">中文</option><option value="en">英文</option></select></td>
+                <td>
+                    <button type="button" class="btn btn-default" data-bind="click:$root.UpdateBat">更新</button>&nbsp;<button type="button" class="btn btn-default" data-bind="click:$root.DeleteBat">删除</button>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="10" style=" text-align:center;"></td>
+            </tr>
+            <tr>
+                <td colspan="10">
+                    <table width="100%">
+                        <!--<tr>
+                          <td style=" line-height:35px;"> 行业领域：</td>
+                            <td><input id="inputfname" style="width:100px;" /></td>
+                            <td>品牌名称：</td>
+                            <td><input id="inputbname" style="width:100px;" /></td>
+                            <td> 客户行业：</td>
+                            <td><input id="inputdict" style="width:100px;" /></td>
+
+                        </tr>-->
+                        <tr>
+                            <td style=" line-height:35px;">关键字：</td>
+                            <td><input id="inputKeyword" style="width:100px;" /></td>
+                            <td>监控范围：</td>
+                            <td>
+                                <select id="inputEngine">
+                                    <option value="baidu_news">baidu_news</option>
+                                    <option value="bing_news">bing_news</option>
+                                    <option value="sina_weibo">sina_weibo</option>
+                                    <option value="solr_local">solr_local</option>
+                                    <option value="sogou_weixin">sogou_weixin</option>
+                                    <option value="163_weibo">163_weibo</option>
+                                    <option value="qq_weibo">qq_weibo</option>
+                                </select>
+                            </td>
+                            <td>执行方式：</td>
+                            <td><select id="inputManner" style="width:100px;"><option value="manual">手动</option><option value="auto">自动</option></select></td>
+                            <td>搜索语言：</td>
+                            <td><select id="inputlang" style="width:100px;"><option value="zh">中文</option><option value="en">英文</option></select></td>
+                            <td>
+                                <button type="button" class="btn btn-default" data-bind="click:AddData">添加</button>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+
+</div>
+<script src="/js/manage/searchkeys.js"></script>

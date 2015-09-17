@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>SentimentDay</title>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <script src="js/jQuery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#newsearch").click(
+                    function () {
+                        var postData = {
+                            query: {
+                                customer_name: $("#customer_name").val(),
+                                field_name: $("#field_name").val(),
+                                brand_name: $("#brand_name").val(),
+                                start_date: $("#start_date").val(),
+                                end_date: $("#end_date").val(),
+                                level:$("#level").val()
+                            }
+                        }
+
+                        $.post("http://localhost:1337/api/middleware/GetNewsSentimentDay", { params: JSON.stringify(postData) }, function (result) {
+                                    $("table tbody").empty();
+                                    var data =result.data;
+                                    for(var item in data){
+                                        $("table").append('<tr><td>'+data[item][0]+'</td><td>'+data[item][1]+'</td></tr>');
+                                    }
+                                    alert("GetNewsSentimentDay");
+                                }
+                        );
+                    });
+            $("#weibosearch").click(
+                    function () {
+                        var postData = {
+                            query: {
+                                customer_name: $("#customer_name").val(),
+                                field_name: $("#field_name").val(),
+                                brand_name: $("#brand_name").val(),
+                                start_date: $("#start_date").val(),
+                                end_date: $("#end_date").val(),
+                                level:$("#level").val()
+                            }
+                        }
+
+                        $.post("http://localhost:1337/api/middleware/GetWeiBoSentimentDay", { params: JSON.stringify(postData) }, function (result) {
+                                    $("table tbody").empty();
+                                    var data =result.data;
+                                    for(var item in data){
+                                        $("table").append('<tr><td>'+data[item][0]+'</td><td>'+data[item][1]+'</td></tr>');
+                                    }
+                                    alert("GetWeiBoSentimentDay");
+                                }
+                        );
+                    });
+            $("#nwsearch").click(
+                    function () {
+                        var postData = {
+                            query: {
+                                customer_name: $("#customer_name").val(),
+                                field_name: $("#field_name").val(),
+                                brand_name: $("#brand_name").val(),
+                                start_date: $("#start_date").val(),
+                                end_date: $("#end_date").val(),
+                                level:$("#level").val()
+                            }
+                        }
+
+                        $.post("http://localhost:1337/api/middleware/GetWeiBoAndNewsSentimentDay", { params: JSON.stringify(postData) }, function (result) {
+                                    $("table tbody").empty();
+                                    var data =result.data;
+                                    for(var item in data){
+                                        $("table").append('<tr><td>'+data[item][0]+'</td><td>'+data[item][1]+'</td></tr>');
+                                    }
+                                    alert("GetWeiBoAndNewsSentimentDay");
+                                }
+                        );
+                    });
+        })
+    </script>
+</head>
+<body>
+<form class="form-horizontal" role="form">
+    <div class="form-group">
+        <label class='col-sm-2 control-label' for="customer_name">customer_name</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="customer_name" value="南通" placeholder="customer_name">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class='col-sm-2 control-label' for="field_name">field_name</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="field_name" value="城市管理" placeholder="field_name">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class='col-sm-2 control-label' for="brand_name">brand_name</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="brand_name" value="交通" placeholder="brand_name">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class='col-sm-2 control-label' for="start_date">start_date</label>
+        <div class="col-sm-10">
+            <input type="date" class="form-control" id="start_date" value="" placeholder="start_date">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class='col-sm-2 control-label' for="end_date">end_date</label>
+        <div class="col-sm-10">
+            <input type="date" class="form-control" id="end_date" value="" placeholder="end_date">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class='col-sm-2 control-label' for="level">极性</label>
+        <div class="col-sm-10">
+            <select id="level" class="form-control">
+                <option value="1">正面</option>
+                <option value="0">中性</option>
+                <option value="-1">负面</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="newsearch" type="button" class="btn btn-default">新闻搜索</button>
+            <button id="weibosearch" type="button" class="btn btn-default">微博搜索</button>
+            <button id="nwsearch" type="button" class="btn btn-default">微博+新闻搜索</button>
+        </div>
+    </div>
+
+</form>
+<table class="table table-hover">
+    <thead><tr><th>日期</th><th>值</th></tr></thead>
+    <tbody></tbody>
+</table>
+</body>
+</html>

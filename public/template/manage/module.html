@@ -1,0 +1,96 @@
+<div class="content_title">
+    <i class="icon icon_direction"></i>
+    <span>权限管理 > 模块管理</span>
+</div>
+<div class="sel_condition">
+    <div class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+            <span>模块名称：</span>
+            <input id="qTitle" type="text" class="form-control">
+        </div>
+        <button id="search" class="btn btn-default ml10">搜索</button>
+        <a class="btn btn-primary ml10" data-toggle="modal" id="addModule">添加</a>
+    </div>
+</div>
+<div class="table-responsive">
+    <table class="table table-hover" id="modules">
+        <thead>
+        <tr>
+            <th class="serialNum">序号</th>
+            <th class="left">模块名称</th>
+            <th class="left">别名</th>
+            <th class="left">父模块</th>
+            <th class="left">URL</th>
+            <th class="handle">操作</th>
+        </tr>
+        </thead>
+        <tbody data-bind="foreach:modules">
+        <tr>
+            <td data-bind="text:$index()+1">1</td>
+            <td data-bind="text:name" class="left"></td>
+            <td data-bind="text:aname" class="left"></td>
+            <td data-bind="text:pname" class="left"></td>
+            <td data-bind="text:url" class="left"></td>
+            <td><i class="icon icon_edit" title="编辑" data-bind="click:$root.showEdieEmerModal"></i><i
+                    data-bind="click: $root.removeEmergency" class="icon icon_delete" title="删除"></i></td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="50" style="text-align:right;">
+                <ul class="pagination pagination-sm" id="pagination"></ul>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+
+<!--编辑弹框-->
+<div class="modal fade" id="moduleModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">模块添加</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal" role="form" id="modal-em">
+                    <div class="form-group">
+                        <label for="inputClass" class="col-sm-3 control-label">父模块：</label>
+                        <div class="col-sm-9">
+                            <select id="inputClass" class="form-control">
+                                <option value="0">顶级模块</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputName" class="col-sm-3 control-label">模块名称：</label>
+                        <div class="col-sm-6">
+                            <input type="email" class="form-control" id="inputName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAName" class="col-sm-3 control-label">别名：</label>
+                        <div class="col-sm-6">
+                            <input type="email" class="form-control" id="inputAName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputUrl" class="col-sm-3 control-label">URL：</label>
+
+                        <div class="col-sm-9">
+                            <input type="email" class="form-control" id="inputUrl">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal" id="save">保存</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/business/module.js"></script>
+<!--编辑弹框-->

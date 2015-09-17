@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>舆情分类报告</title>
+    <link href="/css/bootstrap.css" rel="stylesheet" />
+    <link href="/css/base.css" rel="stylesheet" />
+    <link id="skinLink" href="/css/skin/default.css" rel="stylesheet" />
+    <script src="/js/jQuery.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/knockout.js"></script>
+    <script src="/js/highcharts.js"></script>
+    <script src="/js/sea.js"></script>
+    <script src="/showroom/Componets/NewsMonitor2.js"></script>
+    <script src="/js/business/base.js"></script>
+    <script src="/js/iChart.js"></script>
+    
+</head>
+<body mid="3-2">
+    <div id="main_container">
+        <div class="media media-container">
+            <div class="pull-left">
+                <div id="head_menu"></div>
+            </div>
+            <div class="media-body">
+                <div id="head_top"></div>
+                <div id="content">
+                    <div class="content_title">
+                        <i class="icon icon_direction"></i>
+                        <span>舆情分析报告 > 舆情分类报告</span>
+                    </div>
+                    <div class="sel_condition">
+                        <form class="navbar-form navbar-left" role="search">
+                            <div class="form-group">
+                                <span>时间区间：</span>
+                                <input type="date" id="qDateStart" class="form-control">
+                                <span>-</span>
+                                <input type="date" id="qDateEnd" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <span>正负极性：</span>
+                                <select id="PosAndNegRating" class="form-control">
+                                    <option>全部</option>
+                                    <option>正</option>
+                                    <option>负</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-default" id="search">生成报告</button>
+                        </form>
+                    </div>
+                    <div id="mainContainer">
+                         <div id="title"><span>昆山市舆情汇总报告</span></div>
+                         <div id="sentimentCount"></div>
+                        <div id="nm_1" style="width:100%;"></div>
+                    </div>
+                </div>
+                <div id="foot"></div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        //seajs.use('showroom/Componets/NewsMonitor2', function (c) {
+        //    c.load('mainContainer', function () {
+        //    });
+        //});
+        window.baseTools.GetNewsSentimentPie({query:{ customer_name: '南通' }}, function (result) {
+            if (result&&result.success) {
+                $("#mainContainer").pieChart({ title: "舆情分类报告", data: result.data});
+            }
+           
+        });
+     
+    </script>
+</body>
+
+</html>
